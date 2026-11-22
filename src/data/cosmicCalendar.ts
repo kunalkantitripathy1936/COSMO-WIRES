@@ -1,4 +1,4 @@
-import { CosmicEvent } from '../types';
+import type { CosmicEvent } from '../types.js';
 
 /**
  * Verified astronomical ephemerides for 2026–2027 sourced from:

@@ -6,11 +6,11 @@ import {
   CONTACT_DUPLICATE_MESSAGE,
   CONTACT_LIMITS,
   CONTACT_SUCCESS_MESSAGE,
-  ContactFieldErrors,
+  type ContactFieldErrors,
   computeContactFingerprint,
   validateContactFormInput,
-} from '../src/utils/contactLogic';
-import { sendContactEmail } from './emailService';
+} from '../src/utils/contactLogic.js';
+import { sendContactEmail } from './emailService.js';
 
 const IS_SERVERLESS = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
 const DATA_DIR = IS_SERVERLESS

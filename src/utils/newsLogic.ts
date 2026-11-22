@@ -1,14 +1,14 @@
 import { XMLParser } from 'fast-xml-parser';
 import {
-  Article,
-  CosmicEvent,
-  CosmicEventType,
+  type Article,
+  type CosmicEvent,
+  type CosmicEventType,
   EDITORIAL_DESKS,
-  EditorialDesk,
+  type EditorialDesk,
   NEWS_CATEGORIES,
-  NewsCategory,
-  NewsPagination,
-} from '../types';
+  type NewsCategory,
+  type NewsPagination,
+} from '../types.js';
 
 const xmlParser = new XMLParser({
   ignoreAttributes: false,

@@ -1,4 +1,4 @@
-import { Article, NewsCategory, SpaceMission } from '../types';
+import type { Article, NewsCategory, SpaceMission } from '../types.js';
 
 export interface CategoryMeta {
   name: NewsCategory;

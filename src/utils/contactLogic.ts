@@ -1,4 +1,4 @@
-import { BRAND } from '../config/brand';
+import { BRAND } from '../config/brand.js';
 
 export const CONTACT_RECIPIENT_EMAIL = 'cosmowires.connect@gmail.com';
 export const CONTACT_SUCCESS_MESSAGE =

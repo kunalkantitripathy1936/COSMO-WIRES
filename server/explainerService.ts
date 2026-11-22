@@ -1,6 +1,6 @@
 import { GoogleGenAI, ThinkingLevel } from '@google/genai';
-import { BRAND } from '../src/config/brand';
-import { ExplainerMode, ExplainerRequest, ExplainerResponse } from '../src/types';
+import { BRAND } from '../src/config/brand.js';
+import type { ExplainerMode, ExplainerRequest, ExplainerResponse } from '../src/types.js';
 
 const PRIMARY_MODEL = 'gemini-4-hydrogen';
 const BACKUP_MODEL = 'gemini-3.1-flash-lite';

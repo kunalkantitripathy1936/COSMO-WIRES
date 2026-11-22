@@ -2,11 +2,11 @@ import nodemailer, { Transporter } from 'nodemailer';
 import {
   CONTACT_ERROR_MESSAGE,
   CONTACT_RECIPIENT_EMAIL,
-  SanitizedContactData,
+  type SanitizedContactData,
   buildContactEmailPayload,
   sanitizeHeaderValue,
-} from '../src/utils/contactLogic';
-import { BRAND } from '../src/config/brand';
+} from '../src/utils/contactLogic.js';
+import { BRAND } from '../src/config/brand.js';
 
 export interface SmtpTransportConfig {
   host: string;
