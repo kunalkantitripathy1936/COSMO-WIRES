@@ -153,9 +153,23 @@ export function validateContactFormInput(
   const subject = typeof raw.subject === 'string' ? sanitizeHeaderValue(raw.subject) : '';
   const message =
     typeof raw.message === 'string'
-      ? // eslint-disable-next-line no-control-regex
-        raw.message.replace(/\x00/g, '').trim()
+      ? // Strip NUL and non-printable ASCII control chars while preserving tabs and line breaks
+        // eslint-disable-next-line no-control-regex
+        raw.message.replace(/[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]+/g, '').trim()
       : '';
+
+  // Anti-spam Check 3: Block link-farm spam messages stuffed with excessive URLs
+  if (checkAntiSpam) {
+    const urlMatches = message.match(/https?:\/\/\S+/gi);
+    if (urlMatches && urlMatches.length > 8) {
+      return {
+        valid: false,
+        isSpam: true,
+        message: 'Message rejected by spam filter (too many links).',
+        fieldErrors: {},
+      };
+    }
+  }
 
   const fieldErrors: ContactFieldErrors = {};
 

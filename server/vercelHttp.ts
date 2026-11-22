@@ -95,30 +95,61 @@ export function enforceMethod(
 export async function readJsonBody(req: ServerlessRequest, maxBytes = 64 * 1024): Promise<unknown> {
   if (req.body !== undefined && req.body !== null) {
     if (typeof req.body === 'string') {
-      return req.body.trim() ? JSON.parse(req.body) : {};
+      if (Buffer.byteLength(req.body, 'utf-8') > maxBytes) {
+        throw Object.assign(new Error('Request body exceeds size limit.'), { status: 413 });
+      }
+      const trimmed = req.body.trim();
+      if (!trimmed) return {};
+      try {
+        return JSON.parse(trimmed);
+      } catch {
+        throw Object.assign(new Error('Invalid JSON request payload.'), { status: 400 });
+      }
     }
     if (Buffer.isBuffer(req.body)) {
-      const str = req.body.toString('utf-8').trim();
-      return str ? JSON.parse(str) : {};
+      if (req.body.length > maxBytes) {
+        throw Object.assign(new Error('Request body exceeds size limit.'), { status: 413 });
+      }
+      const trimmed = req.body.toString('utf-8').trim();
+      if (!trimmed) return {};
+      try {
+        return JSON.parse(trimmed);
+      } catch {
+        throw Object.assign(new Error('Invalid JSON request payload.'), { status: 400 });
+      }
     }
     return req.body;
+  }
+
+  if (req.readableEnded) {
+    return {};
   }
 
   return new Promise((resolve, reject) => {
     const chunks: Buffer[] = [];
     let totalBytes = 0;
+    let settled = false;
+
+    const fail = (err: Error) => {
+      if (settled) return;
+      settled = true;
+      reject(err);
+    };
 
     req.on('data', (chunk: Buffer | string) => {
+      if (settled) return;
       const buf = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
       totalBytes += buf.length;
       if (totalBytes > maxBytes) {
-        reject(Object.assign(new Error('Request body exceeds size limit.'), { status: 413 }));
+        fail(Object.assign(new Error('Request body exceeds size limit.'), { status: 413 }));
         return;
       }
       chunks.push(buf);
     });
 
     req.on('end', () => {
+      if (settled) return;
+      settled = true;
       const raw = Buffer.concat(chunks).toString('utf-8').trim();
       if (!raw) {
         resolve({});
@@ -131,6 +162,6 @@ export async function readJsonBody(req: ServerlessRequest, maxBytes = 64 * 1024)
       }
     });
 
-    req.on('error', (err) => reject(err));
+    req.on('error', (err) => fail(err));
   });
 }

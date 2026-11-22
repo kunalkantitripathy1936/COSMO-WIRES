@@ -20,8 +20,7 @@ import {
 } from './server/storageService';
 import {
   EmailDeliveryError,
-  getConfiguredEmailProvider,
-  isEmailTransportConfigured,
+  getContactEmailDiagnostics,
 } from './server/emailService';
 import { CONTACT_ERROR_MESSAGE } from './src/utils/contactLogic';
 import {
@@ -125,6 +124,7 @@ ${routes
 
   // API: Service health & live news scheduler status
   app.get('/api/health', (_req, res) => {
+    const emailDiagnostics = getContactEmailDiagnostics();
     res.json({
       status: 'ok',
       service: BRAND.serviceId,
@@ -132,8 +132,10 @@ ${routes
       timestamp: new Date().toISOString(),
       news: getNewsHealthSummary(),
       explainerConfigured: isGeminiConfigured(),
-      contactEmailConfigured: isEmailTransportConfigured(),
-      contactEmailProvider: getConfiguredEmailProvider(),
+      contactEmailConfigured: emailDiagnostics.configured,
+      contactEmailProvider: emailDiagnostics.provider,
+      contactMissingEnvVars: emailDiagnostics.missingRequired,
+      contactConfigIssues: emailDiagnostics.issues,
     });
   });
 

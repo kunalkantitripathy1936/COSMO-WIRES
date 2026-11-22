@@ -1,8 +1,5 @@
 import type { ServerResponse } from 'node:http';
-import {
-  getConfiguredEmailProvider,
-  isEmailTransportConfigured,
-} from '../server/emailService.js';
+import { getContactEmailDiagnostics } from '../server/emailService.js';
 import { isGeminiConfigured } from '../server/explainerService.js';
 import { getNewsHealthSummary } from '../server/newsAggregator.js';
 import {
@@ -20,6 +17,8 @@ export default function handler(
     return;
   }
 
+  const emailDiagnostics = getContactEmailDiagnostics();
+
   sendJson(
     res,
     200,
@@ -30,8 +29,10 @@ export default function handler(
       timestamp: new Date().toISOString(),
       news: getNewsHealthSummary(),
       explainerConfigured: isGeminiConfigured(),
-      contactEmailConfigured: isEmailTransportConfigured(),
-      contactEmailProvider: getConfiguredEmailProvider(),
+      contactEmailConfigured: emailDiagnostics.configured,
+      contactEmailProvider: emailDiagnostics.provider,
+      contactMissingEnvVars: emailDiagnostics.missingRequired,
+      contactConfigIssues: emailDiagnostics.issues,
     },
     'no-store'
   );

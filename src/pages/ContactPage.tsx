@@ -100,6 +100,9 @@ export function ContactPage() {
     setFeedback('');
     setReferenceId(null);
 
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), 25_000);
+
     try {
       const response = await fetch(apiUrl('/api/contact'), {
         method: 'POST',
@@ -107,6 +110,7 @@ export function ContactPage() {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
+        signal: controller.signal,
         body: JSON.stringify({
           name: validation.data.name,
           email: validation.data.email,
@@ -135,7 +139,8 @@ export function ContactPage() {
         fieldErrors?: ContactFieldErrors;
       };
 
-      if (!response.ok || data.delivered !== true) {
+      // Confirm success ONLY after the server explicitly confirms acceptance for delivery
+      if (!response.ok || data.delivered !== true || !data.id) {
         if (data.fieldErrors && Object.keys(data.fieldErrors).length > 0) {
           setFieldErrors(data.fieldErrors);
         }
@@ -162,16 +167,25 @@ export function ContactPage() {
 
       setStatus('success');
       setFeedback(data.message || CONTACT_SUCCESS_MESSAGE);
-      setReferenceId(data.id ?? null);
+      setReferenceId(data.id);
       setName('');
       setEmail('');
       setSubject('');
       setMessage('');
       setWebsite('');
-    } catch {
+    } catch (error) {
       setStatus('error');
-      setFeedback(CONTACT_ERROR_MESSAGE);
+      if (error instanceof DOMException && error.name === 'AbortError') {
+        setFeedback(
+          `The request timed out while contacting the mail server. Please try again or email ${CONTACT_RECIPIENT_EMAIL} directly.`
+        );
+      } else {
+        setFeedback(
+          `${CONTACT_ERROR_MESSAGE} You can also email ${CONTACT_RECIPIENT_EMAIL} directly.`
+        );
+      }
     } finally {
+      window.clearTimeout(timeoutId);
       inFlightRef.current = false;
     }
   };

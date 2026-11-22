@@ -137,13 +137,15 @@ export async function submitContactInquiry(rawBody: unknown): Promise<ContactSub
       emailMessageId: delivery.messageId,
     };
 
-    try {
-      const inquiries = await readJsonArray<ContactInquiryRecord>(INQUIRIES_FILE);
-      inquiries.push(record);
-      await writeJsonArray(INQUIRIES_FILE, inquiries);
-    } catch (storageErr) {
-      // Email was already delivered; log local archive failure without breaking user confirmation
-      console.error('[ContactStorage] Failed to archive delivered inquiry locally:', storageErr);
+    if (!IS_SERVERLESS) {
+      try {
+        const inquiries = await readJsonArray<ContactInquiryRecord>(INQUIRIES_FILE);
+        inquiries.push(record);
+        await writeJsonArray(INQUIRIES_FILE, inquiries);
+      } catch (storageErr) {
+        // Email was already delivered; log local archive failure without breaking user confirmation
+        console.error('[ContactStorage] Failed to archive delivered inquiry locally:', storageErr);
+      }
     }
 
     return {
