@@ -1,14 +1,15 @@
 import fs from 'node:fs/promises';
+import os from 'node:os';
 import path from 'node:path';
-import { BRAND } from '../src/config/brand';
+import { BRAND } from '../src/config/brand.js';
 import {
   classifyEditorialDesks,
   deduplicateAndSortArticles,
   parseRssOrAtomXml,
   parseSpaceflightNewsApiResponse,
-} from '../src/utils/newsLogic';
-import { EDITORIAL_ARCHIVE_SAMPLES } from '../src/data/editorialData';
-import { Article, FeedHealth, FeedStatus, NewsApiResponse } from '../src/types';
+} from '../src/utils/newsLogic.js';
+import { EDITORIAL_ARCHIVE_SAMPLES } from '../src/data/editorialData.js';
+import type { Article, FeedHealth, FeedStatus, NewsApiResponse } from '../src/types.js';
 
 interface FeedSource {
   id: string;
@@ -43,14 +44,7 @@ const VERIFIED_FEEDS: FeedSource[] = [
     publisher: 'ESA',
     url: 'https://www.esa.int/rssfeed/TopNews',
     sourceType: 'rss',
-    maxItems: 18,
-  },
-  {
-    id: 'esa-science',
-    publisher: 'ESA',
-    url: 'https://www.esa.int/rssfeed/Our_Activities/Space_Science',
-    sourceType: 'rss',
-    maxItems: 16,
+    maxItems: 20,
   },
   {
     id: 'space-com',
@@ -107,11 +101,14 @@ function resolveRefreshIntervalMs(): number {
 }
 
 export const REFRESH_INTERVAL_MS = resolveRefreshIntervalMs();
-const FEED_TIMEOUT_MS = 8000;
-const MAX_FEED_ATTEMPTS = 2;
-const RETRY_BASE_DELAY_MS = 600;
+const IS_SERVERLESS = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+const FEED_TIMEOUT_MS = IS_SERVERLESS ? 6000 : 8000;
+const MAX_FEED_ATTEMPTS = IS_SERVERLESS ? 2 : 2;
+const RETRY_BASE_DELAY_MS = IS_SERVERLESS ? 300 : 600;
 const MANUAL_REFRESH_COOLDOWN_MS = 8_000;
-const DATA_DIR = path.resolve(process.cwd(), 'data');
+const DATA_DIR = IS_SERVERLESS
+  ? path.join(os.tmpdir(), 'cosmo-wires-data')
+  : path.resolve(process.cwd(), 'data');
 const CACHE_FILE = path.join(DATA_DIR, 'news-cache.json');
 
 interface CachedNewsState {
@@ -340,17 +337,26 @@ export async function refreshNewsFeeds(): Promise<CachedNewsState> {
   }
 
   inFlightFetch = (async () => {
+    const startedMs = Date.now();
     const attemptIso = new Date().toISOString();
-    lastAttemptMs = Date.now();
+    lastAttemptMs = startedMs;
 
     const results = await Promise.all(VERIFIED_FEEDS.map((feed) => fetchSingleFeed(feed)));
     const allLiveArticles = results.flatMap((r) => r.articles);
     const dedupedLive = deduplicateAndSortArticles(allLiveArticles);
     const consolidatedHealth = consolidateFeedHealth(results.map((r) => r.health));
     const okCount = consolidatedHealth.filter((h) => h.status === 'ok').length;
-    const failedPublishers = consolidatedHealth
-      .filter((h) => h.status !== 'ok')
-      .map((h) => h.publisher);
+    const failedEntries = consolidatedHealth.filter((h) => h.status !== 'ok');
+    const failedPublishers = failedEntries.map((h) => h.publisher);
+    const durationMs = Date.now() - startedMs;
+
+    if (failedEntries.length > 0) {
+      console.warn(
+        `[NewsAggregator] Partial feed issues (${durationMs}ms): ${failedEntries
+          .map((f) => `${f.publisher}=${f.note || 'unavailable'}`)
+          .join(', ')}`
+      );
+    }
 
     if (dedupedLive.length > 0) {
       const nextState: CachedNewsState = {
@@ -368,8 +374,15 @@ export async function refreshNewsFeeds(): Promise<CachedNewsState> {
       memoryCache = nextState;
       lastSuccessfulFetchMs = Date.now();
       await saveDiskCache(nextState);
+      console.log(
+        `[NewsAggregator] Refreshed ${dedupedLive.length} unique articles from ${okCount}/${consolidatedHealth.length} publishers in ${durationMs}ms`
+      );
       return nextState;
     }
+
+    console.error(
+      `[NewsAggregator] All ${consolidatedHealth.length} upstream feeds returned 0 articles after ${durationMs}ms`
+    );
 
     // All upstream feeds failed — preserve previously cached real articles honestly as STALE CACHE
     const existingCache = memoryCache ?? (await loadDiskCache());

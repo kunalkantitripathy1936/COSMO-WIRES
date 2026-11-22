@@ -1,5 +1,6 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs/promises';
+import os from 'node:os';
 import path from 'node:path';
 import {
   CONTACT_DUPLICATE_MESSAGE,
@@ -11,7 +12,10 @@ import {
 } from '../src/utils/contactLogic';
 import { sendContactEmail } from './emailService';
 
-const DATA_DIR = path.resolve(process.cwd(), 'data');
+const IS_SERVERLESS = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+const DATA_DIR = IS_SERVERLESS
+  ? path.join(os.tmpdir(), 'cosmo-wires-data')
+  : path.resolve(process.cwd(), 'data');
 const INQUIRIES_FILE = path.join(DATA_DIR, 'inquiries.json');
 
 // In-memory deduplication & concurrency guard for Contact Us submissions

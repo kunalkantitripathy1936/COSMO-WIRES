@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ArrowUpRight, BookOpen, Send, Sparkles, X } from 'lucide-react';
+import { apiUrl, parseJsonResponse } from '../config/api';
 import { Article, ExplainerMode, ExplainerResponse } from '../types';
 
 interface CosmicExplainerDrawerProps {
@@ -61,9 +62,12 @@ export function CosmicExplainerDrawer({
     setError(null);
 
     try {
-      const response = await fetch('/api/explainer', {
+      const response = await fetch(apiUrl('/api/explainer'), {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
         body: JSON.stringify({
           mode,
           question: customQuestion ?? question,
@@ -79,7 +83,10 @@ export function CosmicExplainerDrawer({
         }),
       });
 
-      const data = await response.json();
+      const data = await parseJsonResponse<ExplainerResponse & { error?: string }>(
+        response,
+        'Cosmic Explainer API'
+      );
       if (!response.ok) {
         setError(data.error || 'Cosmic Explainer could not complete this request.');
         setResult(null);

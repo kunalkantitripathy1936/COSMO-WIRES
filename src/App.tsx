@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, MotionConfig, motion } from 'motion/react';
 import { BRAND } from './config/brand';
+import { apiUrl, parseJsonResponse } from './config/api';
 import {
   ApodData,
   Article,
@@ -152,11 +153,17 @@ export default function App() {
       setNewsError(null);
     }
     try {
-      const response = await fetch(`/api/news${forceRefresh ? '?refresh=1' : ''}`);
+      const response = await fetch(
+        apiUrl(`/api/news${forceRefresh ? '?refresh=1' : ''}`),
+        {
+          headers: { Accept: 'application/json' },
+          cache: forceRefresh ? 'no-store' : 'default',
+        }
+      );
       if (!response.ok) {
         throw new Error(`Feed API returned HTTP ${response.status}`);
       }
-      const data = (await response.json()) as NewsApiResponse;
+      const data = await parseJsonResponse<NewsApiResponse>(response, 'News API');
       const prevIds = knownArticleIdsRef.current;
       if (prevIds.size > 0) {
         const newlyAdded = data.articles.filter((a) => !prevIds.has(a.id)).length;
@@ -200,11 +207,13 @@ export default function App() {
     setApodError(null);
     try {
       const query = dateStr ? `?date=${encodeURIComponent(dateStr)}` : '';
-      const response = await fetch(`/api/apod${query}`);
+      const response = await fetch(apiUrl(`/api/apod${query}`), {
+        headers: { Accept: 'application/json' },
+      });
       if (!response.ok) {
         throw new Error('Could not load NASA APOD.');
       }
-      const data = (await response.json()) as ApodData;
+      const data = await parseJsonResponse<ApodData>(response, 'NASA APOD API');
       setApod(data);
     } catch {
       setApodError('Unable to load NASA Astronomy Picture of the Day at this moment.');

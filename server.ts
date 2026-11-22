@@ -155,6 +155,10 @@ ${routes
       });
 
       const hasPaginationParams = req.query.page !== undefined || req.query.limit !== undefined;
+      res.setHeader(
+        'Cache-Control',
+        forceRefresh ? 'no-store, max-age=0' : 'public, max-age=60, s-maxage=900, stale-while-revalidate=300'
+      );
       if (hasPaginationParams) {
         const rawPage = Number(req.query.page ?? 1);
         const rawLimit = Number(req.query.limit ?? 18);
@@ -174,7 +178,7 @@ ${routes
         total: filtered.length,
       });
     } catch (error) {
-      console.error('Error serving /api/news:', error);
+      console.error('[ExpressAPI] Error serving /api/news:', error);
       res.status(500).json({ error: 'Unable to retrieve space news feeds at this time.' });
     }
   });
@@ -184,9 +188,10 @@ ${routes
     try {
       const dateParam = typeof req.query.date === 'string' ? req.query.date : undefined;
       const apod = await getNasaApod(dateParam);
+      res.setHeader('Cache-Control', 'public, max-age=300, s-maxage=3600, stale-while-revalidate=600');
       res.json(apod);
     } catch (error) {
-      console.error('Error serving /api/apod:', error);
+      console.error('[ExpressAPI] Error serving /api/apod:', error);
       res.status(500).json({ error: 'Unable to load NASA Astronomy Picture of the Day.' });
     }
   });

@@ -1,6 +1,6 @@
-import { BRAND } from '../src/config/brand';
-import { ApodData } from '../src/types';
-import { sanitizeEmbedUrl, sanitizeUrl } from '../src/utils/newsLogic';
+import { BRAND } from '../src/config/brand.js';
+import type { ApodData } from '../src/types.js';
+import { sanitizeEmbedUrl, sanitizeUrl } from '../src/utils/newsLogic.js';
 
 const APOD_CACHE_TTL_MS = 6 * 60 * 60 * 1000; // 6 hours
 const APOD_TIMEOUT_MS = 7000;

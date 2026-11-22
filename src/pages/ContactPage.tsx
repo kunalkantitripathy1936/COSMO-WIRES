@@ -9,6 +9,7 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import { BRAND } from '../config/brand';
+import { apiUrl } from '../config/api';
 import {
   CONTACT_DUPLICATE_MESSAGE,
   CONTACT_ERROR_MESSAGE,
@@ -100,9 +101,12 @@ export function ContactPage() {
     setReferenceId(null);
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(apiUrl('/api/contact'), {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
         body: JSON.stringify({
           name: validation.data.name,
           email: validation.data.email,
