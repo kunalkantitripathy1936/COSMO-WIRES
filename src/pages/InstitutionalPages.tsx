@@ -1,0 +1,417 @@
+import { Mail } from 'lucide-react';
+import { BRAND } from '../config/brand';
+import { RoutePath } from '../types';
+
+export { ContactPage } from './ContactPage';
+
+export function AboutPage({ onNavigate }: { onNavigate: (path: RoutePath) => void }) {
+  return (
+    <div className="mx-auto max-w-4xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20 space-y-10">
+      <header className="border-b border-[#1E293B] pb-8">
+        <p className="text-xs font-mono text-[#60A5FA] tracking-wider">
+          About the Publication
+        </p>
+        <h1 className="mt-2 font-serif text-4xl lg:text-5xl font-medium text-[#F8FAFC]">
+          {BRAND.taglineTitleCase}
+        </h1>
+        <p className="mt-4 text-base leading-relaxed text-[#CBD5E1]">
+          {BRAND.name} is an independent digital science publication built for readers who want verified astronomy, astrophysics, cosmology, and space exploration reporting without sensationalism.
+        </p>
+      </header>
+
+      <section className="space-y-4 text-[15px] leading-relaxed text-[#94A3B8]">
+        <h2 className="font-serif text-2xl font-medium text-[#F1F5F9]">Our Mission</h2>
+        <p>
+          Modern space science unfolds across observatories, space agencies, and scientific publications around the world. {BRAND.name} aggregates and summarizes verified dispatches from primary space agencies — including NASA, ESA, and ISRO coverage via Spaceflight News API v4 — alongside established space journalism outlets such as Space.com, Universe Today, Phys.org, and ScienceDaily.
+        </p>
+        <p>
+          Rather than reproducing copyrighted reporting, we present accurate headlines, concise permitted excerpts, structured scientific categorization, transparent publication and retrieval timestamps, and direct links to the original publishers.
+        </p>
+      </section>
+
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-5 border-y border-[#1E293B] py-8">
+        <div>
+          <p className="font-mono text-2xl font-semibold text-[#F8FAFC] tabular-nums">8+</p>
+          <p className="mt-1 text-sm font-medium text-[#CBD5E1]">Verified News Sources</p>
+          <p className="mt-1 text-xs text-[#94A3B8]">
+            Official RSS, Atom, and public API feeds refreshed automatically on a 15-minute schedule.
+          </p>
+        </div>
+        <div>
+          <p className="font-mono text-2xl font-semibold text-[#F8FAFC] tabular-nums">10</p>
+          <p className="mt-1 text-sm font-medium text-[#CBD5E1]">Scientific Disciplines</p>
+          <p className="mt-1 text-xs text-[#94A3B8]">
+            From exoplanet spectroscopy and black holes to cosmology and active space missions.
+          </p>
+        </div>
+        <div>
+          <p className="font-mono text-2xl font-semibold text-[#F8FAFC] tabular-nums">100%</p>
+          <p className="mt-1 text-sm font-medium text-[#CBD5E1]">Transparent Attribution</p>
+          <p className="mt-1 text-xs text-[#94A3B8]">
+            Every article links directly to its original publisher; AI explanations are clearly labeled.
+          </p>
+        </div>
+      </section>
+
+      <div className="flex flex-wrap gap-3">
+        <button
+          type="button"
+          onClick={() => onNavigate('/editorial-policy')}
+          className="rounded-full bg-[#2563EB] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#3B82F6] transition-colors cursor-pointer"
+        >
+          Read Editorial Policy
+        </button>
+        <button
+          type="button"
+          onClick={() => onNavigate('/disclaimer')}
+          className="rounded-full border border-[#1E293B] bg-[#0D121E] px-5 py-2.5 text-sm font-medium text-[#E2E8F0] hover:border-[#334155] hover:bg-[#121A2B] transition-colors cursor-pointer"
+        >
+          Read Disclaimer
+        </button>
+        <button
+          type="button"
+          onClick={() => onNavigate('/contact')}
+          className="rounded-full border border-[#1E293B] bg-[#0D121E] px-5 py-2.5 text-sm font-medium text-[#E2E8F0] hover:border-[#334155] hover:bg-[#121A2B] transition-colors cursor-pointer"
+        >
+          Contact Us
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export function EditorialPolicyPage() {
+  return (
+    <div className="mx-auto max-w-4xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20 space-y-8">
+      <header className="border-b border-[#1E293B] pb-8">
+        <p className="text-xs font-mono text-[#60A5FA] tracking-wider">Standards &amp; Ethics</p>
+        <h1 className="mt-2 font-serif text-4xl lg:text-5xl font-medium text-[#F8FAFC]">
+          Editorial Policy
+        </h1>
+        <p className="mt-4 text-base leading-relaxed text-[#94A3B8]">
+          How {BRAND.name} aggregates and summarizes external scientific and space-news sources, maintains transparent attribution, and labels AI-assisted explanations.
+        </p>
+      </header>
+
+      <section className="space-y-3 text-[15px] leading-relaxed text-[#CBD5E1]">
+        <h2 className="font-serif text-2xl font-medium text-[#F8FAFC]">
+          1. Aggregation &amp; Source Verification
+        </h2>
+        <p className="text-[#94A3B8]">
+          {BRAND.name} aggregates and summarizes space, astronomy, and astrophysics reporting from established external sources, including official RSS and Atom feeds from NASA, ESA, Space.com, Universe Today, Phys.org, and ScienceDaily, as well as the public Spaceflight News API v4 (which also provides ISRO mission coverage). Feeds are checked periodically on a 15-minute schedule. We do not invent headlines, articles, sources, or publication dates; when an upstream source is temporarily unavailable, the status is reported transparently rather than substituted with fabricated news.
+        </p>
+      </section>
+
+      <section className="space-y-3 text-[15px] leading-relaxed text-[#CBD5E1]">
+        <h2 className="font-serif text-2xl font-medium text-[#F8FAFC]">
+          2. Source Attribution &amp; Links to Original Publishers
+        </h2>
+        <p className="text-[#94A3B8]">
+          We respect publisher copyright and do not reproduce full third-party articles. Each news card displays the original headline, source name, original publication timestamp (when provided by the source), retrieval timestamp, a short permitted excerpt or summary, authorized feed media where available, and a direct outbound link to read the complete report on the original publisher’s website.
+        </p>
+      </section>
+
+      <section className="space-y-3 text-[15px] leading-relaxed text-[#CBD5E1]">
+        <h2 className="font-serif text-2xl font-medium text-[#F8FAFC]">
+          3. Transparent Labeling of AI-Assisted Explanations
+        </h2>
+        <p className="text-[#94A3B8]">
+          Our optional COSMIC EXPLAINER tool uses a server-side AI model solely to help readers understand scientific terminology, astrophysics concepts, and short article excerpts. Every AI-generated response is explicitly labeled as AI-generated and advises readers to verify scientific figures and findings against the linked original publisher or peer-reviewed literature.
+        </p>
+      </section>
+
+      <section className="space-y-3 text-[15px] leading-relaxed text-[#CBD5E1]">
+        <h2 className="font-serif text-2xl font-medium text-[#F8FAFC]">
+          4. Astronomical Ephemerides &amp; Corrections
+        </h2>
+        <p className="text-[#94A3B8]">
+          Eclipse timings, meteor shower peaks, lunar phases, and planetary events listed in the Cosmic Calendar are cross-checked against public references from NASA Goddard, the U.S. Naval Observatory (USNO), and the International Meteor Organization (IMO), with verification links included for each entry. If you spot a factual error, broken attribution link, or technical issue, please contact us at{' '}
+          <a
+            href={`mailto:${BRAND.contactEmail}`}
+            className="text-[#60A5FA] hover:text-[#93C5FD] transition-colors"
+          >
+            {BRAND.contactEmail}
+          </a>
+          .
+        </p>
+      </section>
+    </div>
+  );
+}
+
+export function DisclaimerPage() {
+  return (
+    <div className="mx-auto max-w-4xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20 space-y-8">
+      <header className="border-b border-[#1E293B] pb-8">
+        <p className="text-xs font-mono text-[#60A5FA] tracking-wider">Publication Notice</p>
+        <h1 className="mt-2 font-serif text-4xl lg:text-5xl font-medium text-[#F8FAFC]">
+          Disclaimer
+        </h1>
+        <p className="mt-4 text-base leading-relaxed text-[#94A3B8]">
+          Important information regarding external publisher ownership, scientific accuracy, AI-assisted explanations, and astronomical event schedules on {BRAND.name}.
+        </p>
+      </header>
+
+      <section className="space-y-3 text-[15px] leading-relaxed text-[#94A3B8]">
+        <h2 className="font-serif text-2xl font-medium text-[#F8FAFC]">
+          1. Ownership of External Scientific Articles
+        </h2>
+        <p>
+          All external news headlines, excerpts, summaries, photographs, and linked reports aggregated on {BRAND.name} belong to their respective original publishers, space agencies, authors, and copyright holders. {BRAND.name} is an independent publication and news aggregator and is not officially affiliated with, endorsed by, or sponsored by NASA, ESA, ISRO, Space.com, Universe Today, Phys.org, ScienceDaily, or any other third-party organization referenced on this website.
+        </p>
+        <p>
+          Readers should always click through and consult the original publisher’s article or underlying peer-reviewed study for complete context, full reporting, datasets, and authoritative scientific details.
+        </p>
+      </section>
+
+      <section className="space-y-3 text-[15px] leading-relaxed text-[#94A3B8]">
+        <h2 className="font-serif text-2xl font-medium text-[#F8FAFC]">
+          2. Informational &amp; Educational Purpose
+        </h2>
+        <p>
+          All content on {BRAND.name} — including aggregated news briefings, NASA Astronomy Picture of the Day features, mission profiles, interactive orbital visualizations, and Cosmic Calendar entries — is provided strictly for general informational and scientific literacy purposes. While we rely on reputable public feeds and ephemeris references, we make no warranty regarding completeness, uninterrupted availability, or real-time accuracy of third-party feeds.
+        </p>
+      </section>
+
+      <section className="space-y-3 text-[15px] leading-relaxed text-[#94A3B8]">
+        <h2 className="font-serif text-2xl font-medium text-[#F8FAFC]">
+          3. AI-Assisted Explanations
+        </h2>
+        <p>
+          Responses generated by the optional COSMIC EXPLAINER feature are produced by an artificial intelligence model based on available excerpts and general scientific knowledge. AI explanations may occasionally simplify complex physics or omit nuance and should not be treated as peer-reviewed research or a substitute for primary scientific sources.
+        </p>
+      </section>
+
+      <section className="space-y-3 text-[15px] leading-relaxed text-[#94A3B8]">
+        <h2 className="font-serif text-2xl font-medium text-[#F8FAFC]">
+          4. External Links &amp; Astronomical Schedules
+        </h2>
+        <p>
+          {BRAND.name} contains outbound links to external agency portals, science publications, and ephemeris references. We do not control the content, availability, or policies of external websites. Space launch dates, orbital windows, and local observing visibility are subject to weather, technical updates, and agency schedule revisions; verify time-critical observations with the linked primary agency source.
+        </p>
+      </section>
+
+      <section className="rounded-2xl border border-[#1E293B]/90 bg-[#0D121E]/90 p-6 space-y-2 text-sm text-[#94A3B8]">
+        <h2 className="font-serif text-lg font-medium text-[#F8FAFC]">
+          Attribution or Rights Inquiries
+        </h2>
+        <p>
+          If you are a publisher or rights holder and wish to request an attribution adjustment or content removal, please contact us directly:
+        </p>
+        <p className="pt-1 font-medium text-[#F1F5F9]">{BRAND.name}</p>
+        <a
+          href={`mailto:${BRAND.contactEmail}`}
+          className="inline-flex items-center gap-2 text-[#60A5FA] hover:text-[#93C5FD] transition-colors"
+        >
+          <Mail className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
+          <span>{BRAND.contactEmail}</span>
+        </a>
+      </section>
+    </div>
+  );
+}
+
+export function LegalDocumentPage({ type }: { type: 'privacy' | 'terms' }) {
+  const isPrivacy = type === 'privacy';
+
+  if (isPrivacy) {
+    return (
+      <div className="mx-auto max-w-4xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20 space-y-8">
+        <header className="border-b border-[#1E293B] pb-8">
+          <p className="text-xs font-mono text-[#60A5FA] tracking-wider">Legal Notice</p>
+          <h1 className="mt-2 font-serif text-4xl lg:text-5xl font-medium text-[#F8FAFC]">
+            Privacy Policy
+          </h1>
+          <p className="mt-4 text-base leading-relaxed text-[#94A3B8]">
+            This Privacy Policy describes how {BRAND.name} handles information in connection with the actual features operating on this website.
+          </p>
+        </header>
+
+        <section className="space-y-3 text-[15px] leading-relaxed text-[#94A3B8]">
+          <h2 className="font-serif text-2xl font-medium text-[#F8FAFC]">
+            1. Information Collected
+          </h2>
+          <p>
+            {BRAND.name} does not require user accounts to browse its articles or tools. Information is processed only through the following website features and technical operations:
+          </p>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>
+              <strong className="font-medium text-[#E2E8F0]">Contact Us Form Submissions:</strong>{' '}
+              When you voluntarily submit the Contact Us form, we collect your Full Name, Email Address, Subject, Message, and the submission timestamp so we can deliver and reply to your inquiry.
+            </li>
+            <li>
+              <strong className="font-medium text-[#E2E8F0]">Optional Cosmic Explainer Queries:</strong>{' '}
+              When you actively submit a question or request an explanation of a news item using the Cosmic Explainer tool, the text you enter and the selected article metadata are sent to our backend server to generate a scientific explanation. Please avoid entering sensitive personal information into Cosmic Explainer prompts.
+            </li>
+            <li>
+              <strong className="font-medium text-[#E2E8F0]">Server Logs &amp; Technical Request Data:</strong>{' '}
+              When you browse the site or call backend API endpoints (such as news feeds, NASA APOD, Cosmic Explainer, or Contact Us), standard web server and hosting infrastructure may process technical information such as your IP address, requested URL path, timestamp, HTTP status code, and browser user-agent. Our server also temporarily holds IP addresses in memory for short-window rate limiting to prevent abuse of API and contact endpoints.
+            </li>
+            <li>
+              <strong className="font-medium text-[#E2E8F0]">Browser Timezone Formatting:</strong>{' '}
+              Your browser’s local timezone is read locally on your device using standard JavaScript <span className="font-mono text-xs text-[#CBD5E1]">Intl</span> APIs solely to display publication times and Cosmic Calendar dates in your local time. This timezone setting is not transmitted to or stored by our server.
+            </li>
+            <li>
+              <strong className="font-medium text-[#E2E8F0]">Cookies &amp; Local Storage:</strong>{' '}
+              The {BRAND.name} application code does not set first-party cookies and does not store user data in browser <span className="font-mono text-xs text-[#CBD5E1]">localStorage</span> or <span className="font-mono text-xs text-[#CBD5E1]">sessionStorage</span>. Underlying cloud hosting infrastructure or external third-party websites and embedded media you choose to open (such as external publisher pages or embedded astronomy videos) may set their own technical or third-party cookies under their respective privacy policies.
+            </li>
+          </ul>
+        </section>
+
+        <section className="space-y-3 text-[15px] leading-relaxed text-[#94A3B8]">
+          <h2 className="font-serif text-2xl font-medium text-[#F8FAFC]">
+            2. How Information Is Used
+          </h2>
+          <p>We use the limited information described above strictly to:</p>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>Deliver Contact Us submissions to our editorial email address and respond to your questions, suggestions, collaboration ideas, or feedback.</li>
+            <li>Operate, secure, and maintain website reliability, including spam filtering, duplicate-submission prevention, and API rate limiting.</li>
+            <li>Process user-initiated scientific explanation requests through Cosmic Explainer.</li>
+            <li>Retrieve and display up-to-date space news and NASA Astronomy Picture of the Day content.</li>
+          </ul>
+          <p>We do not sell personal information to third parties.</p>
+        </section>
+
+        <section className="space-y-3 text-[15px] leading-relaxed text-[#94A3B8]">
+          <h2 className="font-serif text-2xl font-medium text-[#F8FAFC]">
+            3. Third-Party Services
+          </h2>
+          <p>
+            Only the following third-party services are genuinely integrated into the operation of {BRAND.name}:
+          </p>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>
+              <strong className="font-medium text-[#E2E8F0]">Web Hosting Infrastructure:</strong>{' '}
+              Hosts and serves the website and API endpoints, processing standard network and server logs needed for delivery and security.
+            </li>
+            <li>
+              <strong className="font-medium text-[#E2E8F0]">Email Delivery Provider (SMTP / Resend):</strong>{' '}
+              When you submit the Contact Us form, your submitted name, email address (as Reply-To), subject, and message are transmitted through our configured server-side email transport to deliver the inquiry to {BRAND.contactEmail}.
+            </li>
+            <li>
+              <strong className="font-medium text-[#E2E8F0]">Google Gemini API (Cosmic Explainer):</strong>{' '}
+              Used server-side only when you submit a query or article explanation request inside Cosmic Explainer.
+            </li>
+            <li>
+              <strong className="font-medium text-[#E2E8F0]">Space News &amp; Astronomy APIs / Feeds:</strong>{' '}
+              Our server fetches public RSS/Atom feeds and APIs from NASA (including NASA APOD), ESA, Space.com, Universe Today, Phys.org, ScienceDaily, and Spaceflight News API v4. When your browser loads publisher article thumbnails, NASA APOD media, optional embedded YouTube/Vimeo videos, or Google Fonts stylesheets, your browser connects directly to those third-party hosts, which may receive your IP address and browser metadata under their own privacy policies.
+            </li>
+          </ul>
+          <p>
+            Clicking outbound links to original news publishers or space agencies takes you to external sites governed by their respective privacy policies.
+          </p>
+        </section>
+
+        <section className="space-y-3 text-[15px] leading-relaxed text-[#94A3B8]">
+          <h2 className="font-serif text-2xl font-medium text-[#F8FAFC]">
+            4. Data Retention &amp; Security
+          </h2>
+          <p>
+            Contact Us messages that are successfully delivered are received in the {BRAND.name} email inbox ({BRAND.contactEmail}) and recorded in a server-side inquiry log file so we can review and follow up on inquiries. Anti-spam duplicate fingerprints and API rate-limit counters are kept only temporarily in server memory and expire automatically.
+          </p>
+          <p>
+            We apply reasonable technical safeguards including input validation, email-header sanitization, server-side secret management, and encrypted transport (HTTPS) in deployed environments. No method of internet transmission or electronic storage is completely immune to risk, so we encourage sharing only information relevant to your inquiry.
+          </p>
+          <p>
+            You may request access to, correction of, or deletion of any Contact Us message or personal details you previously sent to us by emailing{' '}
+            <a
+              href={`mailto:${BRAND.contactEmail}`}
+              className="text-[#60A5FA] hover:text-[#93C5FD] transition-colors"
+            >
+              {BRAND.contactEmail}
+            </a>
+            .
+          </p>
+        </section>
+
+        <section className="rounded-2xl border border-[#1E293B]/90 bg-[#0D121E]/90 p-6 space-y-2 text-sm text-[#94A3B8]">
+          <h2 className="font-serif text-lg font-medium text-[#F8FAFC]">
+            5. Contact Information
+          </h2>
+          <p>For privacy questions or data deletion requests, please contact:</p>
+          <div className="pt-1 space-y-1">
+            <p className="font-medium text-[#F1F5F9]">{BRAND.name}</p>
+            <p>
+              Email:{' '}
+              <a
+                href={`mailto:${BRAND.contactEmail}`}
+                className="text-[#60A5FA] hover:text-[#93C5FD] transition-colors"
+              >
+                {BRAND.contactEmail}
+              </a>
+            </p>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mx-auto max-w-4xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20 space-y-8">
+      <header className="border-b border-[#1E293B] pb-8">
+        <p className="text-xs font-mono text-[#60A5FA] tracking-wider">Legal Notice</p>
+        <h1 className="mt-2 font-serif text-4xl lg:text-5xl font-medium text-[#F8FAFC]">
+          Terms and Conditions
+        </h1>
+        <p className="mt-4 text-base leading-relaxed text-[#94A3B8]">
+          Please review these terms governing access to and use of {BRAND.name}.
+        </p>
+      </header>
+
+      <section className="space-y-3 text-[15px] leading-relaxed text-[#94A3B8]">
+        <h2 className="font-serif text-2xl font-medium text-[#F8FAFC]">
+          1. Purpose &amp; Acceptance
+        </h2>
+        <p>
+          {BRAND.name} provides aggregated space and astronomy news briefings, NASA Astronomy Picture of the Day features, astronomical ephemeris calendars, and optional AI-assisted scientific explanations for informational and educational purposes. By accessing or using this website, you agree to these Terms and Conditions.
+        </p>
+      </section>
+
+      <section className="space-y-3 text-[15px] leading-relaxed text-[#94A3B8]">
+        <h2 className="font-serif text-2xl font-medium text-[#F8FAFC]">
+          2. Third-Party Content &amp; Intellectual Property
+        </h2>
+        <p>
+          All aggregated headlines, excerpts, summaries, and authorized feed thumbnails remain the intellectual property of their respective original publishers, authors, and space agencies. NASA Astronomy Picture of the Day photographs may carry individual astrophotographer copyrights as credited beneath each image. {BRAND.name} provides source attribution and direct links to the original publishers and does not grant rights over third-party material.
+        </p>
+      </section>
+
+      <section className="space-y-3 text-[15px] leading-relaxed text-[#94A3B8]">
+        <h2 className="font-serif text-2xl font-medium text-[#F8FAFC]">
+          3. Acceptable Use
+        </h2>
+        <p>
+          You agree not to misuse the website or its backend endpoints, including attempting automated spam submissions through the Contact Us form, bypassing rate limits, interfering with server operation, or attempting unauthorized access to infrastructure.
+        </p>
+      </section>
+
+      <section className="space-y-3 text-[15px] leading-relaxed text-[#94A3B8]">
+        <h2 className="font-serif text-2xl font-medium text-[#F8FAFC]">
+          4. Accuracy, External Links &amp; Limitations
+        </h2>
+        <p>
+          While we source news from recognized space agencies and science publications, {BRAND.name} is provided on an “as is” and “as available” basis. Launch schedules, astronomical visibility windows, and external third-party links may change without notice. AI-generated responses in Cosmic Explainer are provided for general educational assistance only; always consult primary scientific sources and original publishers for authoritative information.
+        </p>
+      </section>
+
+      <section className="rounded-2xl border border-[#1E293B]/90 bg-[#0D121E]/90 p-6 space-y-2 text-sm text-[#94A3B8]">
+        <h2 className="font-serif text-lg font-medium text-[#F8FAFC]">
+          5. Contact Information
+        </h2>
+        <p>Questions regarding these Terms and Conditions may be directed to:</p>
+        <div className="pt-1 space-y-1">
+          <p className="font-medium text-[#F1F5F9]">{BRAND.name}</p>
+          <p>
+            Email:{' '}
+            <a
+              href={`mailto:${BRAND.contactEmail}`}
+              className="text-[#60A5FA] hover:text-[#93C5FD] transition-colors"
+            >
+              {BRAND.contactEmail}
+            </a>
+          </p>
+        </div>
+      </section>
+    </div>
+  );
+}

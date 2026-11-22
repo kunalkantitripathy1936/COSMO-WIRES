@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-cosmos-canvas: #07090E;
+  --color-cosmos-surface: #0D121E;
+  --color-cosmos-elevated: #121A2B;
+  --color-cosmos-border: #1E293B;
+  --color-cosmos-blue: #3B82F6;
+  --color-cosmos-blue-bright: #60A5FA;
+  --color-cosmos-violet: #8B5CF6;
+  --color-cosmos-ink: #F1F5F9;
+  --color-cosmos-muted: #94A3B8;
+}
+
+@layer base {
+  html {
+    background-color: #07090E;
+    color: #F1F5F9;
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: #07090E;
+    color: #F1F5F9;
+    overflow-x: hidden;
+    letter-spacing: 0.008em;
+  }
+
+  h1, h2, h3, .font-editorial {
+    font-family: var(--font-serif);
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid #60A5FA;
+    outline-offset: 2px;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.cosmic-starfield-layer {
+  background-image:
+    radial-gradient(1.2px 1.2px at 14% 22%, rgba(226, 232, 240, 0.55) 50%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 36% 74%, rgba(96, 165, 250, 0.5) 50%, transparent 100%),
+    radial-gradient(1.1px 1.1px at 62% 18%, rgba(241, 245, 249, 0.45) 50%, transparent 100%),
+    radial-gradient(1.4px 1.4px at 81% 46%, rgba(167, 139, 250, 0.45) 50%, transparent 100%),
+    radial-gradient(1px 1px at 24% 48%, rgba(241, 245, 249, 0.4) 50%, transparent 100%),
+    radial-gradient(1.2px 1.2px at 73% 82%, rgba(96, 165, 250, 0.4) 50%, transparent 100%);
+  background-size: 460px 320px;
+  opacity: 0.72;
+}
+
+@keyframes cosmicDrift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-14px, -10px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes cosmicOrbitSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.cosmic-drift {
+  animation: cosmicDrift 42s ease-in-out infinite;
+}
+
+.cosmic-orbit-slow {
+  animation: cosmicOrbitSlow 72s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .cosmic-drift,
+  .cosmic-orbit-slow {
+    animation: none !important;
+  }
+}

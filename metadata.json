@@ -1,0 +1,6 @@
+{
+  "name": "COSMIC WIRES",
+  "description": "Connecting Minds to the Universe — International digital science publication for verified space, astronomy, astrophysics, and cosmology news.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
