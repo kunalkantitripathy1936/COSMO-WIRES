@@ -236,8 +236,15 @@ export function LegalDocumentPage({ type }: { type: 'privacy' | 'terms' }) {
           </p>
           <ul className="list-disc pl-5 space-y-2">
             <li>
-              <strong className="font-medium text-[#E2E8F0]">Contact Us Form Submissions:</strong>{' '}
-              When you voluntarily submit the Contact Us form, we collect your Full Name, Email Address, Subject, Message, and the submission timestamp so we can deliver and reply to your inquiry.
+              <strong className="font-medium text-[#E2E8F0]">Direct Email Correspondence:</strong>{' '}
+              {BRAND.name} does not operate an online contact submission form. If you choose to email our editorial desk directly at{' '}
+              <a
+                href={`mailto:${BRAND.contactEmail}`}
+                className="text-[#60A5FA] hover:text-[#93C5FD] transition-colors"
+              >
+                {BRAND.contactEmail}
+              </a>
+              , we receive your email address, subject line, and message content solely so we can respond to your inquiry.
             </li>
             <li>
               <strong className="font-medium text-[#E2E8F0]">Optional Cosmic Explainer Queries:</strong>{' '}
@@ -245,7 +252,7 @@ export function LegalDocumentPage({ type }: { type: 'privacy' | 'terms' }) {
             </li>
             <li>
               <strong className="font-medium text-[#E2E8F0]">Server Logs &amp; Technical Request Data:</strong>{' '}
-              When you browse the site or call backend API endpoints (such as news feeds, NASA APOD, Cosmic Explainer, or Contact Us), standard web server and hosting infrastructure may process technical information such as your IP address, requested URL path, timestamp, HTTP status code, and browser user-agent. Our server also temporarily holds IP addresses in memory for short-window rate limiting to prevent abuse of API and contact endpoints.
+              When you browse the site or call backend API endpoints (such as news feeds, NASA APOD, or Cosmic Explainer), standard web server and hosting infrastructure may process technical information such as your IP address, requested URL path, timestamp, HTTP status code, and browser user-agent. Our server also temporarily holds IP addresses in memory for short-window rate limiting to prevent abuse of API endpoints.
             </li>
             <li>
               <strong className="font-medium text-[#E2E8F0]">Browser Timezone Formatting:</strong>{' '}
@@ -264,8 +271,8 @@ export function LegalDocumentPage({ type }: { type: 'privacy' | 'terms' }) {
           </h2>
           <p>We use the limited information described above strictly to:</p>
           <ul className="list-disc pl-5 space-y-2">
-            <li>Deliver Contact Us submissions to our editorial email address and respond to your questions, suggestions, collaboration ideas, or feedback.</li>
-            <li>Operate, secure, and maintain website reliability, including spam filtering, duplicate-submission prevention, and API rate limiting.</li>
+            <li>Respond to direct email inquiries you choose to send to our editorial desk.</li>
+            <li>Operate, secure, and maintain website reliability, including API rate limiting.</li>
             <li>Process user-initiated scientific explanation requests through Cosmic Explainer.</li>
             <li>Retrieve and display up-to-date space news and NASA Astronomy Picture of the Day content.</li>
           </ul>
@@ -283,10 +290,6 @@ export function LegalDocumentPage({ type }: { type: 'privacy' | 'terms' }) {
             <li>
               <strong className="font-medium text-[#E2E8F0]">Web Hosting Infrastructure:</strong>{' '}
               Hosts and serves the website and API endpoints, processing standard network and server logs needed for delivery and security.
-            </li>
-            <li>
-              <strong className="font-medium text-[#E2E8F0]">Email Delivery Provider (SMTP / Resend):</strong>{' '}
-              When you submit the Contact Us form, your submitted name, email address (as Reply-To), subject, and message are transmitted through our configured server-side email transport to deliver the inquiry to {BRAND.contactEmail}.
             </li>
             <li>
               <strong className="font-medium text-[#E2E8F0]">Google Gemini API (Cosmic Explainer):</strong>{' '}
@@ -307,13 +310,13 @@ export function LegalDocumentPage({ type }: { type: 'privacy' | 'terms' }) {
             4. Data Retention &amp; Security
           </h2>
           <p>
-            Contact Us messages that are successfully delivered are received in the {BRAND.name} email inbox ({BRAND.contactEmail}) and recorded in a server-side inquiry log file so we can review and follow up on inquiries. Anti-spam duplicate fingerprints and API rate-limit counters are kept only temporarily in server memory and expire automatically.
+            Direct emails you send to {BRAND.contactEmail} are retained in our editorial email inbox only as long as needed to review and respond to your inquiry. API rate-limit counters are kept only temporarily in server memory and expire automatically.
           </p>
           <p>
-            We apply reasonable technical safeguards including input validation, email-header sanitization, server-side secret management, and encrypted transport (HTTPS) in deployed environments. No method of internet transmission or electronic storage is completely immune to risk, so we encourage sharing only information relevant to your inquiry.
+            We apply reasonable technical safeguards including input validation, server-side secret management, and encrypted transport (HTTPS) in deployed environments. No method of internet transmission or electronic storage is completely immune to risk, so we encourage sharing only information relevant to your inquiry.
           </p>
           <p>
-            You may request access to, correction of, or deletion of any Contact Us message or personal details you previously sent to us by emailing{' '}
+            You may request access to, correction of, or deletion of any email correspondence or personal details you previously sent to us by emailing{' '}
             <a
               href={`mailto:${BRAND.contactEmail}`}
               className="text-[#60A5FA] hover:text-[#93C5FD] transition-colors"
@@ -381,7 +384,7 @@ export function LegalDocumentPage({ type }: { type: 'privacy' | 'terms' }) {
           3. Acceptable Use
         </h2>
         <p>
-          You agree not to misuse the website or its backend endpoints, including attempting automated spam submissions through the Contact Us form, bypassing rate limits, interfering with server operation, or attempting unauthorized access to infrastructure.
+          You agree not to misuse the website or its backend endpoints, including bypassing rate limits, interfering with server operation, or attempting unauthorized access to infrastructure.
         </p>
       </section>
 

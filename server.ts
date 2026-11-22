@@ -15,15 +15,6 @@ import {
   isGeminiConfigured,
 } from './server/explainerService';
 import {
-  ContactRequestError,
-  submitContactInquiry,
-} from './server/storageService';
-import {
-  EmailDeliveryError,
-  getContactEmailDiagnostics,
-} from './server/emailService';
-import { CONTACT_ERROR_MESSAGE } from './src/utils/contactLogic';
-import {
   filterAndSearchArticles,
   filterCosmicEvents,
   isValidCategory,
@@ -124,7 +115,6 @@ ${routes
 
   // API: Service health & live news scheduler status
   app.get('/api/health', (_req, res) => {
-    const emailDiagnostics = getContactEmailDiagnostics();
     res.json({
       status: 'ok',
       service: BRAND.serviceId,
@@ -132,10 +122,6 @@ ${routes
       timestamp: new Date().toISOString(),
       news: getNewsHealthSummary(),
       explainerConfigured: isGeminiConfigured(),
-      contactEmailConfigured: emailDiagnostics.configured,
-      contactEmailProvider: emailDiagnostics.provider,
-      contactMissingEnvVars: emailDiagnostics.missingRequired,
-      contactConfigIssues: emailDiagnostics.issues,
     });
   });
 
@@ -238,35 +224,6 @@ ${routes
       const message = err.message || 'Cosmic Explainer encountered an upstream error.';
       console.error('Error serving /api/explainer:', message);
       res.status(status).json({ error: message });
-    }
-  });
-
-  // API: Contact Us Form (server-side email delivery to cosmowires.connect@gmail.com)
-  app.post('/api/contact', rateLimit(5, 60_000), async (req, res) => {
-    try {
-      const result = await submitContactInquiry(req.body);
-      res.status(201).json(result);
-    } catch (error) {
-      if (error instanceof ContactRequestError) {
-        res.status(error.status).json({
-          error: error.message,
-          code: error.code,
-          fieldErrors: error.fieldErrors,
-        });
-        return;
-      }
-      if (error instanceof EmailDeliveryError) {
-        res.status(error.status).json({
-          error: error.message,
-          code: error.code,
-        });
-        return;
-      }
-      console.error('[ContactAPI] Unexpected error:', error);
-      res.status(500).json({
-        error: CONTACT_ERROR_MESSAGE,
-        code: 'INTERNAL_ERROR',
-      });
     }
   });
 
