@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect, useState } from 'react';
-import { probeWebGLCapabilities } from '../../three/celestialUtils';
+import { probeWebGLCapabilities } from '../../three/webglProbe';
 import { RenderProfile, selectRenderQuality } from '../../utils/motion3dLogic';
 
 const LazyHeroCelestialCanvas = lazy(() => import('./HeroCelestialCanvas'));

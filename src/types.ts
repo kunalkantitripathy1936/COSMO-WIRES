@@ -149,9 +149,15 @@ export type ExplainerMode =
   | 'glossary'
   | 'qa';
 
+export interface ExplainerTurn {
+  role: 'user' | 'model';
+  text: string;
+}
+
 export interface ExplainerRequest {
   mode: ExplainerMode;
   question?: string;
+  history?: ExplainerTurn[];
   article?: {
     title: string;
     excerpt: string;

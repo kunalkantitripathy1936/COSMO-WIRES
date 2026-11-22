@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, MotionConfig, motion } from 'motion/react';
 import { BRAND } from './config/brand';
 import { apiUrl, parseJsonResponse } from './config/api';
@@ -16,21 +16,44 @@ import { filterCosmicEvents } from './utils/newsLogic';
 import { GENERATED_IMAGES } from './utils/mediaAssets';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import { CosmicExplainerDrawer } from './components/CosmicExplainerDrawer';
-import { SearchModal } from './components/SearchModal';
 import { ScrollProgressBar } from './components/motion/CosmicPrimitives';
 import { HomePage } from './pages/HomePage';
-import { LatestNewsPage } from './pages/LatestNewsPage';
-import { TopicSectionPage } from './pages/TopicSectionPage';
-import { SpaceMissionsPage } from './pages/SpaceMissionsPage';
-import { CosmicCalendarPage } from './pages/CosmicCalendarPage';
-import {
-  AboutPage,
-  ContactPage,
-  DisclaimerPage,
-  EditorialPolicyPage,
-  LegalDocumentPage,
-} from './pages/InstitutionalPages';
+
+const LatestNewsPage = lazy(() =>
+  import('./pages/LatestNewsPage').then((m) => ({ default: m.LatestNewsPage }))
+);
+const TopicSectionPage = lazy(() =>
+  import('./pages/TopicSectionPage').then((m) => ({ default: m.TopicSectionPage }))
+);
+const SpaceMissionsPage = lazy(() =>
+  import('./pages/SpaceMissionsPage').then((m) => ({ default: m.SpaceMissionsPage }))
+);
+const CosmicCalendarPage = lazy(() =>
+  import('./pages/CosmicCalendarPage').then((m) => ({ default: m.CosmicCalendarPage }))
+);
+const ContactPage = lazy(() =>
+  import('./pages/ContactPage').then((m) => ({ default: m.ContactPage }))
+);
+const AboutPage = lazy(() =>
+  import('./pages/InstitutionalPages').then((m) => ({ default: m.AboutPage }))
+);
+const DisclaimerPage = lazy(() =>
+  import('./pages/InstitutionalPages').then((m) => ({ default: m.DisclaimerPage }))
+);
+const EditorialPolicyPage = lazy(() =>
+  import('./pages/InstitutionalPages').then((m) => ({ default: m.EditorialPolicyPage }))
+);
+const LegalDocumentPage = lazy(() =>
+  import('./pages/InstitutionalPages').then((m) => ({ default: m.LegalDocumentPage }))
+);
+const SearchModal = lazy(() =>
+  import('./components/SearchModal').then((m) => ({ default: m.SearchModal }))
+);
+const CosmicExplainerDrawer = lazy(() =>
+  import('./components/CosmicExplainerDrawer').then((m) => ({
+    default: m.CosmicExplainerDrawer,
+  }))
+);
 
 const VALID_ROUTES = new Set<RoutePath>([
   '/',
@@ -533,27 +556,44 @@ export default function App() {
               exit={{ opacity: 0, y: -4 }}
               transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
             >
-              {renderPage()}
+              <Suspense
+                fallback={
+                  <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+                    <div className="h-6 w-48 animate-pulse rounded-full bg-[#1E293B]" />
+                    <div className="mt-4 h-10 w-80 max-w-full animate-pulse rounded-xl bg-[#111827]" />
+                  </div>
+                }
+              >
+                {renderPage()}
+              </Suspense>
             </motion.div>
           </AnimatePresence>
         </main>
 
         <Footer onNavigate={navigate} />
 
-        <SearchModal
-          open={searchOpen}
-          articles={articles}
-          onClose={() => setSearchOpen(false)}
-          onExplain={handleExplainArticle}
-          onApplySearchToArchive={handleApplySearchToArchive}
-        />
+        {searchOpen && (
+          <Suspense fallback={null}>
+            <SearchModal
+              open={searchOpen}
+              articles={articles}
+              onClose={() => setSearchOpen(false)}
+              onExplain={handleExplainArticle}
+              onApplySearchToArchive={handleApplySearchToArchive}
+            />
+          </Suspense>
+        )}
 
-        <CosmicExplainerDrawer
-          open={explainerOpen}
-          article={explainerArticle}
-          onClose={() => setExplainerOpen(false)}
-          onClearArticle={() => setExplainerArticle(null)}
-        />
+        {explainerOpen && (
+          <Suspense fallback={null}>
+            <CosmicExplainerDrawer
+              open={explainerOpen}
+              article={explainerArticle}
+              onClose={() => setExplainerOpen(false)}
+              onClearArticle={() => setExplainerArticle(null)}
+            />
+          </Suspense>
+        )}
       </div>
     </MotionConfig>
   );

@@ -1,16 +1,208 @@
 {
   "articles": [
     {
+      "id": "cw-8dnh9x",
+      "title": "65 Years of Human Spaceflight at NASA Johnson",
+      "excerpt": "For 65 years, NASA’s Johnson Space Center in Houston has helped shape human spaceflight, from the Gemini missions that demonstrated rendezvous and docking techniques needed for Apollo to the research conducted aboard the International…",
+      "url": "https://www.nasa.gov/centers-and-facilities/johnson/65-years-of-human-spaceflight-at-nasa-johnson/",
+      "publisher": "NASA",
+      "publishedAt": "2026-11-22T19:13:25.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.298Z",
+      "category": "Space Exploration",
+      "desks": [
+        "NASA",
+        "Space Missions"
+      ],
+      "topics": [
+        "Space Exploration"
+      ],
+      "imageUrl": "https://www.nasa.gov/wp-content/uploads/2026/11/20261106-artemiscelebrationgala-sl1-4202.jpg?w=1536",
+      "imageAlt": "65 Years of Human Spaceflight at NASA Johnson — NASA",
+      "sourceFeed": "https://www.nasa.gov/rss/dyn/breaking_news.rss",
+      "isSample": false
+    },
+    {
+      "id": "cw-1i6hgfg",
+      "title": "JWST finds a possible black hole that grew faster than its host galaxy in the early universe",
+      "excerpt": "How the first massive black holes formed in the universe remains an open question in astronomy. Black holes weighing about a billion solar masses within the first billion years of the universe require extraordinary origin stories.",
+      "url": "https://phys.org/news/2026-11-jwst-black-hole-grew-faster.html",
+      "publisher": "Phys.org",
+      "publishedAt": "2026-11-22T16:40:01.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.323Z",
+      "category": "Black Holes",
+      "desks": [
+        "NASA",
+        "Black Holes",
+        "Astrophysics",
+        "Cosmology",
+        "Scientific Discoveries"
+      ],
+      "topics": [
+        "JWST",
+        "Black Holes"
+      ],
+      "imageUrl": "https://scx1.b-cdn.net/csz/news/tmb/2026/jwst-finds-a-possible.jpg",
+      "imageAlt": "JWST finds a possible black hole that grew faster than its host galaxy in the early universe — Phys.org",
+      "sourceFeed": "https://phys.org/rss-feed/space-news/",
+      "isSample": false
+    },
+    {
+      "id": "cw-1obocpr",
+      "title": "SpaceX sends classified US spy satellites to orbit in early-morning launch from California coast (video)",
+      "excerpt": "SpaceX launched a batch of classified spy satellites for the U.S. government's National Reconnaissance Office early on Sunday morning (Nov. 22).",
+      "url": "https://www.space.com/space-exploration/launches-spacecraft/spacex-spy-satellite-launch-nrol-136-proliferated-architecture",
+      "publisher": "Space.com",
+      "publishedAt": "2026-11-22T16:05:33.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.318Z",
+      "category": "Space Technology",
+      "desks": [
+        "Space Missions"
+      ],
+      "topics": [
+        "Space Technology"
+      ],
+      "imageUrl": "https://cdn.mos.cms.futurecdn.net/Zo7K3LFdny8ECPyBDZLpiH-1920-80.jpg",
+      "imageAlt": "SpaceX sends classified US spy satellites to orbit in early-morning launch from California coast (video) — Space.com",
+      "sourceFeed": "https://www.space.com/feeds/all",
+      "isSample": false
+    },
+    {
+      "id": "cw-r21a24",
+      "title": "Mercury gets its first visitor in years as a pair of spacecraft loop into orbit",
+      "excerpt": "A pair of spacecraft slipped into orbit around Mercury on Saturday after an eight-year cruise through the inner solar system to unravel our littlest planet's mountain of mysteries.",
+      "url": "https://phys.org/news/2026-11-mercury-visitor-years-pair-spacecraft.html",
+      "publisher": "Phys.org",
+      "publishedAt": "2026-11-22T15:20:01.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.323Z",
+      "category": "Solar System",
+      "desks": [
+        "Space Missions",
+        "Astronomy"
+      ],
+      "topics": [
+        "Solar System"
+      ],
+      "imageUrl": "https://scx1.b-cdn.net/csz/news/tmb/2026/mercury-mission.jpg",
+      "imageAlt": "Mercury gets its first visitor in years as a pair of spacecraft loop into orbit — Phys.org",
+      "sourceFeed": "https://phys.org/rss-feed/space-news/",
+      "isSample": false
+    },
+    {
+      "id": "cw-1g46v39",
+      "title": "This viral star projector has been hyped to Mars and back, but we hunted down the best version you can buy",
+      "excerpt": "The AI adverts for the Zanbix 2 in 1 Galaxy Projector Night Light are downright bizarre — we cut through the hype to bring you a version that actually delivers",
+      "url": "https://www.space.com/stargazing/skywatching-kit/this-viral-star-projector-has-been-hyped-to-mars-and-back-but-we-hunted-down-the-best-version-you-can-buy",
+      "publisher": "Space.com",
+      "publishedAt": "2026-11-22T15:00:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.318Z",
+      "category": "Galaxies",
+      "desks": [
+        "Astronomy"
+      ],
+      "topics": [
+        "Galaxies",
+        "Mars"
+      ],
+      "imageUrl": "https://cdn.mos.cms.futurecdn.net/2VZB5hMXtFVHiNULWtqb4b-1920-80.jpg",
+      "imageAlt": "This viral star projector has been hyped to Mars and back, but we hunted down the best version you can buy — Space.com",
+      "sourceFeed": "https://www.space.com/feeds/all",
+      "isSample": false
+    },
+    {
+      "id": "cw-le3lwd",
+      "title": "On this day in space! Nov.22, 1989: NASA launches space shuttle Discovery on classified STS-33 mission for the US military",
+      "excerpt": "On Nov. 22, 1989, the space shuttle Discovery launched on the secret mission STS-33 for the U.S. military. Here's why it mattered.",
+      "url": "https://www.space.com/on-this-day-in-space-november-22-2026",
+      "publisher": "Space.com",
+      "publishedAt": "2026-11-22T14:18:35.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.318Z",
+      "category": "Space Exploration",
+      "desks": [
+        "NASA",
+        "Space Missions"
+      ],
+      "topics": [
+        "Space Exploration"
+      ],
+      "imageUrl": "https://cdn.mos.cms.futurecdn.net/eULxhwHxNYJ5iLNVpwNEvA-1920-80.jpg",
+      "imageAlt": "On this day in space! Nov.22, 1989: NASA launches space shuttle Discovery on classified STS-33 mission for the US military — Space.com",
+      "sourceFeed": "https://www.space.com/feeds/all",
+      "isSample": false
+    },
+    {
+      "id": "cw-lmdfc9",
+      "title": "Milky Way simulation reaches record resolution with the help of three supercomputers",
+      "excerpt": "A team of researchers, including those from the University of Tokyo, have developed a new way to model the Milky Way at a level of detail never achieved before. They simulated the entire galaxy down to the level of individual stars by…",
+      "url": "https://phys.org/news/2026-11-milky-simulation-resolution-supercomputers.html",
+      "publisher": "Phys.org",
+      "publishedAt": "2026-11-22T14:00:01.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.323Z",
+      "category": "Galaxies",
+      "desks": [
+        "Astronomy",
+        "Scientific Discoveries"
+      ],
+      "topics": [
+        "Galaxies"
+      ],
+      "imageUrl": "https://scx1.b-cdn.net/csz/news/tmb/2026/three-supercomputers-c.jpg",
+      "imageAlt": "Milky Way simulation reaches record resolution with the help of three supercomputers — Phys.org",
+      "sourceFeed": "https://phys.org/rss-feed/space-news/",
+      "isSample": false
+    },
+    {
+      "id": "cw-w4z5xd",
+      "title": "10 things that worry me about chasing the 2027 total solar eclipse in Egypt",
+      "excerpt": "The longest total solar eclipse on land this century promises to be the experience of a lifetime, but watching it from Luxor, Egypt, may not be straightforward. What could go wrong? Quite a lot, actually.",
+      "url": "https://www.space.com/stargazing/solar-eclipses/10-things-that-worry-me-about-chasing-the-2027-total-solar-eclipse-in-egypt",
+      "publisher": "Space.com",
+      "publishedAt": "2026-11-22T11:00:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.318Z",
+      "category": "Astronomy",
+      "desks": [
+        "Astronomy"
+      ],
+      "topics": [
+        "Astronomy"
+      ],
+      "imageUrl": "https://cdn.mos.cms.futurecdn.net/87vsjE4qoxDkUwh2i9knR-1920-80.jpg",
+      "imageAlt": "10 things that worry me about chasing the 2027 total solar eclipse in Egypt — Space.com",
+      "sourceFeed": "https://www.space.com/feeds/all",
+      "isSample": false
+    },
+    {
+      "id": "cw-1kuqq9k",
+      "title": "APOD: 2026 November 22 – Swirls and Colors on Jupiter from Juno",
+      "excerpt": "APODScienceAPODAPOD: 2026 November 22 –…Today’s APODArchiveSubmissionsIndexSearchCalendarRSSEducationAboutDiscuss APOD Astronomy Picture of the Day Discover the cosmos! Each day a different image or photograph of our fascinating universe…",
+      "url": "https://science.nasa.gov/image-article/apod-2026-november-22-swirls-and-colors-on-jupiter-from-juno/",
+      "publisher": "NASA",
+      "publishedAt": "2026-11-22T05:05:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.298Z",
+      "category": "Solar System",
+      "desks": [
+        "NASA",
+        "Astronomy",
+        "Scientific Discoveries"
+      ],
+      "topics": [
+        "Solar System"
+      ],
+      "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/cds/apod/apod/2026/november/JupiterSwirls_JunoBrealey_3709.jpg?w=2048&#038;h=2048&#038;fit=clip",
+      "imageAlt": "APOD: 2026 November 22 – Swirls and Colors on Jupiter from Juno — NASA",
+      "sourceFeed": "https://www.nasa.gov/rss/dyn/breaking_news.rss",
+      "isSample": false
+    },
+    {
       "id": "cw-1w0wc4g",
       "title": "Live coverage: SpaceX to launch intelligence-gathering satellites for the National Reconnaissance Office",
       "excerpt": "The NROL-136 mission will be the fourth launch of the year supporting the agency’s proliferated architecture satellite constellation in low Earth orbit. Liftoff from pad 4E at Vandenberg Space Force Base is scheduled during a window that…",
       "url": "https://spaceflightnow.com/2026/11/21/live-coverage-spacex-to-launch-intelligence-gathering-satellites-for-the-national-reconnaissance-office-3/",
       "publisher": "Spaceflight Now",
       "publishedAt": "2026-11-21T16:50:51.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.326Z",
       "category": "Space Technology",
       "desks": [
-        "Space Missions",
-        "Space Technology"
+        "Space Missions"
       ],
       "topics": [
         "Space Technology"
@@ -27,6 +219,7 @@
       "url": "https://www.space.com/space-exploration/on-this-day-in-space-november-21-2026",
       "publisher": "Space.com",
       "publishedAt": "2026-11-21T16:20:37.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.318Z",
       "category": "Solar System",
       "desks": [
         "Astronomy"
@@ -46,6 +239,7 @@
       "url": "https://www.space.com/entertainment/space-movies-shows/this-week-in-space-podcast-episode-237-a-fond-farewell",
       "publisher": "Space.com",
       "publishedAt": "2026-11-21T15:15:26.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.318Z",
       "category": "Astronomy",
       "desks": [
         "Astronomy"
@@ -65,6 +259,7 @@
       "url": "https://www.sciencedaily.com/releases/2026/11/261120075558.htm",
       "publisher": "ScienceDaily",
       "publishedAt": "2026-11-21T15:09:46.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.325Z",
       "category": "Astronomy",
       "desks": [
         "Astronomy",
@@ -84,10 +279,10 @@
       "url": "https://www.sciencedaily.com/releases/2026/11/261120075556.htm",
       "publisher": "ScienceDaily",
       "publishedAt": "2026-11-21T14:53:40.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.325Z",
       "category": "Galaxies",
       "desks": [
-        "NASA Updates",
-        "Space Technology",
+        "NASA",
         "Astronomy"
       ],
       "topics": [
@@ -104,8 +299,10 @@
       "url": "https://phys.org/news/2026-11-fermi-year-sky-bridges-astronomy.html",
       "publisher": "Phys.org",
       "publishedAt": "2026-11-21T13:00:10.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.323Z",
       "category": "Astronomy",
       "desks": [
+        "Astrophysics",
         "Astronomy"
       ],
       "topics": [
@@ -123,10 +320,10 @@
       "url": "https://www.space.com/space-exploration/launches-spacecraft/spacex-will-retire-1st-starship-upper-stage-ever-caught-by-chopsticks-elon-musk-says",
       "publisher": "Space.com",
       "publishedAt": "2026-11-21T13:00:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.318Z",
       "category": "Rocket Science",
       "desks": [
-        "Space Missions",
-        "Space Technology"
+        "Space Missions"
       ],
       "topics": [
         "Rocket Science"
@@ -137,12 +334,13 @@
       "isSample": false
     },
     {
-      "id": "cw-1djopxy",
-      "title": "European-Japanese BepiColombo probe arrives in orbit around Mercury today",
-      "excerpt": "The BepiColombo spacecraft will finally arrive in orbit around Mercury today (Nov. 21), more than eight years after leaving its home planet.",
+      "id": "cw-k9bv8t",
+      "title": "European-Japanese BepiColombo mission becomes 2nd ever to arrive in orbit around Mercury",
+      "excerpt": "The BepiColombo spacecraft finally arrived in orbit around Mercury on Saturday (Nov. 21), more than eight years after leaving its home planet.",
       "url": "https://www.space.com/space-exploration/missions/esa-jaxa-bepicolomobo-mission-mercury-orbit-arrival",
       "publisher": "Space.com",
       "publishedAt": "2026-11-21T11:00:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.318Z",
       "category": "Solar System",
       "desks": [
         "Space Missions",
@@ -152,7 +350,7 @@
         "Solar System"
       ],
       "imageUrl": "https://cdn.mos.cms.futurecdn.net/d7pYhNBUCPVYiaqD7aQLwE-1920-80.jpg",
-      "imageAlt": "European-Japanese BepiColombo probe arrives in orbit around Mercury today — Space.com",
+      "imageAlt": "European-Japanese BepiColombo mission becomes 2nd ever to arrive in orbit around Mercury — Space.com",
       "sourceFeed": "https://www.space.com/feeds/all",
       "isSample": false
     },
@@ -163,6 +361,7 @@
       "url": "https://www.universetoday.com/articles/space-entrepreneurs-should-look-to-16th-century-spice-trade-for-inspiration",
       "publisher": "Universe Today",
       "publishedAt": "2026-11-21T10:39:27.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.320Z",
       "category": "Solar System",
       "desks": [
         "Astronomy"
@@ -183,10 +382,10 @@
       "url": "https://europeanspaceflight.com/denmarks-gomspace-secures-e8m-contract-for-blue-origin-moon-mission/",
       "publisher": "European Spaceflight",
       "publishedAt": "2026-11-21T06:00:35.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.326Z",
       "category": "Solar System",
       "desks": [
         "Space Missions",
-        "Space Technology",
         "Astronomy"
       ],
       "topics": [
@@ -205,6 +404,7 @@
       "url": "https://www.space.com/space-exploration/launches-spacecraft/spacex-falcon-9-classified-space-force-launch-ussf-317",
       "publisher": "Space.com",
       "publishedAt": "2026-11-21T05:28:14.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.318Z",
       "category": "Space Exploration",
       "desks": [
         "Space Missions",
@@ -221,13 +421,14 @@
     {
       "id": "cw-1n13fvq",
       "title": "APOD: 2026 November 21 – Voyager’s Neptune",
-      "excerpt": "APOD Science APOD APOD: 2026 November 21 –… Today’s APOD Archive Submissions Index Search Calendar RSS Education About Discuss APOD Astronomy Picture of the Day Discover the cosmos! Each day a different image or photograph of our…",
+      "excerpt": "APODScienceAPODAPOD: 2026 November 21 –…Today’s APODArchiveSubmissionsIndexSearchCalendarRSSEducationAboutDiscuss APOD Astronomy Picture of the Day Discover the cosmos! Each day a different image or photograph of our fascinating universe…",
       "url": "https://science.nasa.gov/image-article/apod-2026-november-21-voyagers-neptune/",
       "publisher": "NASA",
       "publishedAt": "2026-11-21T05:05:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.298Z",
       "category": "Solar System",
       "desks": [
-        "NASA Updates",
+        "NASA",
         "Astronomy",
         "Scientific Discoveries"
       ],
@@ -246,9 +447,9 @@
       "url": "https://www.sciencedaily.com/releases/2026/11/261120075547.htm",
       "publisher": "ScienceDaily",
       "publishedAt": "2026-11-21T02:11:14.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.325Z",
       "category": "Solar System",
       "desks": [
-        "Space Technology",
         "Astrophysics",
         "Astronomy",
         "Scientific Discoveries"
@@ -267,9 +468,10 @@
       "url": "https://science.nasa.gov/photojournal/curiosity-spots-drifting-twilight-clouds/",
       "publisher": "NASA",
       "publishedAt": "2026-11-20T22:27:05.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.298Z",
       "category": "Solar System",
       "desks": [
-        "NASA Updates",
+        "NASA",
         "Space Missions",
         "Astronomy"
       ],
@@ -289,6 +491,7 @@
       "url": "https://arstechnica.com/space/2026/11/incoming-house-chair-threatens-spacex-funding-over-ukraine-controversy/",
       "publisher": "Arstechnica",
       "publishedAt": "2026-11-20T22:16:51.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.326Z",
       "category": "Astronomy",
       "desks": [
         "Astronomy"
@@ -308,6 +511,7 @@
       "url": "https://www.space.com/space-exploration/on-this-day-in-space-november-20-2026",
       "publisher": "Space.com",
       "publishedAt": "2026-11-20T21:19:33.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.318Z",
       "category": "Space Exploration",
       "desks": [
         "Space Missions"
@@ -327,6 +531,7 @@
       "url": "https://www.space.com/astronomy/moon/dont-turn-the-moon-into-the-wild-west-scientists-warn",
       "publisher": "Space.com",
       "publishedAt": "2026-11-20T21:00:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.318Z",
       "category": "Solar System",
       "desks": [
         "Astronomy",
@@ -348,11 +553,10 @@
       "url": "https://www.nasa.gov/directorates/rtmd/new-nasa-seed-funding-primes-small-businesses-for-innovation/",
       "publisher": "NASA",
       "publishedAt": "2026-11-20T20:46:14.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.298Z",
       "category": "Solar System",
       "desks": [
-        "NASA Updates",
-        "Space Missions",
-        "Space Technology",
+        "NASA",
         "Astronomy"
       ],
       "topics": [
@@ -371,6 +575,7 @@
       "url": "https://www.universetoday.com/articles/complex-life-on-earth-may-not-have-appeared-without-tall-mountains",
       "publisher": "Universe Today",
       "publishedAt": "2026-11-20T20:22:08.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.320Z",
       "category": "Astronomy",
       "desks": [
         "Astronomy"
@@ -390,6 +595,7 @@
       "url": "https://www.universetoday.com/articles/a-radical-theory-about-the-universe-just-passed-some-key-tests-so-what-does-that-mean",
       "publisher": "Universe Today",
       "publishedAt": "2026-11-20T20:07:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.320Z",
       "category": "Cosmology",
       "desks": [
         "Cosmology",
@@ -412,6 +618,7 @@
       "url": "https://www.space.com/entertainment/space-games/gta-hasnt-gone-to-space-yet-but-these-sci-fi-games-can-offer-you-a-life-of-crime-among-the-stars",
       "publisher": "Space.com",
       "publishedAt": "2026-11-20T20:00:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.318Z",
       "category": "Astronomy",
       "desks": [
         "Astronomy"
@@ -431,11 +638,11 @@
       "url": "https://www.space.com/astronomy/mars/trouble-at-mars-nasas-perseverance-rover-odyssey-orbiter-halt-science-work-due-to-glitches",
       "publisher": "Space.com",
       "publishedAt": "2026-11-20T19:50:15.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.318Z",
       "category": "Solar System",
       "desks": [
-        "NASA Updates",
+        "NASA",
         "Space Missions",
-        "Space Technology",
         "Astronomy"
       ],
       "topics": [
@@ -454,9 +661,10 @@
       "url": "https://www.nasaspaceflight.com/2026/11/ship-42-catch-future/",
       "publisher": "NASASpaceflight",
       "publishedAt": "2026-11-20T19:49:06.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.326Z",
       "category": "Astronomy",
       "desks": [
-        "NASA Updates",
+        "NASA",
         "Astronomy"
       ],
       "topics": [
@@ -474,6 +682,7 @@
       "url": "https://www.space.com/stargazing/theres-an-impostor-hiding-in-the-hyades-star-cluster-can-you-spot-it",
       "publisher": "Space.com",
       "publishedAt": "2026-11-20T19:00:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.318Z",
       "category": "Astronomy",
       "desks": [
         "Astronomy"
@@ -493,6 +702,7 @@
       "url": "https://www.space.com/stargazing/solar-eclipses/could-an-ancient-solar-eclipse-rewrite-egyptian-history",
       "publisher": "Space.com",
       "publishedAt": "2026-11-20T18:00:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.318Z",
       "category": "Astronomy",
       "desks": [
         "Astronomy",
@@ -513,6 +723,7 @@
       "url": "https://phys.org/news/2026-11-oxygen-lunar-soil-bases-moon.html",
       "publisher": "Phys.org",
       "publishedAt": "2026-11-20T17:40:09.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.323Z",
       "category": "Solar System",
       "desks": [
         "Astronomy"
@@ -533,9 +744,10 @@
       "url": "https://www.space.com/space-exploration/satellites/russia-is-developing-a-nuclear-space-weapon-us-intelligence-report-finds",
       "publisher": "Space.com",
       "publishedAt": "2026-11-20T17:00:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.318Z",
       "category": "Space Technology",
       "desks": [
-        "Space Technology"
+        "Space Missions"
       ],
       "topics": [
         "Space Technology"
@@ -552,6 +764,7 @@
       "url": "https://www.universetoday.com/articles/a-triple-star-system-that-shouldnt-exist-only-28-light-years-from-earth",
       "publisher": "Universe Today",
       "publishedAt": "2026-11-20T16:52:03.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.320Z",
       "category": "Astronomy",
       "desks": [
         "Astronomy"
@@ -571,9 +784,10 @@
       "url": "https://www.nasa.gov/centers-and-facilities/stennis/honor-awards-ceremony-at-stennis/",
       "publisher": "NASA",
       "publishedAt": "2026-11-20T16:27:46.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.298Z",
       "category": "Space Exploration",
       "desks": [
-        "NASA Updates",
+        "NASA",
         "Space Missions"
       ],
       "topics": [
@@ -591,9 +805,9 @@
       "url": "https://phys.org/news/2026-11-shifting-pulsation-modes-scuti-star.html",
       "publisher": "Phys.org",
       "publishedAt": "2026-11-20T16:20:08.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.323Z",
       "category": "Astronomy",
       "desks": [
-        "Space Technology",
         "Astronomy",
         "Scientific Discoveries"
       ],
@@ -612,6 +826,7 @@
       "url": "https://phys.org/news/2026-11-venus-conditions-reveal-minerals-ancient.html",
       "publisher": "Phys.org",
       "publishedAt": "2026-11-20T16:20:01.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.323Z",
       "category": "Solar System",
       "desks": [
         "Astronomy",
@@ -632,9 +847,10 @@
       "url": "https://www.nasa.gov/image-article/nasas-curiosity-mars-rover-collects-samples/",
       "publisher": "NASA",
       "publishedAt": "2026-11-20T15:53:24.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.298Z",
       "category": "Solar System",
       "desks": [
-        "NASA Updates",
+        "NASA",
         "Space Missions",
         "Astronomy"
       ],
@@ -654,9 +870,10 @@
       "url": "https://phys.org/news/2026-11-viscosity-lavas-reveal-key-mars.html",
       "publisher": "Phys.org",
       "publishedAt": "2026-11-20T15:40:05.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.323Z",
       "category": "Solar System",
       "desks": [
-        "NASA Updates",
+        "NASA",
         "Space Missions",
         "Astronomy",
         "Scientific Discoveries"
@@ -677,6 +894,7 @@
       "url": "https://phys.org/news/2026-11-star-gasps-alma-reveals-giant.html",
       "publisher": "Phys.org",
       "publishedAt": "2026-11-20T15:20:01.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.323Z",
       "category": "Galaxies",
       "desks": [
         "Astronomy"
@@ -696,6 +914,7 @@
       "url": "https://www.space.com/astronomy/earth/iss-astronauts-look-down-on-the-snow-capped-himalayas-space-photo-of-the-day-for-nov-20-2026",
       "publisher": "Space.com",
       "publishedAt": "2026-11-20T15:00:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.318Z",
       "category": "Space Exploration",
       "desks": [
         "Space Missions"
@@ -715,6 +934,7 @@
       "url": "https://www.universetoday.com/articles/sound-waves-from-sunspots-launch-fiery-plasma-jets-across-the-sun",
       "publisher": "Universe Today",
       "publishedAt": "2026-11-20T14:58:26.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.320Z",
       "category": "Solar System",
       "desks": [
         "Space Missions",
@@ -736,6 +956,7 @@
       "url": "https://phys.org/news/2026-11-astronomers-reveal-oceanic-europa-sodium.html",
       "publisher": "Phys.org",
       "publishedAt": "2026-11-20T14:00:06.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.323Z",
       "category": "Solar System",
       "desks": [
         "Astronomy",
@@ -757,6 +978,7 @@
       "url": "https://phys.org/news/2026-11-dark-energy-laws-particle-physics.html",
       "publisher": "Phys.org",
       "publishedAt": "2026-11-20T13:20:06.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.323Z",
       "category": "Cosmology",
       "desks": [
         "Cosmology",
@@ -778,6 +1000,7 @@
       "url": "https://www.universetoday.com/articles/this-is-the-first-time-astronomers-have-seen-one-of-these-stellar-mergers",
       "publisher": "Universe Today",
       "publishedAt": "2026-11-20T13:04:40.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.320Z",
       "category": "Astronomy",
       "desks": [
         "Astronomy"
@@ -797,10 +1020,10 @@
       "url": "https://www.space.com/space-exploration/private-spaceflight/i-got-to-tour-spacexs-starfactory-facility-in-starbase-texas-and-what-i-saw-blew-my-mind",
       "publisher": "Space.com",
       "publishedAt": "2026-11-20T13:00:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.318Z",
       "category": "Rocket Science",
       "desks": [
-        "Space Missions",
-        "Space Technology"
+        "Space Missions"
       ],
       "topics": [
         "Rocket Science"
@@ -817,9 +1040,10 @@
       "url": "https://www.sciencedaily.com/releases/2026/11/261120075554.htm",
       "publisher": "ScienceDaily",
       "publishedAt": "2026-11-20T12:55:54.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.325Z",
       "category": "Space Exploration",
       "desks": [
-        "NASA Updates",
+        "NASA",
         "Space Missions"
       ],
       "topics": [
@@ -836,11 +1060,11 @@
       "url": "https://www.sciencedaily.com/releases/2026/11/261120075551.htm",
       "publisher": "ScienceDaily",
       "publishedAt": "2026-11-20T12:55:51.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.325Z",
       "category": "Rocket Science",
       "desks": [
-        "NASA Updates",
-        "Space Missions",
-        "Space Technology"
+        "NASA",
+        "Space Missions"
       ],
       "topics": [
         "Rocket Science",
@@ -857,6 +1081,7 @@
       "url": "https://phys.org/news/2026-11-space-brain-immune-cells-behavior.html",
       "publisher": "Phys.org",
       "publishedAt": "2026-11-20T12:40:08.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.323Z",
       "category": "Astronomy",
       "desks": [
         "Astronomy"
@@ -876,9 +1101,9 @@
       "url": "https://www.sciencedaily.com/releases/2026/11/261119194525.htm",
       "publisher": "ScienceDaily",
       "publishedAt": "2026-11-20T12:34:56.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.325Z",
       "category": "Solar System",
       "desks": [
-        "Space Technology",
         "Astronomy"
       ],
       "topics": [
@@ -896,6 +1121,7 @@
       "url": "https://phys.org/news/2026-11-galaxies-lopsided-clues-imbalance.html",
       "publisher": "Phys.org",
       "publishedAt": "2026-11-20T12:00:01.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.323Z",
       "category": "Galaxies",
       "desks": [
         "Astronomy"
@@ -915,6 +1141,7 @@
       "url": "https://www.universetoday.com/articles/tiny-grains-of-sand-act-as-cosmic-speedometers-for-alien-winds",
       "publisher": "Universe Today",
       "publishedAt": "2026-11-20T11:57:20.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.320Z",
       "category": "Space Exploration",
       "desks": [
         "Space Missions"
@@ -934,8 +1161,10 @@
       "url": "https://www.space.com/astronomy/black-holes/einstein-was-right-scientists-verify-1st-image-of-a-black-hole-ever-captured",
       "publisher": "Space.com",
       "publishedAt": "2026-11-20T11:00:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.318Z",
       "category": "Black Holes",
       "desks": [
+        "Black Holes",
         "Astrophysics",
         "Scientific Discoveries"
       ],
@@ -948,12 +1177,13 @@
       "isSample": false
     },
     {
-      "id": "cw-12vppt7",
-      "title": "SpaceX Dragon cargo capsule heads home to Earth from the ISS",
-      "excerpt": "SpaceX's 35th Dragon cargo mission undocked from the International Space Station today (Nov. 20), starting its journey home to Earth.",
+      "id": "cw-g0qleq",
+      "title": "SpaceX Dragon cargo capsule returns to Earth from the ISS",
+      "excerpt": "SpaceX's 35th Dragon cargo mission splashed down in the Pacific Ocean on Saturday (Nov. 21), a day after it undocked from the International Space Station.",
       "url": "https://www.space.com/space-exploration/launches-spacecraft/spacex-crs-35-dragon-iss-cargo-mission-return-to-earth",
       "publisher": "Space.com",
       "publishedAt": "2026-11-20T11:00:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.318Z",
       "category": "Space Exploration",
       "desks": [
         "Space Missions"
@@ -962,7 +1192,7 @@
         "Space Exploration"
       ],
       "imageUrl": "https://cdn.mos.cms.futurecdn.net/ugf6BTHPoeoNQ3J9iuTShh-1920-80.jpg",
-      "imageAlt": "SpaceX Dragon cargo capsule heads home to Earth from the ISS — Space.com",
+      "imageAlt": "SpaceX Dragon cargo capsule returns to Earth from the ISS — Space.com",
       "sourceFeed": "https://www.space.com/feeds/all",
       "isSample": false
     },
@@ -973,6 +1203,7 @@
       "url": "https://phys.org/news/2026-11-galactic-discovery-milky.html",
       "publisher": "Phys.org",
       "publishedAt": "2026-11-20T10:00:07.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.323Z",
       "category": "Galaxies",
       "desks": [
         "Astronomy",
@@ -993,6 +1224,7 @@
       "url": "https://europeanspaceflight.com/danish-soldiers-are-sneaking-starlink-terminals-into-greenland/",
       "publisher": "European Spaceflight",
       "publishedAt": "2026-11-20T07:09:49.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.326Z",
       "category": "Astronomy",
       "desks": [
         "Astronomy"
@@ -1012,8 +1244,10 @@
       "url": "https://www.sciencedaily.com/releases/2026/11/261119194605.htm",
       "publisher": "ScienceDaily",
       "publishedAt": "2026-11-20T05:41:16.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.325Z",
       "category": "Black Holes",
       "desks": [
+        "Black Holes",
         "Astrophysics",
         "Scientific Discoveries"
       ],
@@ -1031,9 +1265,10 @@
       "url": "https://science.nasa.gov/image-article/apod-2026-november-20-v-g-r/",
       "publisher": "NASA",
       "publishedAt": "2026-11-20T05:05:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.298Z",
       "category": "Astronomy",
       "desks": [
-        "NASA Updates",
+        "NASA",
         "Astronomy",
         "Scientific Discoveries"
       ],
@@ -1052,9 +1287,10 @@
       "url": "https://science.nasa.gov/earth/earth-observatory/the-stormy-southwest-pacific/",
       "publisher": "NASA",
       "publishedAt": "2026-11-20T05:01:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.298Z",
       "category": "Astronomy",
       "desks": [
-        "NASA Updates",
+        "NASA",
         "Astronomy"
       ],
       "topics": [
@@ -1072,11 +1308,11 @@
       "url": "https://phys.org/news/2026-11-mercury-bound-ray-telescope-images.html",
       "publisher": "Phys.org",
       "publishedAt": "2026-11-20T00:00:10.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.323Z",
       "category": "Solar System",
       "desks": [
-        "ESA Updates",
+        "ESA",
         "Space Missions",
-        "Space Technology",
         "Astrophysics",
         "Astronomy",
         "Scientific Discoveries"
@@ -1096,6 +1332,7 @@
       "url": "https://spaceflightnow.com/2026/11/19/live-coverage-spacex-to-launch-classified-payload-for-the-u-s-space-force-2/",
       "publisher": "Spaceflight Now",
       "publishedAt": "2026-11-19T23:51:47.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.326Z",
       "category": "Space Exploration",
       "desks": [
         "Space Missions"
@@ -1115,9 +1352,10 @@
       "url": "https://www.space.com/space-exploration/voyager/voyager-1-team-unbowed-by-communications-glitch-celebrates-epic-1-light-day-distance-milestone",
       "publisher": "Space.com",
       "publishedAt": "2026-11-19T23:42:03.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.318Z",
       "category": "Space Exploration",
       "desks": [
-        "NASA Updates",
+        "NASA",
         "Space Missions"
       ],
       "topics": [
@@ -1135,9 +1373,10 @@
       "url": "https://phys.org/news/2026-11-euclid-strong-gravitational-lenses.html",
       "publisher": "Phys.org",
       "publishedAt": "2026-11-19T23:20:06.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.323Z",
       "category": "Cosmology",
       "desks": [
-        "ESA Updates",
+        "ESA",
         "Cosmology",
         "Scientific Discoveries"
       ],
@@ -1158,6 +1397,7 @@
       "url": "https://www.space.com/space-exploration/on-this-day-in-space-november-19-2026",
       "publisher": "Space.com",
       "publishedAt": "2026-11-19T22:53:16.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.318Z",
       "category": "Solar System",
       "desks": [
         "Space Missions",
@@ -1178,10 +1418,11 @@
       "url": "https://phys.org/news/2026-11-esa-hera-probe-superhuman-vision.html",
       "publisher": "Phys.org",
       "publishedAt": "2026-11-19T22:40:17.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.323Z",
       "category": "Solar System",
       "desks": [
-        "NASA Updates",
-        "ESA Updates",
+        "NASA",
+        "ESA",
         "Space Missions",
         "Astronomy"
       ],
@@ -1200,6 +1441,7 @@
       "url": "https://phys.org/news/2026-11-tiny-primordial-black-holes.html",
       "publisher": "Phys.org",
       "publishedAt": "2026-11-19T22:40:07.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.323Z",
       "category": "Cosmology",
       "desks": [
         "Cosmology",
@@ -1221,9 +1463,10 @@
       "url": "https://www.nasaspaceflight.com/2026/11/relativity-update-1116/",
       "publisher": "NASASpaceflight",
       "publishedAt": "2026-11-19T22:08:32.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.326Z",
       "category": "Space Exploration",
       "desks": [
-        "NASA Updates",
+        "NASA",
         "Space Missions",
         "Astrophysics"
       ],
@@ -1236,36 +1479,16 @@
       "isSample": false
     },
     {
-      "id": "cw-17kluj5",
-      "title": "The view from the tower: Watch Starship come in for chopsticks catch in epic slo-mo video",
-      "excerpt": "A new set of slo-mo videos gives us a tower's-eye view of the first-ever catch of a Starship upper stage, a milestone SpaceX achieved last weekend.",
-      "url": "https://www.space.com/space-exploration/launches-spacecraft/the-view-from-the-tower-watch-starship-come-in-for-chopsticks-catch-in-epic-slo-mo-video",
-      "publisher": "Space.com",
-      "publishedAt": "2026-11-19T22:00:00.000Z",
-      "category": "Rocket Science",
-      "desks": [
-        "Space Missions",
-        "Space Technology",
-        "Scientific Discoveries"
-      ],
-      "topics": [
-        "Rocket Science"
-      ],
-      "imageUrl": "https://cdn.mos.cms.futurecdn.net/Xsx8TcSssSgMcA6nfeaEf-1920-80.jpg",
-      "imageAlt": "The view from the tower: Watch Starship come in for chopsticks catch in epic slo-mo video — Space.com",
-      "sourceFeed": "https://www.space.com/feeds/all",
-      "isSample": false
-    },
-    {
       "id": "cw-wucuu0",
       "title": "Cryptography-inspired method speeds up searches for elusive pulsars",
       "excerpt": "An international team of scientists has developed a method that can find pulsars in publicly available NASA data about a million times faster than before. This opens the door to discovering many more of these rapidly spinning objects. A…",
       "url": "https://phys.org/news/2026-11-cryptography-method-elusive-pulsars.html",
       "publisher": "Phys.org",
       "publishedAt": "2026-11-19T20:50:01.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.323Z",
       "category": "Space Exploration",
       "desks": [
-        "NASA Updates",
+        "NASA",
         "Space Missions"
       ],
       "topics": [
@@ -1277,37 +1500,16 @@
       "isSample": false
     },
     {
-      "id": "cw-1li9hab",
-      "title": "No more asteroid landing: Engine trouble forces Japan's Hayabusa2 probe to change plans",
-      "excerpt": "Japan's space agency has decided to switch destinations and objectives for the final act of its Hayabusa2 asteroid mission, due to problems with the spacecraft's ion thrusters.",
-      "url": "https://www.space.com/space-exploration/asteroid-comet-missions/no-more-asteroid-landing-engine-trouble-forces-japans-hayabusa2-probe-to-change-plans",
-      "publisher": "Space.com",
-      "publishedAt": "2026-11-19T20:00:00.000Z",
-      "category": "Solar System",
-      "desks": [
-        "Space Missions",
-        "Space Technology",
-        "Astronomy"
-      ],
-      "topics": [
-        "Solar System"
-      ],
-      "imageUrl": "https://cdn.mos.cms.futurecdn.net/eu2FmcRSGP2BEPSmedZjm6-1920-80.jpg",
-      "imageAlt": "No more asteroid landing: Engine trouble forces Japan's Hayabusa2 probe to change plans — Space.com",
-      "sourceFeed": "https://www.space.com/feeds/all",
-      "isSample": false
-    },
-    {
       "id": "cw-ihosdk",
       "title": "Google turns to Blue Origin for a rocket, but its long-term problem remains",
       "excerpt": "\"Project Suncatcher is a long-term moonshot.\"",
       "url": "https://arstechnica.com/space/2026/11/google-turns-to-blue-origin-for-a-rocket-but-its-long-term-problem-remains/",
       "publisher": "Arstechnica",
       "publishedAt": "2026-11-19T19:52:54.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.326Z",
       "category": "Rocket Science",
       "desks": [
-        "Space Missions",
-        "Space Technology"
+        "Space Missions"
       ],
       "topics": [
         "Rocket Science"
@@ -1324,9 +1526,10 @@
       "url": "https://www.nasa.gov/directorates/stmd/prizes-challenges-crowdsourcing-program/center-of-excellence-for-collaborative-innovation-coeci/challenge-public-input-on-life-and-the-world-in-2075/",
       "publisher": "NASA",
       "publishedAt": "2026-11-19T19:34:20.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.298Z",
       "category": "Space Exploration",
       "desks": [
-        "NASA Updates",
+        "NASA",
         "Space Missions"
       ],
       "topics": [
@@ -1344,11 +1547,11 @@
       "url": "https://phys.org/news/2026-11-nasa-latest-rs-future-artemis.html",
       "publisher": "Phys.org",
       "publishedAt": "2026-11-19T19:30:01.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.323Z",
       "category": "Space Exploration",
       "desks": [
-        "NASA Updates",
-        "Space Missions",
-        "Space Technology"
+        "NASA",
+        "Space Missions"
       ],
       "topics": [
         "Space Exploration",
@@ -1360,32 +1563,13 @@
       "isSample": false
     },
     {
-      "id": "cw-djb44p",
-      "title": "China rolls out rocket for launch of 1st international astronaut to Tiangong space station (video)",
-      "excerpt": "China has rolled to the launch pad the rocket and spacecraft for its Shenzhou-24 mission, which will fly the first international astronaut to the nation's Tiangong space station.",
-      "url": "https://www.space.com/space-exploration/human-spaceflight/china-rolls-out-rocket-for-launch-of-1st-international-astronaut-to-tiangong-space-station-video",
-      "publisher": "Space.com",
-      "publishedAt": "2026-11-19T19:00:00.000Z",
-      "category": "Rocket Science",
-      "desks": [
-        "Space Missions",
-        "Space Technology"
-      ],
-      "topics": [
-        "Rocket Science"
-      ],
-      "imageUrl": "https://cdn.mos.cms.futurecdn.net/x2E4iRkmARYuAXnEPdeciJ-1920-80.jpg",
-      "imageAlt": "China rolls out rocket for launch of 1st international astronaut to Tiangong space station (video) — Space.com",
-      "sourceFeed": "https://www.space.com/feeds/all",
-      "isSample": false
-    },
-    {
       "id": "cw-fl4gic",
       "title": "Earth's Atmosphere Took Three Deep Breaths of Oxygen Before the Oceans Caught Up",
       "excerpt": "The accumulation of oxygen in Earth's atmosphere and oceans was a multi-stage process that played out over geologic timescales. Scientists have worked hard to understand all the details of this complex process. New research writes a…",
       "url": "https://www.universetoday.com/articles/earths-atmosphere-took-three-deep-breaths-of-oxygen-before-the-oceans-caught-up",
       "publisher": "Universe Today",
       "publishedAt": "2026-11-19T18:04:23.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.320Z",
       "category": "Astronomy",
       "desks": [
         "Astronomy"
@@ -1405,6 +1589,7 @@
       "url": "https://spacenews.com/the-sweet-spot-for-constellation-size/",
       "publisher": "SpaceNews",
       "publishedAt": "2026-11-19T17:25:17.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.326Z",
       "category": "Astronomy",
       "desks": [
         "Astronomy"
@@ -1418,55 +1603,15 @@
       "isSample": false
     },
     {
-      "id": "cw-140alji",
-      "title": "Lunar sample research yields new discoveries, revealing the history of the moon's largest impact basin",
-      "excerpt": "An international research team led by geologists from the Department of Earth and Planetary Sciences (DEPS) at The University of Hong Kong (HKU) has uncovered new evidence of how the moon's largest impact basin, the South Pole–Aitken (SPA)…",
-      "url": "https://phys.org/news/2026-11-lunar-sample-yields-discoveries-revealing.html",
-      "publisher": "Phys.org",
-      "publishedAt": "2026-11-19T17:00:04.000Z",
-      "category": "Solar System",
-      "desks": [
-        "Astronomy",
-        "Scientific Discoveries"
-      ],
-      "topics": [
-        "Solar System",
-        "Lunar"
-      ],
-      "imageUrl": "https://scx1.b-cdn.net/csz/news/tmb/2026/hku-lunar-sample-resea-2.jpg",
-      "imageAlt": "Lunar sample research yields new discoveries, revealing the history of the moon's largest impact basin — Phys.org",
-      "sourceFeed": "https://phys.org/rss-feed/space-news/",
-      "isSample": false
-    },
-    {
-      "id": "cw-sw7dmp",
-      "title": "Don't miss Saturn shine close to the moon tonight",
-      "excerpt": "The moon shines with Saturn in the constellation Pisces after sunset on Nov. 20",
-      "url": "https://www.space.com/stargazing/dont-miss-saturn-shine-close-to-the-moon-on-nov-20",
-      "publisher": "Space.com",
-      "publishedAt": "2026-11-19T17:00:00.000Z",
-      "category": "Solar System",
-      "desks": [
-        "Astronomy"
-      ],
-      "topics": [
-        "Solar System"
-      ],
-      "imageUrl": "https://cdn.mos.cms.futurecdn.net/uyuB8CbDgvkMvsRakAizzg-1920-80.jpg",
-      "imageAlt": "Don't miss Saturn shine close to the moon tonight — Space.com",
-      "sourceFeed": "https://www.space.com/feeds/all",
-      "isSample": false
-    },
-    {
       "id": "cw-1qb9b6l",
       "title": "Making the case for optical",
       "excerpt": "In this episode of Space Minds, SpaceNews’ Mike Gruss speaks with Jean-François Morizur, the co-founder and CEO of Cailabs, at Space Tech Expo Europe. Morizur discusses the misconceptions with laser […] The post Making the case for optical…",
       "url": "https://spacenews.com/making-the-case-for-optical/",
       "publisher": "SpaceNews",
       "publishedAt": "2026-11-19T15:38:18.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.326Z",
       "category": "Astronomy",
       "desks": [
-        "Space Technology",
         "Astronomy"
       ],
       "topics": [
@@ -1478,95 +1623,13 @@
       "isSample": false
     },
     {
-      "id": "cw-1dx3kao",
-      "title": "NASA Science Data Powers New Method to Discover Hard-to-Find Pulsars",
-      "excerpt": "Open data from NASA’s Fermi mission helped an international team of scientists develop a method for finding pulsars about a million times faster than before.",
-      "url": "https://science.nasa.gov/open-science/fermi-data-pulsar-discovery/",
-      "publisher": "NASA",
-      "publishedAt": "2026-11-19T15:33:55.000Z",
-      "category": "Space Technology",
-      "desks": [
-        "NASA Updates",
-        "Space Missions",
-        "Space Technology",
-        "Astrophysics",
-        "Scientific Discoveries"
-      ],
-      "topics": [
-        "Space Technology"
-      ],
-      "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/cds/general/images/2023/05/screenshot-2023-06-06-at-2.57.05-pm.png?w=1652&#038;h=928&#038;fit=clip",
-      "imageAlt": "NASA Science Data Powers New Method to Discover Hard-to-Find Pulsars — NASA",
-      "sourceFeed": "https://www.nasa.gov/rss/dyn/breaking_news.rss",
-      "isSample": false
-    },
-    {
-      "id": "cw-101l04l",
-      "title": "Lake Pelku",
-      "excerpt": "An astronaut on the International Space Station captured this photograph of Lake Pelku (near center) as the station orbited above Asia. The International Space Station serves as a unique platform for observing Earth with both hands-on and…",
-      "url": "https://www.nasa.gov/image-article/lake-pelku/",
-      "publisher": "NASA",
-      "publishedAt": "2026-11-19T15:32:39.000Z",
-      "category": "Space Exploration",
-      "desks": [
-        "NASA Updates",
-        "Space Missions"
-      ],
-      "topics": [
-        "Space Exploration"
-      ],
-      "imageUrl": "https://www.nasa.gov/wp-content/uploads/2026/11/iss075e0267074orig.jpg?w=2048",
-      "imageAlt": "Lake Pelku — NASA",
-      "sourceFeed": "https://www.nasa.gov/rss/dyn/breaking_news.rss",
-      "isSample": false
-    },
-    {
-      "id": "cw-1a3zzvw",
-      "title": "NASA's Voyager 1 phones home from an awe-inspiring one light-day away",
-      "excerpt": "NASA's Voyager 1 has phoned home from one light-day away, humanity's first emissary to cross this monumental threshold way out in interstellar space.",
-      "url": "https://phys.org/news/2026-11-nasa-voyager-home-awe-day.html",
-      "publisher": "Phys.org",
-      "publishedAt": "2026-11-19T15:02:11.000Z",
-      "category": "Space Exploration",
-      "desks": [
-        "NASA Updates",
-        "Space Missions"
-      ],
-      "topics": [
-        "Space Exploration"
-      ],
-      "imageUrl": "https://scx1.b-cdn.net/csz/news/tmb/2026/nasa-voyager-5.jpg",
-      "imageAlt": "NASA's Voyager 1 phones home from an awe-inspiring one light-day away — Phys.org",
-      "sourceFeed": "https://phys.org/rss-feed/space-news/",
-      "isSample": false
-    },
-    {
-      "id": "cw-16wi2a6",
-      "title": "Astronomers discover remarkable triple-star system just 28 light-years from Earth",
-      "excerpt": "Astronomers have discovered a stellar system just 28 light-years from Earth that challenges our understanding of how stars live, die and interact as they evolve.",
-      "url": "https://phys.org/news/2026-11-astronomers-remarkable-triple-star-years.html",
-      "publisher": "Phys.org",
-      "publishedAt": "2026-11-19T15:00:25.000Z",
-      "category": "Astronomy",
-      "desks": [
-        "Astronomy",
-        "Scientific Discoveries"
-      ],
-      "topics": [
-        "Astronomy"
-      ],
-      "imageUrl": "https://scx1.b-cdn.net/csz/news/tmb/2026/astronomers-discover-r.jpg",
-      "imageAlt": "Astronomers discover remarkable triple-star system just 28 light-years from Earth — Phys.org",
-      "sourceFeed": "https://phys.org/rss-feed/space-news/",
-      "isSample": false
-    },
-    {
       "id": "cw-1wx61ke",
       "title": "Feast Your Eyes on Uranus at Opposition This Thanksgiving 2026",
       "excerpt": "The outer planets are ever so slowly starting to sneak back into the evening sky this month. First, Saturn crossed this mark last month on October 4th, then Neptune followed suit on September 26th. Now, the planet Uranus makes the…",
       "url": "https://www.universetoday.com/articles/feast-your-eyes-on-uranus-at-opposition-this-thanksgiving-2026",
       "publisher": "Universe Today",
       "publishedAt": "2026-11-19T14:00:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.320Z",
       "category": "Solar System",
       "desks": [
         "Astronomy"
@@ -1586,9 +1649,10 @@
       "url": "https://www.esa.int/articles/about-us/directorates/earth-observation-programmes/futureeo/earthcare/rain-breaks-up-earth-s-natural-sunshades",
       "publisher": "ESA",
       "publishedAt": "2026-11-19T12:00:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.316Z",
       "category": "Astronomy",
       "desks": [
-        "ESA Updates",
+        "ESA",
         "Astronomy"
       ],
       "topics": [
@@ -1606,10 +1670,11 @@
       "url": "https://www.esa.int/articles/about-us/directorates/operations/space-safety/hera/watch-live-hera-s-first-images-of-post-impact-asteroid-dimorphos",
       "publisher": "ESA",
       "publishedAt": "2026-11-19T10:10:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.316Z",
       "category": "Solar System",
       "desks": [
-        "NASA Updates",
-        "ESA Updates",
+        "NASA",
+        "ESA",
         "Space Missions",
         "Astronomy"
       ],
@@ -1628,9 +1693,10 @@
       "url": "https://www.esa.int/articles/about-us/directorates/science/seven-spacecraft-observatory-to-study-plasma-universe",
       "publisher": "ESA",
       "publishedAt": "2026-11-18T23:00:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.316Z",
       "category": "Space Exploration",
       "desks": [
-        "ESA Updates",
+        "ESA",
         "Space Missions",
         "Astrophysics",
         "Astronomy"
@@ -1650,9 +1716,10 @@
       "url": "https://www.universetoday.com/articles/reconstructing-cosmic-history-and-earths-evolution-from-cosmic-explosions",
       "publisher": "Universe Today",
       "publishedAt": "2026-11-18T21:07:58.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.320Z",
       "category": "Space Exploration",
       "desks": [
-        "NASA Updates",
+        "NASA",
         "Space Missions",
         "Astrophysics"
       ],
@@ -1672,6 +1739,7 @@
       "url": "https://www.universetoday.com/articles/the-simons-observatory-is-online-and-surveying-the-cosmic-microwave-background",
       "publisher": "Universe Today",
       "publishedAt": "2026-11-18T20:05:05.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.320Z",
       "category": "Cosmology",
       "desks": [
         "Cosmology",
@@ -1694,6 +1762,7 @@
       "url": "https://www.universetoday.com/articles/are-uranus-and-neptune-secretly-rock-giants-a-noble-gas-might-hold-the-answer",
       "publisher": "Universe Today",
       "publishedAt": "2026-11-18T19:11:15.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.320Z",
       "category": "Solar System",
       "desks": [
         "Astronomy"
@@ -1713,9 +1782,10 @@
       "url": "https://www.universetoday.com/articles/extremely-accurate-measurements-of-a-pair-of-flaring-red-dwarfs",
       "publisher": "Universe Today",
       "publishedAt": "2026-11-18T17:41:05.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.320Z",
       "category": "Space Technology",
       "desks": [
-        "Space Technology"
+        "Space Missions"
       ],
       "topics": [
         "Space Technology"
@@ -1732,6 +1802,7 @@
       "url": "https://www.universetoday.com/articles/microscopic-space-dust-reveals-a-hidden-reservoir-of-heavy-water-beyond-neptune",
       "publisher": "Universe Today",
       "publishedAt": "2026-11-18T15:01:09.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.320Z",
       "category": "Solar System",
       "desks": [
         "Astronomy",
@@ -1752,11 +1823,11 @@
       "url": "https://www.esa.int/articles/about-us/directorates/earth-observation-programmes/copernicus/sentinel-3/first-thermal-images-from-sentinel-3c-radiometer",
       "publisher": "ESA",
       "publishedAt": "2026-11-18T11:00:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.316Z",
       "category": "Space Technology",
       "desks": [
-        "ESA Updates",
-        "Space Missions",
-        "Space Technology"
+        "ESA",
+        "Space Missions"
       ],
       "topics": [
         "Space Technology"
@@ -1773,9 +1844,10 @@
       "url": "https://www.esa.int/articles/about-us/directorates/science/mars-express/in-the-shadow-of-volcanic-giants",
       "publisher": "ESA",
       "publishedAt": "2026-11-18T10:00:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.316Z",
       "category": "Solar System",
       "desks": [
-        "ESA Updates",
+        "ESA",
         "Astronomy"
       ],
       "topics": [
@@ -1794,9 +1866,10 @@
       "url": "https://www.sciencedaily.com/releases/2026/11/261117033920.htm",
       "publisher": "ScienceDaily",
       "publishedAt": "2026-11-18T03:16:19.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.325Z",
       "category": "Solar System",
       "desks": [
-        "NASA Updates",
+        "NASA",
         "Astronomy",
         "Scientific Discoveries"
       ],
@@ -1815,10 +1888,10 @@
       "url": "https://www.universetoday.com/articles/computer-simulations-provide-the-best-explanation-for-those-little-red-dots-yet",
       "publisher": "Universe Today",
       "publishedAt": "2026-11-17T22:58:52.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.320Z",
       "category": "Galaxies",
       "desks": [
-        "NASA Updates",
-        "Space Technology",
+        "NASA",
         "Astronomy"
       ],
       "topics": [
@@ -1836,8 +1909,10 @@
       "url": "https://www.universetoday.com/articles/black-holes-and-their-mysterious-bright-structures-explained",
       "publisher": "Universe Today",
       "publishedAt": "2026-11-17T21:23:46.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.320Z",
       "category": "Black Holes",
       "desks": [
+        "Black Holes",
         "Astrophysics",
         "Scientific Discoveries"
       ],
@@ -1856,6 +1931,7 @@
       "url": "https://www.universetoday.com/articles/searching-for-elusive-signals-in-the-cosmic-microwave-background-from-the-south-pole",
       "publisher": "Universe Today",
       "publishedAt": "2026-11-17T17:50:51.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.320Z",
       "category": "Cosmology",
       "desks": [
         "Cosmology",
@@ -1876,6 +1952,7 @@
       "url": "https://www.sciencedaily.com/releases/2026/11/261116023348.htm",
       "publisher": "ScienceDaily",
       "publishedAt": "2026-11-17T12:14:04.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.325Z",
       "category": "Cosmology",
       "desks": [
         "Cosmology",
@@ -1897,9 +1974,10 @@
       "url": "https://www.esa.int/articles/prodex-at-40-advancing-european-space-science",
       "publisher": "ESA",
       "publishedAt": "2026-11-17T12:03:28.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.316Z",
       "category": "Astronomy",
       "desks": [
-        "ESA Updates",
+        "ESA",
         "Astronomy"
       ],
       "topics": [
@@ -1917,10 +1995,11 @@
       "url": "https://www.sciencedaily.com/releases/2026/11/261115085545.htm",
       "publisher": "ScienceDaily",
       "publishedAt": "2026-11-17T10:45:41.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.325Z",
       "category": "Solar System",
       "desks": [
-        "NASA Updates",
-        "ESA Updates",
+        "NASA",
+        "ESA",
         "Space Missions",
         "Astronomy",
         "Scientific Discoveries"
@@ -1939,9 +2018,10 @@
       "url": "https://www.esa.int/articles/about-us/directorates/operations/space-safety/hera/hera-surveying-asteroids-with-superhuman-vision",
       "publisher": "ESA",
       "publishedAt": "2026-11-17T08:59:44.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.316Z",
       "category": "Solar System",
       "desks": [
-        "ESA Updates",
+        "ESA",
         "Space Missions",
         "Astronomy"
       ],
@@ -1960,9 +2040,10 @@
       "url": "https://www.sciencedaily.com/releases/2026/11/261115085542.htm",
       "publisher": "ScienceDaily",
       "publishedAt": "2026-11-16T14:02:10.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.325Z",
       "category": "Solar System",
       "desks": [
-        "NASA Updates",
+        "NASA",
         "Space Missions",
         "Astronomy"
       ],
@@ -1981,9 +2062,10 @@
       "url": "https://www.sciencedaily.com/releases/2026/11/261116023351.htm",
       "publisher": "ScienceDaily",
       "publishedAt": "2026-11-16T13:40:11.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.325Z",
       "category": "Solar System",
       "desks": [
-        "NASA Updates",
+        "NASA",
         "Space Missions",
         "Astronomy"
       ],
@@ -2001,6 +2083,7 @@
       "url": "https://www.sciencedaily.com/releases/2026/11/261115085549.htm",
       "publisher": "ScienceDaily",
       "publishedAt": "2026-11-16T03:51:01.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.325Z",
       "category": "Solar System",
       "desks": [
         "Astronomy"
@@ -2019,9 +2102,10 @@
       "url": "https://www.sciencedaily.com/releases/2026/11/261114202204.htm",
       "publisher": "ScienceDaily",
       "publishedAt": "2026-11-15T13:43:22.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.325Z",
       "category": "Solar System",
       "desks": [
-        "NASA Updates",
+        "NASA",
         "Space Missions",
         "Astronomy"
       ],
@@ -2039,6 +2123,7 @@
       "url": "https://www.sciencedaily.com/releases/2026/11/261114202136.htm",
       "publisher": "ScienceDaily",
       "publishedAt": "2026-11-15T13:04:09.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.325Z",
       "category": "Space Exploration",
       "desks": [
         "Space Missions",
@@ -2059,10 +2144,12 @@
       "url": "https://www.sciencedaily.com/releases/2026/11/261112230504.htm",
       "publisher": "ScienceDaily",
       "publishedAt": "2026-11-15T01:52:47.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.325Z",
       "category": "Space Technology",
       "desks": [
-        "ESA Updates",
-        "Space Technology"
+        "ESA",
+        "Space Missions",
+        "Astronomy"
       ],
       "topics": [
         "Space Technology",
@@ -2079,6 +2166,7 @@
       "url": "https://www.sciencedaily.com/releases/2026/11/261112230447.htm",
       "publisher": "ScienceDaily",
       "publishedAt": "2026-11-14T11:58:42.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.325Z",
       "category": "Solar System",
       "desks": [
         "Astronomy"
@@ -2097,6 +2185,7 @@
       "url": "https://www.sciencedaily.com/releases/2026/11/261111005901.htm",
       "publisher": "ScienceDaily",
       "publishedAt": "2026-11-13T11:08:34.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.325Z",
       "category": "Cosmology",
       "desks": [
         "Cosmology",
@@ -2117,9 +2206,10 @@
       "url": "https://www.sciencedaily.com/releases/2026/11/261111005905.htm",
       "publisher": "ScienceDaily",
       "publishedAt": "2026-11-13T09:49:36.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.325Z",
       "category": "Space Technology",
       "desks": [
-        "Space Technology"
+        "Space Missions"
       ],
       "topics": [
         "Space Technology"
@@ -2135,9 +2225,10 @@
       "url": "https://www.esa.int/articles/about-us/directorates/operations/space-safety/hera/hera-spies-a-half-hidden-asteroid-moonlet",
       "publisher": "ESA",
       "publishedAt": "2026-11-12T14:04:40.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.316Z",
       "category": "Solar System",
       "desks": [
-        "ESA Updates",
+        "ESA",
         "Space Missions",
         "Astronomy"
       ],
@@ -2156,9 +2247,10 @@
       "url": "https://www.sciencedaily.com/releases/2026/11/261111005908.htm",
       "publisher": "ScienceDaily",
       "publishedAt": "2026-11-12T11:37:06.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.325Z",
       "category": "Solar System",
       "desks": [
-        "NASA Updates",
+        "NASA",
         "Space Missions",
         "Astronomy"
       ],
@@ -2177,11 +2269,11 @@
       "url": "https://www.esa.int/articles/about-us/directorates/science/euclid/euclid-lays-the-foundation-for-its-best-ever-3d-map-of-the-universe",
       "publisher": "ESA",
       "publishedAt": "2026-11-12T11:00:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.316Z",
       "category": "Space Technology",
       "desks": [
-        "ESA Updates",
+        "ESA",
         "Space Missions",
-        "Space Technology",
         "Astronomy"
       ],
       "topics": [
@@ -2199,9 +2291,10 @@
       "url": "https://www.esa.int/articles/about-us/directorates/operations/space-safety/hera/hera-spacecraft-in-rectangular-orbit-around-target-asteroids",
       "publisher": "ESA",
       "publishedAt": "2026-11-11T13:00:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.316Z",
       "category": "Solar System",
       "desks": [
-        "ESA Updates",
+        "ESA",
         "Space Missions",
         "Astronomy"
       ],
@@ -2220,10 +2313,11 @@
       "url": "https://www.esa.int/articles/about-us/directorates/earth-observation-programmes/futureeo/space-for-our-climate/predicting-el-nino-s-impact-on-carbon-sinks",
       "publisher": "ESA",
       "publishedAt": "2026-11-10T15:30:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.316Z",
       "category": "Space Technology",
       "desks": [
-        "ESA Updates",
-        "Space Technology",
+        "ESA",
+        "Space Missions",
         "Scientific Discoveries"
       ],
       "topics": [
@@ -2241,11 +2335,11 @@
       "url": "https://www.esa.int/articles/about-us/directorates/earth-observation-programmes/meteorological-missions/meteosat-third-generation/mtg-i2-weather-satellite-delivers-first-images",
       "publisher": "ESA",
       "publishedAt": "2026-11-06T11:15:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.316Z",
       "category": "Space Technology",
       "desks": [
-        "ESA Updates",
-        "Space Missions",
-        "Space Technology"
+        "ESA",
+        "Space Missions"
       ],
       "topics": [
         "Space Technology"
@@ -2262,11 +2356,11 @@
       "url": "https://www.esa.int/articles/about-us/directorates/space-transportation/future-space-transportation/prometheus-reusable-rocket-engine-fires-up-at-improved-test-bench",
       "publisher": "ESA",
       "publishedAt": "2026-11-06T08:56:52.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.316Z",
       "category": "Rocket Science",
       "desks": [
-        "ESA Updates",
-        "Space Missions",
-        "Space Technology"
+        "ESA",
+        "Space Missions"
       ],
       "topics": [
         "Rocket Science"
@@ -2283,10 +2377,11 @@
       "url": "https://www.esa.int/articles/about-us/directorates/operations/space-safety/hera/hera-s-first-close-up-view-of-didymos-asteroids",
       "publisher": "ESA",
       "publishedAt": "2026-11-05T14:00:25.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.316Z",
       "category": "Solar System",
       "desks": [
-        "NASA Updates",
-        "ESA Updates",
+        "NASA",
+        "ESA",
         "Space Missions",
         "Astronomy"
       ],
@@ -2305,9 +2400,10 @@
       "url": "https://www.esa.int/articles/news-media/news/european-orbiter-detects-hints-of-volcanic-activity-on-mars",
       "publisher": "ESA",
       "publishedAt": "2026-11-05T08:00:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.316Z",
       "category": "Solar System",
       "desks": [
-        "ESA Updates",
+        "ESA",
         "Space Missions",
         "Astronomy",
         "Scientific Discoveries"
@@ -2328,10 +2424,11 @@
       "url": "https://www.esa.int/About_Us/Corporate_news/ESA_and_ISRO_extend_and_broaden_cooperation_agreement",
       "publisher": "ESA",
       "publishedAt": "2026-09-21T08:44:00.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.328Z",
       "category": "Space Exploration",
       "desks": [
-        "ESA Updates",
-        "ISRO Updates",
+        "ESA",
+        "ISRO",
         "Space Missions"
       ],
       "topics": [
@@ -2349,11 +2446,12 @@
       "url": "https://www.nasa.gov/missions/nisar/nasa-isro-satellite-captures-pacific-northwest-through-clouds/",
       "publisher": "NASA",
       "publishedAt": "2026-03-25T15:51:39.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.328Z",
       "category": "Space Technology",
       "desks": [
-        "NASA Updates",
-        "ISRO Updates",
-        "Space Technology"
+        "NASA",
+        "ISRO",
+        "Space Missions"
       ],
       "topics": [
         "Space Technology"
@@ -2370,12 +2468,12 @@
       "url": "https://www.nasa.gov/missions/nisar/nasa-isro-radar-mission-peers-through-clouds-to-see-mississippi-river-delta/",
       "publisher": "NASA",
       "publishedAt": "2026-01-29T20:57:25.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.328Z",
       "category": "Space Technology",
       "desks": [
-        "NASA Updates",
-        "ISRO Updates",
+        "NASA",
+        "ISRO",
         "Space Missions",
-        "Space Technology",
         "Scientific Discoveries"
       ],
       "topics": [
@@ -2393,10 +2491,11 @@
       "url": "https://www.nasaspaceflight.com/2026/01/launch-previews-20250501/",
       "publisher": "NASASpaceflight",
       "publishedAt": "2026-01-06T04:44:11.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.328Z",
       "category": "Space Exploration",
       "desks": [
-        "NASA Updates",
-        "ISRO Updates",
+        "NASA",
+        "ISRO",
         "Space Missions"
       ],
       "topics": [
@@ -2414,11 +2513,11 @@
       "url": "https://www.spacedaily.com/reports/Successful_cryogenic_engine_start_enables_enhanced_mission_flexibility_for_ISRO_999.html",
       "publisher": "SpaceDaily",
       "publishedAt": "2025-11-22T07:57:10.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.328Z",
       "category": "Rocket Science",
       "desks": [
-        "ISRO Updates",
-        "Space Missions",
-        "Space Technology"
+        "ISRO",
+        "Space Missions"
       ],
       "topics": [
         "Rocket Science"
@@ -2435,12 +2534,12 @@
       "url": "https://www.nasa.gov/news-release/nasa-isro-satellite-sends-first-radar-images-of-earths-surface/",
       "publisher": "NASA",
       "publishedAt": "2025-09-25T17:22:02.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.328Z",
       "category": "Space Technology",
       "desks": [
-        "NASA Updates",
-        "ISRO Updates",
+        "NASA",
+        "ISRO",
         "Space Missions",
-        "Space Technology",
         "Astronomy"
       ],
       "topics": [
@@ -2458,11 +2557,12 @@
       "url": "https://www.nasa.gov/news-release/nasa-isro-satellite-lifts-off-to-track-earths-changing-surfaces/",
       "publisher": "NASA",
       "publishedAt": "2025-07-30T14:10:45.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.328Z",
       "category": "Space Technology",
       "desks": [
-        "NASA Updates",
-        "ISRO Updates",
-        "Space Technology"
+        "NASA",
+        "ISRO",
+        "Space Missions"
       ],
       "topics": [
         "Space Technology"
@@ -2479,11 +2579,12 @@
       "url": "https://www.nasaspaceflight.com/2025/07/nisar-launch/",
       "publisher": "NASASpaceflight",
       "publishedAt": "2025-07-30T10:00:34.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.328Z",
       "category": "Space Technology",
       "desks": [
-        "NASA Updates",
-        "ISRO Updates",
-        "Space Technology"
+        "NASA",
+        "ISRO",
+        "Space Missions"
       ],
       "topics": [
         "Space Technology"
@@ -2500,12 +2601,12 @@
       "url": "https://www.nasaspaceflight.com/2025/07/nis/",
       "publisher": "NASASpaceflight",
       "publishedAt": "2025-07-30T10:00:34.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.328Z",
       "category": "Space Technology",
       "desks": [
-        "NASA Updates",
-        "ISRO Updates",
-        "Space Missions",
-        "Space Technology"
+        "NASA",
+        "ISRO",
+        "Space Missions"
       ],
       "topics": [
         "Space Technology"
@@ -2522,12 +2623,12 @@
       "url": "https://www.nasaspaceflight.com/2025/07/launch-roundup-072825/",
       "publisher": "NASASpaceflight",
       "publishedAt": "2025-07-28T22:21:34.000Z",
+      "retrievedAt": "2026-11-22T20:08:04.328Z",
       "category": "Space Technology",
       "desks": [
-        "NASA Updates",
-        "ISRO Updates",
-        "Space Missions",
-        "Space Technology"
+        "NASA",
+        "ISRO",
+        "Space Missions"
       ],
       "topics": [
         "Space Technology"
@@ -2543,63 +2644,71 @@
       "publisher": "NASA",
       "status": "ok",
       "count": 20,
-      "lastChecked": "2026-11-21T21:48:21.839Z",
-      "sourceType": "rss"
+      "lastChecked": "2026-11-22T20:08:04.314Z",
+      "sourceType": "rss",
+      "notModified": false
     },
     {
       "publisher": "ESA",
       "status": "ok",
       "count": 15,
-      "lastChecked": "2026-11-21T21:48:21.840Z",
-      "sourceType": "rss"
+      "lastChecked": "2026-11-22T20:08:04.316Z",
+      "sourceType": "rss",
+      "notModified": false
     },
     {
       "publisher": "Space.com",
       "status": "ok",
       "count": 22,
-      "lastChecked": "2026-11-21T21:48:21.841Z",
-      "sourceType": "rss"
+      "lastChecked": "2026-11-22T20:08:04.318Z",
+      "sourceType": "rss",
+      "notModified": false
     },
     {
       "publisher": "Universe Today",
       "status": "ok",
       "count": 20,
-      "lastChecked": "2026-11-21T21:48:21.842Z",
-      "sourceType": "rss"
+      "lastChecked": "2026-11-22T20:08:04.320Z",
+      "sourceType": "rss",
+      "notModified": false
     },
     {
       "publisher": "Phys.org",
       "status": "ok",
       "count": 20,
-      "lastChecked": "2026-11-21T21:48:21.842Z",
-      "sourceType": "rss"
+      "lastChecked": "2026-11-22T20:08:04.323Z",
+      "sourceType": "rss",
+      "notModified": false
     },
     {
       "publisher": "ScienceDaily",
       "status": "ok",
       "count": 20,
-      "lastChecked": "2026-11-21T21:48:21.843Z",
-      "sourceType": "rss"
+      "lastChecked": "2026-11-22T20:08:04.325Z",
+      "sourceType": "rss",
+      "notModified": false
     },
     {
       "publisher": "Spaceflight News API",
       "status": "ok",
       "count": 20,
-      "lastChecked": "2026-11-21T21:48:21.844Z",
+      "lastChecked": "2026-11-22T20:08:04.326Z",
       "sourceType": "api",
+      "notModified": false,
       "note": "Documented public REST API (SNAPI v4)"
     },
     {
       "publisher": "ISRO Coverage (SNAPI)",
       "status": "ok",
       "count": 10,
-      "lastChecked": "2026-11-21T21:48:21.844Z",
+      "lastChecked": "2026-11-22T20:08:04.328Z",
       "sourceType": "api",
+      "notModified": false,
       "note": "Verified ISRO mission dispatches via Spaceflight News API v4 (ISRO direct XML feed unavailable)"
     }
   ],
-  "lastUpdated": "2026-11-21T21:48:21.838Z",
-  "lastAttemptedAt": "2026-11-21T21:48:21.838Z",
+  "lastUpdated": "2026-11-22T20:08:04.298Z",
+  "lastAttemptedAt": "2026-11-22T20:08:04.298Z",
   "feedStatus": "live",
   "isStale": false
 }

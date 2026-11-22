@@ -1,5 +1,9 @@
 import type { ServerResponse } from 'node:http';
-import { isEmailTransportConfigured } from '../server/emailService.js';
+import {
+  getConfiguredEmailProvider,
+  isEmailTransportConfigured,
+} from '../server/emailService.js';
+import { isGeminiConfigured } from '../server/explainerService.js';
 import { getNewsHealthSummary } from '../server/newsAggregator.js';
 import {
   enforceMethod,
@@ -25,7 +29,9 @@ export default function handler(
       runtime: process.env.VERCEL ? 'vercel-serverless' : 'node-serverless',
       timestamp: new Date().toISOString(),
       news: getNewsHealthSummary(),
+      explainerConfigured: isGeminiConfigured(),
       contactEmailConfigured: isEmailTransportConfigured(),
+      contactEmailProvider: getConfiguredEmailProvider(),
     },
     'no-store'
   );

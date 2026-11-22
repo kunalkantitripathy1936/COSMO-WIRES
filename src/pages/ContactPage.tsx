@@ -117,6 +117,15 @@ export function ContactPage() {
         }),
       });
 
+      const contentType = response.headers.get('content-type') || '';
+      if (!contentType.toLowerCase().includes('application/json')) {
+        setStatus('error');
+        setFeedback(
+          `${CONTACT_ERROR_MESSAGE} You can also email ${CONTACT_RECIPIENT_EMAIL} directly.`
+        );
+        return;
+      }
+
       const data = (await response.json().catch(() => ({}))) as {
         id?: string;
         delivered?: boolean;
@@ -131,7 +140,13 @@ export function ContactPage() {
           setFieldErrors(data.fieldErrors);
         }
         setStatus('error');
-        if (response.status === 400 || response.status === 409 || response.status === 429) {
+        if (
+          response.status === 400 ||
+          response.status === 409 ||
+          response.status === 429 ||
+          response.status === 502 ||
+          response.status === 503
+        ) {
           setFeedback(data.error || CONTACT_ERROR_MESSAGE);
         } else {
           setFeedback(CONTACT_ERROR_MESSAGE);

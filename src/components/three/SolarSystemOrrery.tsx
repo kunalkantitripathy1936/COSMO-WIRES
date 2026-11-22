@@ -1,6 +1,6 @@
 import { Suspense, lazy, useEffect, useRef, useState } from 'react';
 import { Pause, Play, RotateCcw } from 'lucide-react';
-import { probeWebGLCapabilities } from '../../three/celestialUtils';
+import { probeWebGLCapabilities } from '../../three/webglProbe';
 import {
   RenderProfile,
   SOLAR_SYSTEM_BODIES,

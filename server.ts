@@ -10,12 +10,19 @@ import {
   startScheduledNewsRefresh,
 } from './server/newsAggregator';
 import { getNasaApod } from './server/apodService';
-import { generateCosmicExplanation } from './server/explainerService';
+import {
+  generateCosmicExplanation,
+  isGeminiConfigured,
+} from './server/explainerService';
 import {
   ContactRequestError,
   submitContactInquiry,
 } from './server/storageService';
-import { EmailDeliveryError, isEmailTransportConfigured } from './server/emailService';
+import {
+  EmailDeliveryError,
+  getConfiguredEmailProvider,
+  isEmailTransportConfigured,
+} from './server/emailService';
 import { CONTACT_ERROR_MESSAGE } from './src/utils/contactLogic';
 import {
   filterAndSearchArticles,
@@ -124,7 +131,9 @@ ${routes
       uptimeSeconds: Math.round(process.uptime()),
       timestamp: new Date().toISOString(),
       news: getNewsHealthSummary(),
+      explainerConfigured: isGeminiConfigured(),
       contactEmailConfigured: isEmailTransportConfigured(),
+      contactEmailProvider: getConfiguredEmailProvider(),
     });
   });
 

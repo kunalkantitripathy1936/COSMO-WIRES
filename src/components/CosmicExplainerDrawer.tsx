@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, BookOpen, Send, Sparkles, X } from 'lucide-react';
 import { apiUrl, parseJsonResponse } from '../config/api';
-import { Article, ExplainerMode, ExplainerResponse } from '../types';
+import { Article, ExplainerMode, ExplainerResponse, ExplainerTurn } from '../types';
 
 interface CosmicExplainerDrawerProps {
   open: boolean;
@@ -34,7 +34,9 @@ export function CosmicExplainerDrawer({
   const [question, setQuestion] = useState('');
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<ExplainerResponse | null>(null);
+  const [history, setHistory] = useState<ExplainerTurn[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const inFlightRef = useRef(false);
 
   useEffect(() => {
     if (!open) return;
@@ -47,6 +49,7 @@ export function CosmicExplainerDrawer({
 
   useEffect(() => {
     setResult(null);
+    setHistory([]);
     setError(null);
     setQuestion('');
     if (article) {
@@ -57,9 +60,13 @@ export function CosmicExplainerDrawer({
   }, [article?.id, open]);
 
   const runExplainer = async (mode: ExplainerMode, customQuestion?: string) => {
+    if (inFlightRef.current) return;
+    inFlightRef.current = true;
     setActiveMode(mode);
     setLoading(true);
     setError(null);
+
+    const submittedQuestion = (customQuestion ?? question).trim();
 
     try {
       const response = await fetch(apiUrl('/api/explainer'), {
@@ -70,7 +77,8 @@ export function CosmicExplainerDrawer({
         },
         body: JSON.stringify({
           mode,
-          question: customQuestion ?? question,
+          question: submittedQuestion,
+          history: history.slice(-6),
           article: article
             ? {
                 title: article.title,
@@ -83,27 +91,53 @@ export function CosmicExplainerDrawer({
         }),
       });
 
+      const contentType = response.headers.get('content-type') || '';
+      if (!contentType.toLowerCase().includes('application/json')) {
+        setError(
+          `Cosmic Explainer could not be reached right now (HTTP ${response.status}). Please try again.`
+        );
+        setResult(null);
+        return;
+      }
+
       const data = await parseJsonResponse<ExplainerResponse & { error?: string }>(
         response,
         'Cosmic Explainer API'
       );
       if (!response.ok) {
-        setError(data.error || 'Cosmic Explainer could not complete this request.');
+        setError(data.error || `Cosmic Explainer could not complete this request (HTTP ${response.status}).`);
         setResult(null);
         return;
       }
 
-      setResult(data as ExplainerResponse);
+      const explainerRes = data as ExplainerResponse;
+      setResult(explainerRes);
+      const userTurnText =
+        mode === 'qa'
+          ? submittedQuestion
+          : `${MODE_OPTIONS.find((m) => m.id === mode)?.label || mode}${article ? `: ${article.title}` : ''}`;
+      setHistory((prev) =>
+        [
+          ...prev,
+          { role: 'user' as const, text: userTurnText },
+          { role: 'model' as const, text: explainerRes.answer },
+        ].slice(-6)
+      );
+      if (mode === 'qa') {
+        setQuestion('');
+      }
     } catch {
       setError('Unable to reach Cosmic Explainer right now. Please try again.');
       setResult(null);
     } finally {
+      inFlightRef.current = false;
       setLoading(false);
     }
   };
 
   const handleQuestionSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (inFlightRef.current || loading) return;
     const trimmed = question.trim();
     if (trimmed.length < 3) {
       setError('Please enter a question of at least 3 characters.');

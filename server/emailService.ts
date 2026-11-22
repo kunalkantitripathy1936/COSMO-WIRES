@@ -46,6 +46,15 @@ function getEnv(name: string): string {
   return process.env[name]?.trim() || '';
 }
 
+function isPlaceholderCredential(value: string): boolean {
+  return (
+    !value ||
+    /^YOUR_|^MY_/i.test(value) ||
+    value === 'your-sender-account@gmail.com' ||
+    value === 're_your_api_key'
+  );
+}
+
 export function getContactRecipientEmail(): string {
   const configured = getEnv('CONTACT_TO_EMAIL');
   return configured ? sanitizeHeaderValue(configured) : CONTACT_RECIPIENT_EMAIL;
@@ -58,13 +67,17 @@ export function getContactRecipientEmail(): string {
  */
 export function resolveSmtpConfigFromEnv(): SmtpTransportConfig | null {
   const user = getEnv('SMTP_USER') || getEnv('GMAIL_USER');
-  const pass = getEnv('SMTP_PASS') || getEnv('GMAIL_APP_PASSWORD');
+  const rawPass = getEnv('SMTP_PASS') || getEnv('GMAIL_APP_PASSWORD');
 
-  if (!user || !pass) {
+  if (isPlaceholderCredential(user) || isPlaceholderCredential(rawPass)) {
     return null;
   }
 
   const host = getEnv('SMTP_HOST') || 'smtp.gmail.com';
+  // Google displays 16-char Gmail App Passwords with spaces ("xxxx xxxx xxxx xxxx");
+  // normalize spaces automatically for Gmail SMTP so pasted App Passwords authenticate cleanly.
+  const pass = /gmail\.com$/i.test(host) ? rawPass.replace(/\s+/g, '') : rawPass;
+
   const rawPort = Number(getEnv('SMTP_PORT'));
   const port = Number.isFinite(rawPort) && rawPort > 0 ? rawPort : 465;
 
@@ -87,11 +100,18 @@ export function resolveSmtpConfigFromEnv(): SmtpTransportConfig | null {
 }
 
 export function isResendConfigured(): boolean {
-  return Boolean(getEnv('RESEND_API_KEY'));
+  const key = getEnv('RESEND_API_KEY');
+  return !isPlaceholderCredential(key);
+}
+
+export function getConfiguredEmailProvider(): 'smtp' | 'resend' | 'none' {
+  if (resolveSmtpConfigFromEnv()) return 'smtp';
+  if (isResendConfigured()) return 'resend';
+  return 'none';
 }
 
 export function isEmailTransportConfigured(): boolean {
-  return Boolean(resolveSmtpConfigFromEnv() || isResendConfigured());
+  return getConfiguredEmailProvider() !== 'none';
 }
 
 /**
@@ -155,16 +175,23 @@ export async function sendContactEmailViaSmtp(
       recipient: payload.to,
     };
   } catch (error) {
-    const errMessage = error instanceof Error ? error.message : 'Unknown SMTP transport error';
-    console.error(`[ContactEmail] SMTP delivery failed (${config.host}:${config.port}): ${errMessage}`);
-    throw new EmailDeliveryError(CONTACT_ERROR_MESSAGE, 502, 'EMAIL_DELIVERY_FAILED');
+    const err = error as Error & { code?: string; responseCode?: number };
+    const codeTag = [err.code, err.responseCode].filter(Boolean).join('/');
+    console.error(
+      `[ContactEmail] SMTP delivery failed (${config.host}:${config.port}${codeTag ? ` ${codeTag}` : ''}): ${err.message || 'Unknown SMTP transport error'}`
+    );
+    throw new EmailDeliveryError(
+      `We could not deliver your message right now. Please try again in a moment or email ${payload.to} directly.`,
+      502,
+      'EMAIL_DELIVERY_FAILED'
+    );
   } finally {
     transporter.close();
   }
 }
 
 /**
- * Optional fallback delivery via Resend HTTP API when RESEND_API_KEY is configured
+ * Optional delivery via Resend HTTP API when RESEND_API_KEY is configured
  * instead of SMTP credentials.
  */
 async function sendContactEmailViaResend(params: {
@@ -205,8 +232,15 @@ async function sendContactEmailViaResend(params: {
     });
 
     if (!response.ok) {
-      console.error(`[ContactEmail] Resend API returned HTTP ${response.status}`);
-      throw new EmailDeliveryError(CONTACT_ERROR_MESSAGE, 502, 'EMAIL_DELIVERY_FAILED');
+      const detail = (await response.text().catch(() => '')).slice(0, 400);
+      console.error(
+        `[ContactEmail] Resend API returned HTTP ${response.status}${detail ? `: ${detail}` : ''}`
+      );
+      throw new EmailDeliveryError(
+        `We could not deliver your message right now. Please try again in a moment or email ${payload.to} directly.`,
+        502,
+        'EMAIL_DELIVERY_FAILED'
+      );
     }
 
     const body = (await response.json()) as { id?: string };
@@ -222,7 +256,11 @@ async function sendContactEmailViaResend(params: {
     }
     const errMessage = error instanceof Error ? error.message : 'Unknown Resend API error';
     console.error(`[ContactEmail] Resend delivery failed: ${errMessage}`);
-    throw new EmailDeliveryError(CONTACT_ERROR_MESSAGE, 502, 'EMAIL_DELIVERY_FAILED');
+    throw new EmailDeliveryError(
+      `We could not deliver your message right now. Please try again in a moment or email ${payload.to} directly.`,
+      502,
+      'EMAIL_DELIVERY_FAILED'
+    );
   } finally {
     clearTimeout(timeout);
   }
@@ -246,8 +284,13 @@ export async function sendContactEmail(params: {
     return sendContactEmailViaResend(params);
   }
 
+  const recipient = getContactRecipientEmail();
   console.error(
     '[ContactEmail] Email delivery is not configured. Set SMTP_USER and SMTP_PASS (Gmail App Password) or RESEND_API_KEY in server environment variables.'
   );
-  throw new EmailDeliveryError(CONTACT_ERROR_MESSAGE, 503, 'EMAIL_NOT_CONFIGURED');
+  throw new EmailDeliveryError(
+    `${CONTACT_ERROR_MESSAGE} Contact form email delivery is currently unavailable on the server — please email ${recipient} directly.`,
+    503,
+    'EMAIL_NOT_CONFIGURED'
+  );
 }
