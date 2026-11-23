@@ -5,8 +5,8 @@ import { RenderProfile, selectRenderQuality } from '../../utils/motion3dLogic';
 const LazyHeroCelestialCanvas = lazy(() => import('./HeroCelestialCanvas'));
 
 /**
- * Lightweight, zero-WebGL atmospheric celestial fallback rendered on ultra-low-power
- * hardware, browsers without WebGL support, or briefly while the 3D bundle initializes.
+ * Lightweight, zero-WebGL atmospheric celestial fallback rendered on mobile devices,
+ * low-power hardware, or browsers without WebGL support.
  */
 function StaticCelestialFallback({ animate }: { animate: boolean }) {
   return (
@@ -15,34 +15,18 @@ function StaticCelestialFallback({ animate }: { animate: boolean }) {
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 overflow-hidden"
     >
-      {/* Layered drifting starfield */}
-      <div className={`cosmic-starfield-layer absolute -inset-4 ${animate ? 'cosmic-drift' : ''}`} />
-      <div
-        className={`cosmic-starfield-deep absolute -inset-4 ${
-          animate ? 'cosmic-drift-reverse' : ''
-        }`}
-      />
+      {/* Subtle drifting star flecks */}
+      <div className={`cosmic-starfield-layer absolute inset-0 ${animate ? 'cosmic-drift' : ''}`} />
 
-      {/* Soft blue/violet nebula atmospheric wash */}
-      <div
-        className={`absolute right-[-12%] top-[4%] sm:top-[10%] h-[300px] w-[300px] sm:h-[420px] sm:w-[420px] rounded-full ${
-          animate ? 'cosmic-nebula-breathe' : ''
-        }`}
-        style={{
-          background:
-            'radial-gradient(circle, rgba(59, 130, 246, 0.24) 0%, rgba(139, 92, 246, 0.14) 44%, transparent 74%)',
-        }}
-      />
-
-      {/* Atmospheric celestial sphere silhouette with tilted orbital rings & orbiting node */}
-      <div className="absolute right-[-10%] top-[6%] sm:right-[-8%] sm:top-1/2 sm:-translate-y-1/2 h-[290px] w-[290px] sm:h-[420px] sm:w-[420px] opacity-80 sm:opacity-65">
+      {/* Atmospheric celestial sphere silhouette with tilted orbital rings */}
+      <div className="absolute right-[-14%] top-1/2 -translate-y-1/2 h-[340px] w-[340px] sm:h-[420px] sm:w-[420px] opacity-55">
         <div
           className="absolute inset-8 rounded-full"
           style={{
             background:
-              'radial-gradient(circle at 30% 30%, #93C5FD 0%, #2563EB 26%, #1E3A8A 48%, #0D121E 78%, #07090E 100%)',
+              'radial-gradient(circle at 32% 32%, #60A5FA 0%, #1E3A8A 36%, #0D121E 74%, #07090E 100%)',
             boxShadow:
-              '0 0 68px rgba(59, 130, 246, 0.34), inset -28px -24px 48px rgba(7, 9, 14, 0.92), inset 10px 8px 26px rgba(139, 92, 246, 0.32)',
+              '0 0 64px rgba(59, 130, 246, 0.25), inset -28px -24px 48px rgba(7, 9, 14, 0.92), inset 10px 8px 24px rgba(139, 92, 246, 0.24)',
           }}
         />
         <svg viewBox="0 0 400 400" className="absolute inset-0 h-full w-full overflow-visible">
@@ -53,8 +37,8 @@ function StaticCelestialFallback({ animate }: { animate: boolean }) {
             ry="54"
             transform="rotate(-18 200 200)"
             fill="none"
-            stroke="rgba(96, 165, 250, 0.44)"
-            strokeWidth="1.5"
+            stroke="rgba(96, 165, 250, 0.36)"
+            strokeWidth="1.4"
           />
           <ellipse
             cx="200"
@@ -63,14 +47,10 @@ function StaticCelestialFallback({ animate }: { animate: boolean }) {
             ry="44"
             transform="rotate(-18 200 200)"
             fill="none"
-            stroke="rgba(139, 92, 246, 0.34)"
-            strokeWidth="1.1"
+            stroke="rgba(139, 92, 246, 0.26)"
+            strokeWidth="1"
             strokeDasharray="6 6"
           />
-          <g className={animate ? 'origin-center cosmic-orbit-slow' : 'origin-center'}>
-            <circle cx="364" cy="144" r="5" fill="#CBD5E1" opacity="0.92" />
-            <circle cx="364" cy="144" r="10" fill="rgba(96, 165, 250, 0.25)" />
-          </g>
         </svg>
       </div>
     </div>
@@ -115,15 +95,13 @@ export function HeroCelestialBackdrop() {
   }
 
   return (
-    <Suspense fallback={<StaticCelestialFallback animate={profile.animate} />}>
+    <Suspense fallback={<StaticCelestialFallback animate={false} />}>
       <LazyHeroCelestialCanvas
         isSoftwareGl={glInfo.isSoftwareGl}
         animate={profile.animate}
         pixelRatioCap={profile.pixelRatioCap}
         starCount={profile.starCount}
         enableParallax={profile.enableParallax}
-        shadowsEnabled={profile.shadowsEnabled}
-        geometryDetail={profile.geometryDetail}
         onContextFailed={() => setContextFailed(true)}
       />
     </Suspense>

@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, useReducedMotion } from 'motion/react';
 import { ArrowUpRight, BookOpen, Send, Sparkles, X } from 'lucide-react';
 import { apiUrl, parseJsonResponse } from '../config/api';
 import { Article, ExplainerMode, ExplainerResponse, ExplainerTurn } from '../types';
@@ -38,22 +37,14 @@ export function CosmicExplainerDrawer({
   const [history, setHistory] = useState<ExplainerTurn[]>([]);
   const [error, setError] = useState<string | null>(null);
   const inFlightRef = useRef(false);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const prefersReduced = useReducedMotion();
 
   useEffect(() => {
     if (!open) return;
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
     window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.body.style.overflow = prevOverflow;
-      window.removeEventListener('keydown', handleKeyDown);
-    };
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, [open, onClose]);
 
   useEffect(() => {
@@ -67,16 +58,6 @@ export function CosmicExplainerDrawer({
       setActiveMode('qa');
     }
   }, [article?.id, open]);
-
-  useEffect(() => {
-    if (!scrollContainerRef.current) return;
-    if (loading || result || error) {
-      scrollContainerRef.current.scrollTo({
-        top: scrollContainerRef.current.scrollHeight,
-        behavior: prefersReduced ? 'auto' : 'smooth',
-      });
-    }
-  }, [loading, result, error, history.length, prefersReduced]);
 
   const runExplainer = async (mode: ExplainerMode, customQuestion?: string) => {
     if (inFlightRef.current) return;
@@ -167,18 +148,9 @@ export function CosmicExplainerDrawer({
 
   if (!open) return null;
 
-  const priorTurns = history.length > 2 ? history.slice(0, -2) : [];
-  const latestUserPrompt =
-    history.length >= 2 && history[history.length - 2]?.role === 'user'
-      ? history[history.length - 2].text
-      : null;
-
   return (
-    <motion.div
-      initial={prefersReduced ? false : { opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.2 }}
-      className="fixed inset-0 z-50 flex items-end sm:items-stretch sm:justify-end bg-black/75 backdrop-blur-xs"
+    <div
+      className="fixed inset-0 z-50 flex justify-end bg-black/70 backdrop-blur-xs"
       role="dialog"
       aria-modal="true"
       aria-labelledby="cosmic-explainer-title"
@@ -189,31 +161,21 @@ export function CosmicExplainerDrawer({
         aria-hidden="true"
       />
 
-      <motion.div
-        initial={prefersReduced ? false : { y: 28, opacity: 0.96 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.26, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-10 flex h-[92dvh] sm:h-full w-full sm:max-w-xl flex-col overflow-hidden rounded-t-3xl sm:rounded-none border-t sm:border-t-0 sm:border-l border-[#1E293B] bg-[#090D16] shadow-2xl"
-      >
-        {/* Subtle Mobile Sheet Grabber */}
-        <div className="flex justify-center pt-2.5 pb-0.5 sm:hidden" aria-hidden="true">
-          <span className="h-1 w-10 rounded-full bg-[#334155]" />
-        </div>
-
+      <div className="relative z-10 flex h-full w-full max-w-xl flex-col border-l border-[#1E293B] bg-[#090D16] shadow-2xl">
         {/* Drawer Header */}
-        <div className="flex items-center justify-between border-b border-[#1E293B] px-4 sm:px-6 py-3.5 sm:py-4">
-          <div className="flex items-center gap-3 min-w-0">
+        <div className="flex items-center justify-between border-b border-[#1E293B] px-6 py-4">
+          <div className="flex items-center gap-3">
             <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#8B5CF6]/40 bg-[#8B5CF6]/15 text-[#A78BFA]">
               <Sparkles className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
             </span>
-            <div className="min-w-0">
+            <div>
               <h2
                 id="cosmic-explainer-title"
-                className="font-serif text-base sm:text-lg font-medium text-[#F1F5F9] truncate"
+                className="font-serif text-lg font-medium text-[#F1F5F9]"
               >
                 COSMIC EXPLAINER
               </h2>
-              <p className="text-xs text-[#94A3B8] truncate">
+              <p className="text-xs text-[#94A3B8]">
                 AI-Assisted Science Literacy Desk
               </p>
             </div>
@@ -223,21 +185,18 @@ export function CosmicExplainerDrawer({
             type="button"
             onClick={onClose}
             aria-label="Close Cosmic Explainer"
-            className="inline-flex h-10 w-10 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-full border border-[#1E293B] bg-[#0D121E] text-[#94A3B8] hover:border-[#334155] hover:text-white active:scale-[0.95] transition-all cursor-pointer"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#1E293B] bg-[#0D121E] text-[#94A3B8] hover:border-[#334155] hover:text-white transition-colors cursor-pointer"
           >
             <X className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
           </button>
         </div>
 
         {/* Drawer Body */}
-        <div
-          ref={scrollContainerRef}
-          className="flex-1 overflow-y-auto overscroll-contain px-4 sm:px-6 py-5 space-y-5"
-        >
+        <div className="flex-1 overflow-y-auto px-6 py-5 space-y-6">
           {/* Selected Article Context */}
           {article ? (
-            <div className="rounded-2xl border border-[#1E293B]/90 bg-[#0D121E]/90 p-4 sm:p-5">
-              <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-[#94A3B8]">
+            <div className="rounded-2xl border border-[#1E293B]/90 bg-[#0D121E]/90 p-5">
+              <div className="flex items-center justify-between gap-2 text-xs text-[#94A3B8]">
                 <span>
                   {article.category} · {article.publisher}
                 </span>
@@ -273,7 +232,7 @@ export function CosmicExplainerDrawer({
                     type="button"
                     disabled={loading}
                     onClick={() => void runExplainer(option.id)}
-                    className={`min-h-[44px] sm:min-h-0 rounded-xl border px-3.5 py-2.5 text-xs font-medium transition-all active:scale-[0.98] text-left cursor-pointer ${
+                    className={`rounded-xl border px-3.5 py-2.5 text-xs font-medium transition-colors text-left cursor-pointer ${
                       activeMode === option.id && result
                         ? 'border-[#3B82F6] bg-[#3B82F6]/15 text-white'
                         : 'border-[#1E293B] bg-[#07090E] text-[#CBD5E1] hover:border-[#3B82F6]/60 hover:text-white'
@@ -285,8 +244,8 @@ export function CosmicExplainerDrawer({
               </div>
             </div>
           ) : (
-            <div className="space-y-3.5">
-              <p className="text-[15px] sm:text-sm leading-relaxed text-[#CBD5E1]">
+            <div className="space-y-3">
+              <p className="text-sm leading-relaxed text-[#CBD5E1]">
                 Ask about any astrophysics concept, cosmology theory, telescope instrument, or planetary phenomenon — or click <strong className="font-medium text-white">Explain</strong> on any article to analyze it in context.
               </p>
               <div className="space-y-2">
@@ -300,7 +259,7 @@ export function CosmicExplainerDrawer({
                       setQuestion(starter);
                       void runExplainer('qa', starter);
                     }}
-                    className="block min-h-[46px] w-full rounded-xl border border-[#1E293B] bg-[#0D121E] px-4 py-3 text-left text-[13px] sm:text-xs leading-relaxed text-[#CBD5E1] hover:border-[#3B82F6]/60 hover:text-white active:scale-[0.985] active:border-[#3B82F6]/70 transition-all cursor-pointer"
+                    className="block w-full rounded-xl border border-[#1E293B] bg-[#0D121E] px-4 py-3 text-left text-xs leading-relaxed text-[#CBD5E1] hover:border-[#3B82F6]/60 hover:text-white transition-colors cursor-pointer"
                   >
                     {starter}
                   </button>
@@ -309,97 +268,52 @@ export function CosmicExplainerDrawer({
             </div>
           )}
 
-          {/* Earlier Conversational Exchanges */}
-          {priorTurns.length > 0 && (
-            <div className="space-y-3">
-              {priorTurns.map((turn, idx) =>
-                turn.role === 'user' ? (
-                  <div key={`turn-${idx}`} className="flex justify-end">
-                    <div className="max-w-[88%] rounded-2xl rounded-br-md border border-[#3B82F6]/30 bg-[#13203A]/90 px-4 py-2.5 text-sm leading-relaxed text-[#EFF6FF]">
-                      {turn.text}
-                    </div>
-                  </div>
-                ) : (
-                  <div
-                    key={`turn-${idx}`}
-                    className="rounded-2xl border border-[#1E293B]/80 bg-[#0D121E]/70 p-4 text-sm leading-relaxed text-[#CBD5E1] whitespace-pre-line"
-                  >
-                    {turn.text}
-                  </div>
-                )
-              )}
-            </div>
-          )}
-
           {/* Output Area */}
           {loading && (
-            <motion.div
-              initial={prefersReduced ? false : { opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.22 }}
-              className="rounded-2xl border border-[#3B82F6]/30 bg-[#0D121E] p-4 sm:p-5 space-y-3"
-            >
+            <div className="rounded-2xl border border-[#1E293B] bg-[#0D121E] p-5 space-y-3">
               <p className="text-xs font-mono text-[#60A5FA]">
                 Synthesizing verified scientific explanation…
               </p>
-              <div className="h-3 w-full cosmic-shimmer rounded-full" />
-              <div className="h-3 w-11/12 cosmic-shimmer rounded-full" />
-              <div className="h-3 w-4/5 cosmic-shimmer rounded-full" />
-            </motion.div>
+              <div className="h-3 w-full animate-pulse rounded-full bg-[#1E293B]" />
+              <div className="h-3 w-11/12 animate-pulse rounded-full bg-[#1E293B]" />
+              <div className="h-3 w-4/5 animate-pulse rounded-full bg-[#1E293B]" />
+            </div>
           )}
 
           {error && (
-            <motion.div
-              initial={prefersReduced ? false : { opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
+            <div
               role="alert"
               className="rounded-2xl border border-red-500/30 bg-red-950/30 p-4 text-sm leading-relaxed text-[#FCA5A5]"
             >
               {error}
-            </motion.div>
+            </div>
           )}
 
           {result && !loading && (
-            <motion.div
-              key={result.answer.slice(0, 32)}
-              initial={prefersReduced ? false : { opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-              className="space-y-3"
-            >
-              {latestUserPrompt && (
-                <div className="flex justify-end">
-                  <div className="max-w-[88%] rounded-2xl rounded-br-md border border-[#3B82F6]/35 bg-[#13203A] px-4 py-2.5 text-sm leading-relaxed text-[#EFF6FF]">
-                    {latestUserPrompt}
-                  </div>
-                </div>
-              )}
-
-              <div className="rounded-2xl border border-[#1E293B]/90 bg-[#0D121E]/95 p-4 sm:p-5 space-y-4">
-                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#1E293B] pb-3 text-xs">
-                  <span className="inline-flex items-center gap-1.5 font-medium text-[#C4B5FD]">
-                    <BookOpen className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden="true" />
-                    <span>AI-Generated Scientific Explanation</span>
-                  </span>
-                  <span className="font-mono text-[11px] text-[#64748B]">{result.model}</span>
-                </div>
-
-                <div className="space-y-3 text-[15px] sm:text-sm leading-[1.68] sm:leading-relaxed text-[#E2E8F0] whitespace-pre-line break-words">
-                  {result.answer}
-                </div>
-
-                <p className="border-t border-[#1E293B] pt-3 text-xs leading-relaxed text-[#94A3B8]">
-                  {result.disclaimer}
-                </p>
+            <div className="rounded-2xl border border-[#1E293B]/90 bg-[#0D121E]/90 p-5 space-y-4">
+              <div className="flex items-center justify-between gap-2 border-b border-[#1E293B] pb-3 text-xs">
+                <span className="inline-flex items-center gap-1.5 font-medium text-[#C4B5FD]">
+                  <BookOpen className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden="true" />
+                  <span>AI-Generated Scientific Explanation</span>
+                </span>
+                <span className="font-mono text-[#64748B]">{result.model}</span>
               </div>
-            </motion.div>
+
+              <div className="space-y-3 text-sm leading-relaxed text-[#E2E8F0] whitespace-pre-line">
+                {result.answer}
+              </div>
+
+              <p className="border-t border-[#1E293B] pt-3 text-xs text-[#94A3B8]">
+                {result.disclaimer}
+              </p>
+            </div>
           )}
         </div>
 
-        {/* Sticky Ergonomic Question Form Footer */}
+        {/* Question Form Footer */}
         <form
           onSubmit={handleQuestionSubmit}
-          className="border-t border-[#1E293B] bg-[#07090E] px-4 pt-3 pb-[max(0.875rem,env(safe-area-inset-bottom))] sm:p-4"
+          className="border-t border-[#1E293B] bg-[#07090E] p-4"
         >
           <label htmlFor="cosmic-explainer-input" className="sr-only">
             Ask Cosmic Explainer a scientific question
@@ -412,23 +326,23 @@ export function CosmicExplainerDrawer({
               onChange={(e) => setQuestion(e.target.value)}
               placeholder={
                 article
-                  ? 'Ask a follow-up about this article…'
-                  : 'Ask an astronomy or space question…'
+                  ? 'Ask a follow-up question about this article…'
+                  : 'Ask any astronomy or astrophysics question…'
               }
-              className="h-12 sm:h-11 min-w-0 flex-1 rounded-full border border-[#1E293B] bg-[#0D121E] px-4 text-base sm:text-sm text-[#F1F5F9] placeholder-[#64748B] focus:border-[#3B82F6] focus:outline-none"
+              className="h-11 flex-1 rounded-full border border-[#1E293B] bg-[#0D121E] px-4 text-sm text-[#F1F5F9] placeholder-[#64748B] focus:border-[#3B82F6] focus:outline-none"
             />
             <button
               type="submit"
               disabled={loading}
               aria-label="Send question to Cosmic Explainer"
-              className="inline-flex h-12 sm:h-11 shrink-0 items-center gap-1.5 rounded-full bg-gradient-to-r from-[#2563EB] to-[#3B82F6] px-5 text-sm font-medium text-white shadow-[0_6px_20px_rgba(37,99,235,0.3)] hover:from-[#3B82F6] hover:to-[#4F46E5] active:scale-[0.97] disabled:opacity-50 transition-all cursor-pointer"
+              className="inline-flex h-11 items-center gap-1.5 rounded-full bg-[#2563EB] px-5 text-sm font-medium text-white hover:bg-[#3B82F6] disabled:opacity-50 transition-colors cursor-pointer"
             >
               <Send className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden="true" />
               <span>Ask</span>
             </button>
           </div>
         </form>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }

@@ -16,7 +16,7 @@ import { filterCosmicEvents } from './utils/newsLogic';
 import { GENERATED_IMAGES } from './utils/mediaAssets';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import { MobileCosmicAtmosphere, ScrollProgressBar } from './components/motion/CosmicPrimitives';
+import { ScrollProgressBar } from './components/motion/CosmicPrimitives';
 import { HomePage } from './pages/HomePage';
 
 const LatestNewsPage = lazy(() =>
@@ -530,8 +530,7 @@ export default function App() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="relative min-h-screen flex flex-col bg-[#07090E] text-[#F1F5F9]">
-        <MobileCosmicAtmosphere />
+      <div className="min-h-screen flex flex-col bg-[#07090E] text-[#F1F5F9]">
         <ScrollProgressBar />
 
         <a
@@ -548,20 +547,20 @@ export default function App() {
           onOpenExplainer={handleOpenGeneralExplainer}
         />
 
-        <main id="main-content" className="relative z-10 flex-1">
+        <main id="main-content" className="flex-1">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={currentPath}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -4 }}
-              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
             >
               <Suspense
                 fallback={
                   <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-                    <div className="h-6 w-48 cosmic-shimmer rounded-full" />
-                    <div className="mt-4 h-10 w-80 max-w-full cosmic-shimmer rounded-xl" />
+                    <div className="h-6 w-48 animate-pulse rounded-full bg-[#1E293B]" />
+                    <div className="mt-4 h-10 w-80 max-w-full animate-pulse rounded-xl bg-[#111827]" />
                   </div>
                 }
               >
@@ -571,9 +570,7 @@ export default function App() {
           </AnimatePresence>
         </main>
 
-        <div className="relative z-10">
-          <Footer onNavigate={navigate} />
-        </div>
+        <Footer onNavigate={navigate} />
 
         {searchOpen && (
           <Suspense fallback={null}>

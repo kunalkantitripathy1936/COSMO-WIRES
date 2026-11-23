@@ -17,10 +17,6 @@ export interface RenderProfile {
   starCount: number;
   enableParallax: boolean;
   enableCardTilt: boolean;
-  isMobile: boolean;
-  shadowsEnabled: boolean;
-  asteroidCount: number;
-  geometryDetail: 'high' | 'medium' | 'low';
 }
 
 export interface TiltResult {
@@ -216,7 +212,7 @@ export function selectRenderQuality(input: CapabilityInput): RenderProfile {
     input.hardwareConcurrency > 0 &&
     input.hardwareConcurrency <= 2;
 
-  if (!input.hasWebGL || (isLowMemory && isLowCore)) {
+  if (!input.hasWebGL || isMobileViewport || (isLowMemory && isLowCore)) {
     return {
       tier: 'static-fallback',
       useWebGL: false,
@@ -225,10 +221,6 @@ export function selectRenderQuality(input: CapabilityInput): RenderProfile {
       starCount: isMobileViewport ? 48 : 90,
       enableParallax: false,
       enableCardTilt: false,
-      isMobile: isMobileViewport,
-      shadowsEnabled: false,
-      asteroidCount: 0,
-      geometryDetail: 'low',
     };
   }
 
@@ -237,30 +229,10 @@ export function selectRenderQuality(input: CapabilityInput): RenderProfile {
       tier: 'balanced',
       useWebGL: true,
       animate: false,
-      pixelRatioCap: input.isSoftwareGl ? 1 : isMobileViewport ? 1.25 : 1.5,
-      starCount: isMobileViewport ? 120 : 160,
+      pixelRatioCap: input.isSoftwareGl ? 1 : 1.5,
+      starCount: 160,
       enableParallax: false,
       enableCardTilt: false,
-      isMobile: isMobileViewport,
-      shadowsEnabled: false,
-      asteroidCount: isMobileViewport ? 64 : 110,
-      geometryDetail: isMobileViewport ? 'low' : 'medium',
-    };
-  }
-
-  if (isMobileViewport) {
-    return {
-      tier: 'balanced',
-      useWebGL: true,
-      animate: true,
-      pixelRatioCap: input.isSoftwareGl || isLowMemory || isLowCore ? 1 : 1.35,
-      starCount: input.isSoftwareGl ? 110 : 160,
-      enableParallax: true,
-      enableCardTilt: false,
-      isMobile: true,
-      shadowsEnabled: false,
-      asteroidCount: input.isSoftwareGl ? 56 : 78,
-      geometryDetail: 'low',
     };
   }
 
@@ -273,10 +245,6 @@ export function selectRenderQuality(input: CapabilityInput): RenderProfile {
       starCount: 240,
       enableParallax: true,
       enableCardTilt: input.viewportWidth >= 1024,
-      isMobile: false,
-      shadowsEnabled: false,
-      asteroidCount: input.isSoftwareGl ? 100 : 130,
-      geometryDetail: 'medium',
     };
   }
 
@@ -288,10 +256,6 @@ export function selectRenderQuality(input: CapabilityInput): RenderProfile {
     starCount: 420,
     enableParallax: true,
     enableCardTilt: true,
-    isMobile: false,
-    shadowsEnabled: true,
-    asteroidCount: 160,
-    geometryDetail: 'high',
   };
 }
 
