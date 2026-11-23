@@ -31,7 +31,7 @@ test('computeTiltTransform clamps cursor offsets and maps axes correctly', () =>
   assert.equal(clamped.rotateX, -4);
 });
 
-test('selectRenderQuality degrades gracefully for no-WebGL, mobile, software GL, and reduced motion', () => {
+test('selectRenderQuality enables adaptive mobile WebGL and degrades gracefully for no-WebGL, low-power, software GL, and reduced motion', () => {
   const noGl = selectRenderQuality({
     hasWebGL: false,
     isSoftwareGl: false,
@@ -41,26 +41,57 @@ test('selectRenderQuality degrades gracefully for no-WebGL, mobile, software GL,
   assert.equal(noGl.tier, 'static-fallback');
   assert.equal(noGl.useWebGL, false);
 
-  const mobile = selectRenderQuality({
+  const capableMobile = selectRenderQuality({
     hasWebGL: true,
     isSoftwareGl: false,
     prefersReducedMotion: false,
     viewportWidth: 390,
+    deviceMemory: 4,
+    hardwareConcurrency: 6,
   });
-  assert.equal(mobile.tier, 'static-fallback');
-  assert.equal(mobile.useWebGL, false);
-  assert.equal(mobile.enableCardTilt, false);
+  assert.equal(capableMobile.tier, 'balanced');
+  assert.equal(capableMobile.useWebGL, true);
+  assert.equal(capableMobile.animate, true);
+  assert.equal(capableMobile.isMobile, true);
+  assert.equal(capableMobile.shadowsEnabled, false);
+  assert.equal(capableMobile.enableCardTilt, false);
+  assert.equal(capableMobile.enableParallax, true);
+  assert.ok(capableMobile.pixelRatioCap <= 1.35);
+  assert.ok(capableMobile.starCount <= 180);
 
-  const reduced = selectRenderQuality({
+  const reducedMobile = selectRenderQuality({
+    hasWebGL: true,
+    isSoftwareGl: false,
+    prefersReducedMotion: true,
+    viewportWidth: 390,
+  });
+  assert.equal(reducedMobile.useWebGL, true);
+  assert.equal(reducedMobile.animate, false);
+  assert.equal(reducedMobile.enableParallax, false);
+  assert.equal(reducedMobile.isMobile, true);
+
+  const lowPowerMobile = selectRenderQuality({
+    hasWebGL: true,
+    isSoftwareGl: false,
+    prefersReducedMotion: false,
+    viewportWidth: 390,
+    deviceMemory: 2,
+    hardwareConcurrency: 2,
+  });
+  assert.equal(lowPowerMobile.tier, 'static-fallback');
+  assert.equal(lowPowerMobile.useWebGL, false);
+  assert.equal(lowPowerMobile.enableCardTilt, false);
+
+  const reducedDesktop = selectRenderQuality({
     hasWebGL: true,
     isSoftwareGl: false,
     prefersReducedMotion: true,
     viewportWidth: 1440,
   });
-  assert.equal(reduced.useWebGL, true);
-  assert.equal(reduced.animate, false);
-  assert.equal(reduced.enableParallax, false);
-  assert.equal(reduced.enableCardTilt, false);
+  assert.equal(reducedDesktop.useWebGL, true);
+  assert.equal(reducedDesktop.animate, false);
+  assert.equal(reducedDesktop.enableParallax, false);
+  assert.equal(reducedDesktop.enableCardTilt, false);
 
   const softwareDesktop = selectRenderQuality({
     hasWebGL: true,
@@ -71,6 +102,7 @@ test('selectRenderQuality degrades gracefully for no-WebGL, mobile, software GL,
   assert.equal(softwareDesktop.tier, 'balanced');
   assert.equal(softwareDesktop.pixelRatioCap, 1);
   assert.equal(softwareDesktop.useWebGL, true);
+  assert.equal(softwareDesktop.shadowsEnabled, false);
 
   const gpuDesktop = selectRenderQuality({
     hasWebGL: true,
@@ -82,7 +114,10 @@ test('selectRenderQuality degrades gracefully for no-WebGL, mobile, software GL,
   });
   assert.equal(gpuDesktop.tier, 'full');
   assert.equal(gpuDesktop.pixelRatioCap, 2);
+  assert.equal(gpuDesktop.starCount, 420);
   assert.equal(gpuDesktop.enableCardTilt, true);
+  assert.equal(gpuDesktop.isMobile, false);
+  assert.equal(gpuDesktop.shadowsEnabled, true);
 });
 
 test('computeOrbitalPosition places Sun at origin and computes inclined planetary coordinates', () => {

@@ -51,8 +51,8 @@ export function Reveal({ children, className = '', delay = 0, y = 18 }: RevealPr
     <motion.div
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.12 }}
-      transition={{ duration: 0.52, delay, ease: EDITORIAL_EASE }}
+      viewport={{ once: true, amount: 'some', margin: '0px 0px -24px 0px' }}
+      transition={{ duration: 0.5, delay, ease: EDITORIAL_EASE }}
       className={className}
     >
       {children}
@@ -80,7 +80,7 @@ export function StaggerGrid({ children, className = '', stagger = 0.055 }: Stagg
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.08 }}
+      viewport={{ once: true, amount: 'some', margin: '0px 0px -20px 0px' }}
       variants={{
         hidden: {},
         visible: {
@@ -267,7 +267,7 @@ export function OrbitalAccent({
   return (
     <div
       aria-hidden="true"
-      className={`pointer-events-none absolute ${posClasses} hidden md:block h-72 w-72 select-none opacity-65`}
+      className={`pointer-events-none absolute ${posClasses} h-44 w-44 md:h-72 md:w-72 select-none opacity-45 md:opacity-65`}
     >
       <svg viewBox="0 0 280 280" className="h-full w-full overflow-visible">
         <defs>
@@ -301,6 +301,57 @@ export function OrbitalAccent({
           strokeWidth="0.75"
         />
       </svg>
+    </div>
+  );
+}
+
+/**
+ * Lightweight, GPU-composited deep-space ambient atmosphere exclusively for mobile
+ * viewports (< 768px). Provides continuous animated starfield parallax, drifting
+ * cosmic dust, and soft blue/violet nebula depth without altering desktop layout.
+ */
+export function MobileCosmicAtmosphere() {
+  const prefersReduced = useReducedMotion();
+
+  return (
+    <div
+      data-testid="mobile-cosmic-atmosphere"
+      aria-hidden="true"
+      className="pointer-events-none fixed inset-0 z-0 overflow-hidden md:hidden"
+    >
+      {/* Distant animated starfield layer */}
+      <div
+        className={`cosmic-starfield-layer absolute -inset-6 opacity-50 ${
+          prefersReduced ? '' : 'cosmic-drift'
+        }`}
+      />
+      {/* Closer counter-drifting cosmic particle layer */}
+      <div
+        className={`cosmic-starfield-deep absolute -inset-6 opacity-45 ${
+          prefersReduced ? '' : 'cosmic-drift-reverse'
+        }`}
+      />
+      {/* Soft blue atmospheric nebula wash (upper atmosphere) */}
+      <div
+        className={`absolute -top-24 -right-24 h-80 w-80 rounded-full ${
+          prefersReduced ? '' : 'cosmic-nebula-breathe'
+        }`}
+        style={{
+          background:
+            'radial-gradient(circle, rgba(59, 130, 246, 0.16) 0%, rgba(37, 99, 235, 0.06) 45%, transparent 72%)',
+        }}
+      />
+      {/* Soft violet deep-space glow (lower horizon) */}
+      <div
+        className={`absolute bottom-[-6rem] -left-24 h-80 w-80 rounded-full ${
+          prefersReduced ? '' : 'cosmic-nebula-breathe'
+        }`}
+        style={{
+          animationDelay: '-8s',
+          background:
+            'radial-gradient(circle, rgba(139, 92, 246, 0.14) 0%, rgba(99, 102, 241, 0.05) 45%, transparent 72%)',
+        }}
+      />
     </div>
   );
 }

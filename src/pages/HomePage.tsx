@@ -169,20 +169,20 @@ export function HomePage({
           {/* 3D Rotating Celestial Sphere, Atmospheric Glow, Rings, Moon & Telemetry Probe */}
           <HeroCelestialBackdrop />
 
-          {/* Targeted editorial contrast scrim under left typography while preserving center 3D clarity */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#07090E]/92 via-[#07090E]/36 to-[#07090E]/28" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#07090E] via-transparent to-[#07090E]/32" />
+          {/* Targeted editorial contrast scrim: preserves open upper 3D celestial sky on mobile while keeping desktop unchanged */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#07090E]/24 via-[#07090E]/62 to-[#07090E] lg:bg-gradient-to-r lg:from-[#07090E]/92 lg:via-[#07090E]/36 lg:to-[#07090E]/28" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#07090E] via-transparent to-[#07090E]/28" />
         </div>
 
-        <div className="relative z-10 mx-auto max-w-[1360px] px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
+        <div className="relative z-10 mx-auto max-w-[1360px] px-4 pt-20 pb-14 sm:px-6 sm:pt-24 sm:pb-16 lg:px-8 lg:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-9 lg:gap-12 items-stretch">
             {/* Editorial Headline Column */}
             <div className="lg:col-span-7 flex flex-col justify-center">
               <motion.p
                 initial={prefersReduced ? false : { opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.48, delay: 0.04, ease: HERO_EASE }}
-                className="text-xs font-mono tracking-[0.18em] text-[#60A5FA]"
+                className="text-[11px] sm:text-xs font-mono tracking-[0.18em] text-[#60A5FA]"
               >
                 {BRAND.tagline}
               </motion.p>
@@ -191,7 +191,7 @@ export function HomePage({
                 initial={prefersReduced ? false : { opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.56, delay: 0.1, ease: HERO_EASE }}
-                className="mt-4 font-serif text-4xl sm:text-5xl lg:text-[3.5rem] font-medium leading-[1.08] tracking-[-0.015em] text-[#F8FAFC] max-w-2xl"
+                className="mt-3.5 sm:mt-4 font-serif text-[2.25rem] sm:text-5xl lg:text-[3.5rem] font-medium leading-[1.08] tracking-[-0.015em] text-[#F8FAFC] max-w-2xl drop-shadow-[0_2px_16px_rgba(7,9,14,0.65)] lg:drop-shadow-none"
               >
                 The Universe Is Always Writing New Stories.
               </motion.h1>
@@ -200,7 +200,7 @@ export function HomePage({
                 initial={prefersReduced ? false : { opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.54, delay: 0.18, ease: HERO_EASE }}
-                className="mt-5 max-w-xl text-base sm:text-[17px] leading-relaxed text-[#CBD5E1]"
+                className="mt-4 sm:mt-5 max-w-xl text-[15px] sm:text-[17px] leading-relaxed text-[#CBD5E1]"
               >
                 {BRAND.name} is an independent digital science publication delivering verified breaking dispatches from NASA, ESA, ISRO, and leading astronomy desks — paired with peer-grounded scientific explanations and astronomical ephemerides.
               </motion.p>
@@ -209,12 +209,12 @@ export function HomePage({
                 initial={prefersReduced ? false : { opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.52, delay: 0.25, ease: HERO_EASE }}
-                className="mt-8 flex flex-wrap items-center gap-3.5"
+                className="mt-7 sm:mt-8 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-3.5"
               >
                 <button
                   type="button"
                   onClick={() => onNavigate('/latest-news')}
-                  className="group inline-flex h-12 items-center gap-2.5 rounded-full bg-gradient-to-r from-[#2563EB] to-[#3B82F6] pl-6 pr-3 text-sm font-medium text-white shadow-[0_10px_28px_rgba(37,99,235,0.34)] hover:from-[#3B82F6] hover:to-[#4F46E5] transition-all duration-200 hover:-translate-y-0.5 whitespace-nowrap cursor-pointer"
+                  className="group inline-flex h-12 items-center justify-between sm:justify-start gap-2.5 rounded-full bg-gradient-to-r from-[#2563EB] to-[#3B82F6] pl-6 pr-3 text-sm font-medium text-white shadow-[0_10px_28px_rgba(37,99,235,0.38)] hover:from-[#3B82F6] hover:to-[#4F46E5] transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98] whitespace-nowrap cursor-pointer"
                 >
                   <span>Explore Latest Dispatches</span>
                   <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/15">
@@ -228,7 +228,7 @@ export function HomePage({
                 <button
                   type="button"
                   onClick={onOpenExplainer}
-                  className="inline-flex h-12 items-center gap-2.5 rounded-full border border-[#334155]/90 bg-[#0D121E]/85 backdrop-blur-md pl-3 pr-5 text-sm font-medium text-[#E2E8F0] hover:border-[#8B5CF6]/70 hover:bg-[#131A2D] hover:text-white hover:-translate-y-0.5 transition-all duration-200 whitespace-nowrap cursor-pointer"
+                  className="inline-flex h-12 items-center justify-center sm:justify-start gap-2.5 rounded-full border border-[#334155]/90 bg-[#0D121E]/92 lg:bg-[#0D121E]/85 lg:backdrop-blur-md pl-3 pr-5 text-sm font-medium text-[#E2E8F0] shadow-[0_6px_22px_rgba(139,92,246,0.14)] hover:border-[#8B5CF6]/70 hover:bg-[#131A2D] hover:text-white hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-200 whitespace-nowrap cursor-pointer"
                 >
                   <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#8B5CF6]/18 text-[#C4B5FD]">
                     <Sparkles className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
@@ -247,7 +247,7 @@ export function HomePage({
             >
               {heroFeature ? (
                 <TiltCard maxTiltDeg={3} className="w-full">
-                  <article className="group flex h-full w-full flex-col justify-between overflow-hidden rounded-2xl border border-[#1E293B]/90 bg-[#0D121E]/90 backdrop-blur-md p-3 transition-[border-color,box-shadow] duration-300 hover:border-[#3B82F6]/50 hover:shadow-[0_22px_50px_rgba(3,7,18,0.72)]">
+                  <article className="group flex h-full w-full flex-col justify-between overflow-hidden rounded-2xl border border-[#1E293B]/90 bg-[#0D121E]/94 lg:bg-[#0D121E]/90 lg:backdrop-blur-md p-3 transition-[border-color,box-shadow] duration-300 hover:border-[#3B82F6]/50 hover:shadow-[0_22px_50px_rgba(3,7,18,0.72)]">
                     <div className="relative aspect-[16/9] overflow-hidden rounded-xl bg-[#090D16]">
                       <ResilientImage
                         src={heroFeature.imageUrl}
@@ -301,12 +301,12 @@ export function HomePage({
                         </p>
                       </div>
 
-                      <div className="mt-5 flex items-center justify-between gap-3 border-t border-[#1E293B]/80 pt-3.5 text-xs font-medium">
+                      <div className="mt-5 flex items-center justify-between gap-2.5 border-t border-[#1E293B]/80 pt-3.5 text-xs font-medium">
                         <a
                           href={heroFeature.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 rounded-full border border-[#1E293B] bg-[#07090E]/85 pl-3.5 pr-2 py-1.5 text-[#F1F5F9] hover:border-[#3B82F6]/60 hover:text-white transition-colors"
+                          className="inline-flex min-h-[40px] sm:min-h-0 items-center gap-1.5 rounded-full border border-[#1E293B] bg-[#07090E]/85 pl-3.5 pr-2 py-1.5 text-[#F1F5F9] hover:border-[#3B82F6]/60 hover:text-white active:scale-[0.97] transition-[border-color,color,transform] duration-150"
                         >
                           <span>Read Article</span>
                           <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#131D33] text-[#60A5FA]">
@@ -316,7 +316,7 @@ export function HomePage({
                         <button
                           type="button"
                           onClick={() => onExplainArticle(heroFeature)}
-                          className="inline-flex items-center gap-1.5 rounded-full border border-[#8B5CF6]/35 bg-[#8B5CF6]/10 px-3 py-1.5 text-[#C4B5FD] hover:bg-[#8B5CF6]/20 hover:text-white transition-colors cursor-pointer"
+                          className="inline-flex min-h-[40px] sm:min-h-0 items-center gap-1.5 rounded-full border border-[#8B5CF6]/35 bg-[#8B5CF6]/10 px-3.5 py-1.5 text-[#C4B5FD] hover:bg-[#8B5CF6]/20 hover:text-white active:scale-[0.97] transition-[background-color,color,transform] duration-150 cursor-pointer"
                         >
                           <Sparkles className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden="true" />
                           <span>Explain Science</span>
@@ -374,7 +374,7 @@ export function HomePage({
             <div
               role="group"
               aria-label="Filter latest space news by category"
-              className="flex items-center gap-2 overflow-x-auto pb-1.5"
+              className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1.5"
             >
               {(['All', ...EDITORIAL_DESKS] as const).map((deskOption) => {
                 const active = activeHomeDesk === deskOption;
@@ -384,7 +384,7 @@ export function HomePage({
                     type="button"
                     aria-pressed={active}
                     onClick={() => setActiveHomeDesk(deskOption)}
-                    className={`relative rounded-full px-4 py-2 text-xs font-medium transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+                    className={`relative min-h-[40px] sm:min-h-0 rounded-full px-4 py-2 text-xs font-medium transition-[color,border-color,transform] duration-150 active:scale-[0.97] whitespace-nowrap shrink-0 cursor-pointer ${
                       active
                         ? 'text-white'
                         : 'border border-[#1E293B] bg-[#0D121E]/85 text-[#94A3B8] hover:border-[#3B82F6]/45 hover:text-white'
@@ -569,7 +569,7 @@ export function HomePage({
                 <button
                   type="button"
                   onClick={() => onSelectCategory(cat.name)}
-                  className="group relative flex min-h-[184px] w-full flex-col justify-between overflow-hidden rounded-2xl border border-[#1E293B]/90 bg-[#0D121E] p-5 text-left transition-[transform,border-color,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:border-[#3B82F6]/65 hover:shadow-[0_16px_34px_rgba(3,7,18,0.62)] cursor-pointer"
+                  className="group relative flex min-h-[168px] sm:min-h-[184px] w-full flex-col justify-between overflow-hidden rounded-2xl border border-[#1E293B]/90 bg-[#0D121E] p-5 text-left transition-[transform,border-color,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:border-[#3B82F6]/65 hover:shadow-[0_16px_34px_rgba(3,7,18,0.62)] active:scale-[0.985] active:border-[#3B82F6]/70 cursor-pointer"
                 >
                   <img
                     src={GENERATED_IMAGES[cat.imageKey]}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Menu, Search, Sparkles, X } from 'lucide-react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { ChevronRight, Menu, Search, Sparkles, X } from 'lucide-react';
 import { BRAND } from '../config/brand';
 import { RoutePath } from '../types';
 import { BrandMark } from './BrandMark';
@@ -30,6 +31,7 @@ export function Header({
 }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const prefersReduced = useReducedMotion();
 
   useEffect(() => {
     const onScroll = () => {
@@ -42,11 +44,25 @@ export function Header({
 
   useEffect(() => {
     if (!mobileMenuOpen) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setMobileMenuOpen(false);
     };
+    const onResize = () => {
+      if (window.innerWidth >= 1024) {
+        setMobileMenuOpen(false);
+      }
+    };
+
     window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
+    window.addEventListener('resize', onResize, { passive: true });
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener('resize', onResize);
+    };
   }, [mobileMenuOpen]);
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, path: RoutePath) => {
@@ -58,8 +74,8 @@ export function Header({
   return (
     <header
       className={`sticky top-0 z-40 h-16 border-b backdrop-blur-xl transition-[background-color,border-color,box-shadow] duration-300 ${
-        scrolled
-          ? 'border-[#26344B]/90 bg-[#07090E]/90 shadow-[0_10px_32px_rgba(0,0,0,0.48)]'
+        scrolled || mobileMenuOpen
+          ? 'border-[#26344B]/90 bg-[#07090E]/92 shadow-[0_10px_32px_rgba(0,0,0,0.48)]'
           : 'border-[#1E293B]/80 bg-[#07090E]/82'
       }`}
     >
@@ -105,7 +121,7 @@ export function Header({
             type="button"
             onClick={onOpenSearch}
             aria-label="Search articles and topics"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#1E293B] bg-[#0D121E]/90 text-[#CBD5E1] hover:border-[#3B82F6]/60 hover:bg-[#131C30] hover:text-white transition-all duration-200 cursor-pointer"
+            className="inline-flex h-11 w-11 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-[#1E293B] bg-[#0D121E]/90 text-[#CBD5E1] hover:border-[#3B82F6]/60 hover:bg-[#131C30] hover:text-white active:scale-[0.95] transition-all duration-200 cursor-pointer"
           >
             <Search className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
           </button>
@@ -127,8 +143,13 @@ export function Header({
             type="button"
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-nav-drawer"
             aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            className="inline-flex lg:hidden h-10 w-10 items-center justify-center rounded-full border border-[#1E293B] bg-[#0D121E]/90 text-[#CBD5E1] hover:border-[#3B82F6]/60 hover:text-white transition-colors cursor-pointer"
+            className={`inline-flex lg:hidden h-11 w-11 sm:h-10 sm:w-10 items-center justify-center rounded-full border transition-all duration-200 active:scale-[0.95] cursor-pointer ${
+              mobileMenuOpen
+                ? 'border-[#3B82F6]/70 bg-[#131C30] text-white'
+                : 'border-[#1E293B] bg-[#0D121E]/90 text-[#CBD5E1] hover:border-[#3B82F6]/60 hover:text-white'
+            }`}
           >
             {mobileMenuOpen ? (
               <X className="h-4.5 w-4.5" strokeWidth={1.75} aria-hidden="true" />
@@ -139,62 +160,91 @@ export function Header({
         </div>
       </div>
 
-      {/* Responsive Mobile & Portrait Tablet Drawer (< 1024px) */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden border-b border-[#1E293B] bg-[#090D16]/98 backdrop-blur-xl px-4 py-4 shadow-2xl">
-          <nav aria-label="Mobile navigation" className="flex flex-col space-y-1">
-            {NAV_ITEMS.map((item) => {
-              const active = currentPath === item.path;
-              return (
-                <a
-                  key={item.path}
-                  href={item.path}
-                  onClick={(e) => handleLinkClick(e, item.path)}
-                  aria-current={active ? 'page' : undefined}
-                  className={`rounded-xl px-3.5 py-2.5 text-sm font-medium transition-colors ${
-                    active
-                      ? 'bg-[#121A2B] text-white border border-[#3B82F6]/30'
-                      : 'text-[#94A3B8] hover:bg-[#0D121E] hover:text-white'
-                  }`}
-                >
-                  {item.label}
-                </a>
-              );
-            })}
-            <div className="grid grid-cols-3 gap-1.5 pt-2.5 mt-2 border-t border-[#1E293B] text-xs">
-              {(
-                [
-                  { label: 'About', path: '/about' },
-                  { label: 'Policy', path: '/editorial-policy' },
-                  { label: 'Privacy', path: '/privacy' },
-                ] as const
-              ).map((item) => (
-                <a
-                  key={item.path}
-                  href={item.path}
-                  onClick={(e) => handleLinkClick(e, item.path)}
-                  className="rounded-full border border-[#1E293B]/80 bg-[#0D121E] px-2.5 py-2 text-center text-[#94A3B8] hover:border-[#3B82F6]/40 hover:text-white transition-colors"
-                >
-                  {item.label}
-                </a>
-              ))}
-            </div>
-            <div className="pt-3 mt-1 border-t border-[#1E293B]">
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenExplainer();
-                }}
-                className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#2563EB] to-[#3B82F6] px-5 py-2.5 text-sm font-medium text-white hover:from-[#3B82F6] hover:to-[#4F46E5] transition-colors cursor-pointer"
-              >
-                <Sparkles className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
-                <span>Open Cosmic Explainer</span>
-              </button>
-            </div>
-          </nav>
-        </div>
-      )}
+      {/* Responsive Animated Glassmorphic Mobile & Portrait Tablet Drawer (< 1024px) */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <>
+            <motion.div
+              key="mobile-nav-backdrop"
+              initial={prefersReduced ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setMobileMenuOpen(false)}
+              aria-hidden="true"
+              className="fixed inset-x-0 top-16 bottom-0 z-30 bg-black/65 backdrop-blur-xs lg:hidden"
+            />
+            <motion.div
+              id="mobile-nav-drawer"
+              key="mobile-nav-panel"
+              initial={prefersReduced ? false : { opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={prefersReduced ? { opacity: 0 } : { opacity: 0, y: -10 }}
+              transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+              className="relative z-40 lg:hidden max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-b border-[#26344B] bg-[#090D16] px-4 py-4 shadow-[0_24px_54px_rgba(0,0,0,0.85)]"
+            >
+              <nav aria-label="Mobile navigation" className="flex flex-col space-y-1.5">
+                {NAV_ITEMS.map((item) => {
+                  const active = currentPath === item.path;
+                  return (
+                    <a
+                      key={item.path}
+                      href={item.path}
+                      onClick={(e) => handleLinkClick(e, item.path)}
+                      aria-current={active ? 'page' : undefined}
+                      className={`flex min-h-[46px] items-center justify-between rounded-xl px-4 py-2.5 text-[15px] font-medium transition-[background-color,border-color,color,transform] duration-150 active:scale-[0.985] ${
+                        active
+                          ? 'bg-gradient-to-r from-[#131F36] to-[#11192B] text-white border border-[#3B82F6]/45 shadow-[0_4px_16px_rgba(37,99,235,0.16)]'
+                          : 'border border-transparent text-[#CBD5E1] hover:bg-[#0D121E] hover:text-white'
+                      }`}
+                    >
+                      <span>{item.label}</span>
+                      <ChevronRight
+                        className={`h-4 w-4 ${active ? 'text-[#60A5FA]' : 'text-[#475569]'}`}
+                        strokeWidth={1.75}
+                        aria-hidden="true"
+                      />
+                    </a>
+                  );
+                })}
+
+                <div className="grid grid-cols-3 gap-2 pt-3 mt-2 border-t border-[#1E293B] text-xs font-medium">
+                  {(
+                    [
+                      { label: 'About', path: '/about' },
+                      { label: 'Policy', path: '/editorial-policy' },
+                      { label: 'Privacy', path: '/privacy' },
+                    ] as const
+                  ).map((item) => (
+                    <a
+                      key={item.path}
+                      href={item.path}
+                      onClick={(e) => handleLinkClick(e, item.path)}
+                      className="flex min-h-[42px] items-center justify-center rounded-full border border-[#1E293B]/90 bg-[#0D121E] px-2.5 py-2 text-center text-[#94A3B8] hover:border-[#3B82F6]/40 hover:text-white active:scale-[0.97] transition-all"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+
+                <div className="pt-3 mt-1 border-t border-[#1E293B]">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      onOpenExplainer();
+                    }}
+                    className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#2563EB] to-[#3B82F6] px-5 py-3 text-sm font-medium text-white shadow-[0_8px_24px_rgba(37,99,235,0.34)] hover:from-[#3B82F6] hover:to-[#4F46E5] active:scale-[0.98] transition-all cursor-pointer"
+                  >
+                    <Sparkles className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
+                    <span>Open Cosmic Explainer</span>
+                  </button>
+                </div>
+              </nav>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

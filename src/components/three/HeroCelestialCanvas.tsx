@@ -13,6 +13,8 @@ interface HeroCelestialCanvasProps {
   pixelRatioCap: number;
   starCount: number;
   enableParallax: boolean;
+  shadowsEnabled?: boolean;
+  geometryDetail?: 'high' | 'medium' | 'low';
   onContextFailed: () => void;
 }
 
@@ -31,6 +33,8 @@ export default function HeroCelestialCanvas({
   pixelRatioCap,
   starCount,
   enableParallax,
+  shadowsEnabled = !isSoftwareGl,
+  geometryDetail = 'high',
   onContextFailed,
 }: HeroCelestialCanvasProps) {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -58,12 +62,17 @@ export default function HeroCelestialCanvas({
       return;
     }
 
+    const useShadows = shadowsEnabled && !isSoftwareGl;
+    const sphereSegW = geometryDetail === 'low' ? 30 : geometryDetail === 'medium' ? 38 : 48;
+    const sphereSegH = geometryDetail === 'low' ? 22 : geometryDetail === 'medium' ? 28 : 36;
+    const ringSegs = geometryDetail === 'low' ? 48 : geometryDetail === 'medium' ? 60 : 72;
+
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.12;
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, pixelRatioCap));
     renderer.setClearColor(0x000000, 0);
-    renderer.shadowMap.enabled = !isSoftwareGl;
+    renderer.shadowMap.enabled = useShadows;
     renderer.shadowMap.type = THREE.PCFShadowMap;
 
     const width = Math.max(container.clientWidth, 320);
@@ -84,7 +93,7 @@ export default function HeroCelestialCanvas({
     // Warm-key / cool-fill / subtle-violet rim lighting rig for sharp astronomical terminator
     const keyLight = new THREE.DirectionalLight(0xfff4e0, 3.1);
     keyLight.position.set(8.2, 4.0, 5.4);
-    if (!isSoftwareGl) {
+    if (useShadows) {
       keyLight.castShadow = true;
       keyLight.shadow.mapSize.set(1024, 1024);
       keyLight.shadow.radius = 2.5;
@@ -124,7 +133,7 @@ export default function HeroCelestialCanvas({
     celestialSystem.add(planetTiltGroup);
 
     // 1. Primary Planet Surface Sphere with ocean-vs-continent specular roughness variation
-    const planetGeo = new THREE.SphereGeometry(1.72, 48, 36);
+    const planetGeo = new THREE.SphereGeometry(1.72, sphereSegW, sphereSegH);
     const planetMat = new THREE.MeshStandardMaterial({
       color: 0xffffff,
       map: albedoMap,
@@ -135,12 +144,12 @@ export default function HeroCelestialCanvas({
       metalness: 0.12,
     });
     const planetMesh = new THREE.Mesh(planetGeo, planetMat);
-    planetMesh.castShadow = !isSoftwareGl;
-    planetMesh.receiveShadow = !isSoftwareGl;
+    planetMesh.castShadow = useShadows;
+    planetMesh.receiveShadow = useShadows;
     planetTiltGroup.add(planetMesh);
 
     // 2. Dynamic Translucent Cloud Deck
-    const cloudGeo = new THREE.SphereGeometry(1.752, 40, 28);
+    const cloudGeo = new THREE.SphereGeometry(1.752, Math.max(24, sphereSegW - 8), Math.max(18, sphereSegH - 8));
     const cloudMat = new THREE.MeshStandardMaterial({
       color: 0xffffff,
       map: cloudMap,
@@ -154,12 +163,12 @@ export default function HeroCelestialCanvas({
     planetTiltGroup.add(cloudMesh);
 
     // 3. Dual-Layer Atmospheric Scattering (tight Rayleigh horizon + subtle outer exosphere limb)
-    const atmoGeo = new THREE.SphereGeometry(1.86, 40, 28);
+    const atmoGeo = new THREE.SphereGeometry(1.86, Math.max(24, sphereSegW - 8), Math.max(18, sphereSegH - 8));
     const atmoMat = createAtmosphereMaterial('#60A5FA', '#3B82F6', 0.96, 2.75);
     const atmoMesh = new THREE.Mesh(atmoGeo, atmoMat);
     planetTiltGroup.add(atmoMesh);
 
-    const exosphereGeo = new THREE.SphereGeometry(2.01, 36, 24);
+    const exosphereGeo = new THREE.SphereGeometry(2.01, Math.max(22, sphereSegW - 12), Math.max(16, sphereSegH - 12));
     const exosphereMat = createAtmosphereMaterial('#60A5FA', '#8B5CF6', 0.48, 4.4);
     const exosphereMesh = new THREE.Mesh(exosphereGeo, exosphereMat);
     planetTiltGroup.add(exosphereMesh);
@@ -167,7 +176,7 @@ export default function HeroCelestialCanvas({
     // 4. Multi-Band Planetary Ring Disc (radial UV remapping)
     const ringInner = 2.18;
     const ringOuter = 3.22;
-    const ringGeo = new THREE.RingGeometry(ringInner, ringOuter, 72, 1);
+    const ringGeo = new THREE.RingGeometry(ringInner, ringOuter, ringSegs, 1);
     const posAttr = ringGeo.attributes.position;
     const uvAttr = ringGeo.attributes.uv;
     for (let i = 0; i < posAttr.count; i++) {
@@ -189,11 +198,11 @@ export default function HeroCelestialCanvas({
     });
     const ringMesh = new THREE.Mesh(ringGeo, ringMat);
     ringMesh.rotation.x = Math.PI / 2;
-    ringMesh.receiveShadow = !isSoftwareGl;
+    ringMesh.receiveShadow = useShadows;
     planetTiltGroup.add(ringMesh);
 
     // 5. Fine Metallic Orbital Telemetry Track Ring
-    const trackGeo = new THREE.TorusGeometry(3.48, 0.0085, 10, 96);
+    const trackGeo = new THREE.TorusGeometry(3.48, 0.0085, 8, ringSegs);
     const trackMat = new THREE.MeshStandardMaterial({
       color: 0x60a5fa,
       emissive: 0x1d4ed8,
@@ -213,7 +222,7 @@ export default function HeroCelestialCanvas({
     moonOrbitGroup.rotation.z = THREE.MathUtils.degToRad(-12);
     celestialSystem.add(moonOrbitGroup);
 
-    const moonGeo = new THREE.SphereGeometry(0.24, 24, 20);
+    const moonGeo = new THREE.SphereGeometry(0.24, 20, 16);
     const moonMat = new THREE.MeshStandardMaterial({
       color: 0xffffff,
       map: moonMap,
@@ -221,8 +230,8 @@ export default function HeroCelestialCanvas({
       metalness: 0.04,
     });
     const moonMesh = new THREE.Mesh(moonGeo, moonMat);
-    moonMesh.castShadow = !isSoftwareGl;
-    moonMesh.receiveShadow = !isSoftwareGl;
+    moonMesh.castShadow = useShadows;
+    moonMesh.receiveShadow = useShadows;
     moonOrbitGroup.add(moonMesh);
 
     // 7. Composite Multi-Part Deep-Space Telemetry Probe (bus + dish + twin solar arrays)
@@ -332,17 +341,64 @@ export default function HeroCelestialCanvas({
     window.addEventListener('pointermove', handlePointerMove, { passive: true });
     window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // ResizeObserver keeps aspect ratio accurate without layout thrash
+    // Responsive framing state (keeps desktop >= 1024px constants 100% unchanged)
+    let isCompactViewport = width < 768;
+    let cameraBaseY = 0.25;
+    let cameraBaseZ = 9.0;
+    let lookTargetX = 0.35;
+    let lookTargetBaseY = 0;
+
+    const applyViewportFraming = (w: number, h: number) => {
+      const aspect = w / Math.max(1, h);
+      isCompactViewport = w < 768;
+
+      if (w >= 1024) {
+        // Exact desktop calibration (unchanged)
+        camera.fov = 38;
+        cameraBaseY = 0.25;
+        cameraBaseZ = 9.0;
+        lookTargetX = 0.35;
+        lookTargetBaseY = 0;
+        celestialSystem.position.set(0.32, 0.08, 0);
+        celestialSystem.scale.setScalar(0.92);
+      } else if (w >= 768) {
+        // Tablet framing
+        camera.fov = 40;
+        cameraBaseY = 0.25;
+        cameraBaseZ = 9.8;
+        lookTargetX = 0.15;
+        lookTargetBaseY = 0.25;
+        celestialSystem.position.set(0.15, 0.5, 0);
+        celestialSystem.scale.setScalar(0.86);
+      } else {
+        // Smartphone portrait framing: pull camera back proportionally so full planet,
+        // rings, orbiting moon & probe crown the upper hero sky without clipping.
+        camera.fov = 44;
+        cameraBaseY = 0.25;
+        cameraBaseZ = THREE.MathUtils.clamp(8.8 / Math.max(0.42, aspect), 11.4, 16.0);
+        lookTargetX = 0;
+        lookTargetBaseY = 0.15;
+        celestialSystem.position.set(0.32, 3.05, 0);
+        celestialSystem.scale.setScalar(0.8);
+      }
+
+      camera.aspect = aspect;
+      camera.position.z = cameraBaseZ;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h, false);
+    };
+
+    applyViewportFraming(width, height);
+
+    // ResizeObserver keeps aspect ratio & responsive framing accurate without remounting WebGL
     const handleResize = () => {
       if (!container) return;
       const w = Math.max(container.clientWidth, 320);
       const h = Math.max(container.clientHeight, 320);
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-      renderer.setSize(w, h, false);
-      // Shift planet horizontally on narrower tablet screens for clean framing
-      celestialSystem.position.x = w >= 1024 ? 0.32 : 0.15;
+      applyViewportFraming(w, h);
       if (!configRef.current.animate) {
+        camera.position.set(0, cameraBaseY, cameraBaseZ);
+        camera.lookAt(lookTargetX, lookTargetBaseY, 0);
         renderer.render(scene, camera);
       }
     };
@@ -395,12 +451,17 @@ export default function HeroCelestialCanvas({
       pointerCurrY = THREE.MathUtils.damp(pointerCurrY, pointerTargetY, 2.5, dt);
       scrollOffsetCurr = THREE.MathUtils.damp(scrollOffsetCurr, scrollOffsetTarget, 3.8, dt);
 
-      camera.position.x = pointerCurrX * 0.72;
-      camera.position.y = 0.25 - pointerCurrY * 0.44 - scrollOffsetCurr * 0.72;
-      camera.lookAt(0.35, -scrollOffsetCurr * 0.22, 0);
+      // Gentle autonomous orbital breathing sway on touch devices (desktop stays pointer-driven)
+      const mobileDriftX = isCompactViewport ? Math.sin(elapsedSim * 0.32) * 0.16 : 0;
+      const mobileDriftY = isCompactViewport ? Math.cos(elapsedSim * 0.24) * 0.1 : 0;
 
-      celestialSystem.rotation.y = pointerCurrX * 0.18;
-      celestialSystem.rotation.x = pointerCurrY * 0.11;
+      camera.position.x = pointerCurrX * 0.72 + mobileDriftX;
+      camera.position.y = cameraBaseY - pointerCurrY * 0.44 - scrollOffsetCurr * 0.72 + mobileDriftY;
+      camera.position.z = cameraBaseZ;
+      camera.lookAt(lookTargetX, lookTargetBaseY - scrollOffsetCurr * 0.22, 0);
+
+      celestialSystem.rotation.y = pointerCurrX * 0.18 + mobileDriftX * 0.12;
+      celestialSystem.rotation.x = pointerCurrY * 0.11 + mobileDriftY * 0.08;
 
       renderer.render(scene, camera);
     };
@@ -420,7 +481,8 @@ export default function HeroCelestialCanvas({
       if (!configRef.current.animate) {
         // Reduced-motion mode: render one refined static frame and stop
         positionOrbiters(2.4);
-        camera.lookAt(0.35, 0, 0);
+        camera.position.set(0, cameraBaseY, cameraBaseZ);
+        camera.lookAt(lookTargetX, lookTargetBaseY, 0);
         renderer.render(scene, camera);
         updateRenderStateAttr('static');
         return;
@@ -504,7 +566,7 @@ export default function HeroCelestialCanvas({
         container.removeChild(renderer.domElement);
       }
     };
-  }, [isSoftwareGl, pixelRatioCap, starCount]);
+  }, [isSoftwareGl, pixelRatioCap, starCount, shadowsEnabled, geometryDetail]);
 
   return (
     <div

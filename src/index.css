@@ -30,6 +30,7 @@
     color: #F1F5F9;
     overflow-x: hidden;
     letter-spacing: 0.008em;
+    -webkit-tap-highlight-color: transparent;
   }
 
   h1, h2, h3, .font-editorial {
@@ -47,6 +48,14 @@
   font-variant-numeric: tabular-nums;
 }
 
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 .cosmic-starfield-layer {
   background-image:
     radial-gradient(1.2px 1.2px at 14% 22%, rgba(226, 232, 240, 0.55) 50%, transparent 100%),
@@ -57,6 +66,18 @@
     radial-gradient(1.2px 1.2px at 73% 82%, rgba(96, 165, 250, 0.4) 50%, transparent 100%);
   background-size: 460px 320px;
   opacity: 0.72;
+}
+
+.cosmic-starfield-deep {
+  background-image:
+    radial-gradient(1px 1px at 9% 14%, rgba(241, 245, 249, 0.58) 50%, transparent 100%),
+    radial-gradient(1.6px 1.6px at 28% 64%, rgba(96, 165, 250, 0.55) 50%, transparent 100%),
+    radial-gradient(1.1px 1.1px at 47% 29%, rgba(196, 181, 253, 0.48) 50%, transparent 100%),
+    radial-gradient(1.3px 1.3px at 69% 77%, rgba(226, 232, 240, 0.5) 50%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 88% 21%, rgba(96, 165, 250, 0.48) 50%, transparent 100%),
+    radial-gradient(1px 1px at 54% 91%, rgba(167, 139, 250, 0.42) 50%, transparent 100%);
+  background-size: 300px 260px;
+  opacity: 0.56;
 }
 
 @keyframes cosmicDrift {
@@ -71,6 +92,29 @@
   }
 }
 
+@keyframes cosmicDriftReverse {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(12px, -16px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes cosmicNebulaBreathe {
+  0%, 100% {
+    opacity: 0.58;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    opacity: 0.84;
+    transform: translate3d(0, -10px, 0) scale(1.04);
+  }
+}
+
 @keyframes cosmicOrbitSlow {
   from {
     transform: rotate(0deg);
@@ -80,12 +124,52 @@
   }
 }
 
+@keyframes cosmicShimmer {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+  }
+  100% {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
 .cosmic-drift {
   animation: cosmicDrift 42s ease-in-out infinite;
+  will-change: transform;
+}
+
+.cosmic-drift-reverse {
+  animation: cosmicDriftReverse 56s ease-in-out infinite;
+  will-change: transform;
+}
+
+.cosmic-nebula-breathe {
+  animation: cosmicNebulaBreathe 18s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
 .cosmic-orbit-slow {
   animation: cosmicOrbitSlow 72s linear infinite;
+}
+
+.cosmic-shimmer {
+  position: relative;
+  overflow: hidden;
+  background-color: #131C30;
+}
+
+.cosmic-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(96, 165, 250, 0.11) 45%,
+    rgba(139, 92, 246, 0.09) 55%,
+    transparent 100%
+  );
+  animation: cosmicShimmer 1.85s cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -98,7 +182,10 @@
     transition-duration: 0.01ms !important;
   }
   .cosmic-drift,
-  .cosmic-orbit-slow {
+  .cosmic-drift-reverse,
+  .cosmic-nebula-breathe,
+  .cosmic-orbit-slow,
+  .cosmic-shimmer::after {
     animation: none !important;
   }
 }
