@@ -11,10 +11,6 @@ import {
 } from './server/newsAggregator';
 import { getNasaApod } from './server/apodService';
 import {
-  generateCosmicExplanation,
-  isGeminiConfigured,
-} from './server/explainerService';
-import {
   filterAndSearchArticles,
   filterCosmicEvents,
   isValidCategory,
@@ -31,7 +27,7 @@ const __dirname = path.dirname(__filename);
 const PORT = Number(process.env.PORT) || 3000;
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
-// Lightweight per-IP rate limiter for write & AI endpoints
+// Lightweight per-IP rate limiter for API endpoints
 const rateBuckets = new Map<string, { count: number; resetAt: number }>();
 
 function rateLimit(maxRequests: number, windowMs: number) {
@@ -121,7 +117,6 @@ ${routes
       uptimeSeconds: Math.round(process.uptime()),
       timestamp: new Date().toISOString(),
       news: getNewsHealthSummary(),
-      explainerConfigured: isGeminiConfigured(),
     });
   });
 
@@ -212,21 +207,6 @@ ${routes
       ],
     });
   });
-
-  // API: Gemini-powered Cosmic Explainer (server-side only)
-  app.post('/api/explainer', rateLimit(20, 60_000), async (req, res) => {
-    try {
-      const result = await generateCosmicExplanation(req.body);
-      res.json(result);
-    } catch (error) {
-      const err = error as Error & { status?: number };
-      const status = typeof err.status === 'number' ? err.status : 500;
-      const message = err.message || 'Cosmic Explainer encountered an upstream error.';
-      console.error('Error serving /api/explainer:', message);
-      res.status(status).json({ error: message });
-    }
-  });
-
   // Mount Vite middleware in dev or serve static dist in production
   if (!IS_PRODUCTION) {
     const vite = await createViteServer({

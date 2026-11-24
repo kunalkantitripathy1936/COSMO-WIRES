@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { ArrowUpRight, Sparkles } from 'lucide-react';
-import { ApodData, Article } from '../types';
+import { ArrowUpRight } from 'lucide-react';
+import { ApodData } from '../types';
 import { sanitizeEmbedUrl } from '../utils/newsLogic';
 import { GENERATED_IMAGES } from '../utils/mediaAssets';
 import { ResilientImage } from './ResilientImage';
@@ -11,7 +11,6 @@ interface DailyCosmicImageProps {
   loading: boolean;
   error: string | null;
   onSelectDate: (dateStr: string) => void;
-  onExplainApod: (articleLike: Article) => void;
 }
 
 export function DailyCosmicImage({
@@ -19,7 +18,6 @@ export function DailyCosmicImage({
   loading,
   error,
   onSelectDate,
-  onExplainApod,
 }: DailyCosmicImageProps) {
   const [dateInput, setDateInput] = useState('');
   const [expanded, setExpanded] = useState(false);
@@ -32,24 +30,6 @@ export function DailyCosmicImage({
       onSelectDate(dateInput);
     }
   };
-
-  const handleExplain = () => {
-    if (!apod) return;
-    onExplainApod({
-      id: `apod-${apod.date}`,
-      title: `NASA APOD (${apod.date}): ${apod.title}`,
-      excerpt: apod.explanation,
-      url: apod.sourceUrl,
-      publisher: 'NASA Astronomy Picture of the Day',
-      publishedAt: `${apod.date}T00:00:00Z`,
-      category: 'Astronomy',
-      topics: ['NASA APOD', 'Astronomy'],
-      imageUrl: apod.media_type === 'image' ? apod.url : undefined,
-      sourceFeed: 'nasa-apod',
-      isSample: apod.isFallback,
-    });
-  };
-
   const embedUrl = apod?.media_type === 'video' ? sanitizeEmbedUrl(apod.url) : undefined;
 
   return (
@@ -204,25 +184,16 @@ export function DailyCosmicImage({
                 </p>
 
                 <div className="flex flex-wrap items-center gap-2.5">
-                  <button
-                    type="button"
-                    onClick={handleExplain}
-                    className="inline-flex items-center gap-2 rounded-full bg-[#2563EB] pl-2 pr-4 py-1.5 text-xs font-medium text-white hover:bg-[#3B82F6] transition-colors whitespace-nowrap cursor-pointer"
-                  >
-                    <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/15">
-                      <Sparkles className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden="true" />
-                    </span>
-                    <span>Explain This Image</span>
-                  </button>
-
                   <a
                     href={apod.sourceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-full border border-[#1E293B] bg-[#0A0F1A] px-3.5 py-2 text-xs font-medium text-[#CBD5E1] hover:border-[#334155] hover:text-white transition-colors whitespace-nowrap"
+                    className="inline-flex items-center gap-2 rounded-full bg-[#2563EB] pl-4 pr-3 py-2 text-xs font-medium text-white hover:bg-[#3B82F6] transition-colors whitespace-nowrap"
                   >
                     <span>NASA APOD Source</span>
-                    <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden="true" />
+                    <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/15">
+                      <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden="true" />
+                    </span>
                   </a>
 
                   {apod.hdurl && apod.media_type === 'image' && (

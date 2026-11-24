@@ -1,4 +1,4 @@
-import { ArrowUpRight, Clock, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Clock } from 'lucide-react';
 import { Article, NewsCategory } from '../types';
 import { formatDateTimeLocal, formatUtcTimestamp } from '../utils/newsLogic';
 import { ResilientImage } from './ResilientImage';
@@ -7,7 +7,6 @@ import { TiltCard } from './motion/CosmicPrimitives';
 interface ArticleCardProps {
   article: Article;
   variant?: 'lead' | 'standard' | 'compact';
-  onExplain: (article: Article) => void;
   onSelectCategory?: (category: NewsCategory) => void;
 }
 
@@ -17,21 +16,20 @@ export function ArticleCardSkeleton() {
       aria-hidden="true"
       className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#1E293B]/80 bg-[#0D121E]/85 p-3.5 space-y-4"
     >
-      <div className="aspect-[4/3] w-full animate-pulse rounded-xl bg-[#131C30]" />
+      <div className="aspect-[4/3] w-full cosmic-shimmer rounded-xl" />
       <div className="space-y-3 px-1.5 pb-2">
         <div className="flex items-center gap-2">
-          <div className="h-3 w-20 animate-pulse rounded-full bg-[#162038]" />
-          <div className="h-3 w-24 animate-pulse rounded-full bg-[#131C30]" />
+          <div className="h-3 w-20 cosmic-shimmer rounded-full" />
+          <div className="h-3 w-24 cosmic-shimmer rounded-full" />
         </div>
-        <div className="h-5 w-11/12 animate-pulse rounded-lg bg-[#162038]" />
-        <div className="h-5 w-3/4 animate-pulse rounded-lg bg-[#162038]" />
+        <div className="h-5 w-11/12 cosmic-shimmer rounded-lg" />
+        <div className="h-5 w-3/4 cosmic-shimmer rounded-lg" />
         <div className="space-y-2 pt-1">
-          <div className="h-3 w-full animate-pulse rounded-full bg-[#131C30]" />
-          <div className="h-3 w-5/6 animate-pulse rounded-full bg-[#131C30]" />
+          <div className="h-3 w-full cosmic-shimmer rounded-full" />
+          <div className="h-3 w-5/6 cosmic-shimmer rounded-full" />
         </div>
-        <div className="flex items-center justify-between pt-3 border-t border-[#1E293B]/70">
-          <div className="h-7 w-28 animate-pulse rounded-full bg-[#162038]" />
-          <div className="h-7 w-20 animate-pulse rounded-full bg-[#131C30]" />
+        <div className="flex items-center pt-3 border-t border-[#1E293B]/70">
+          <div className="h-8 w-28 cosmic-shimmer rounded-full" />
         </div>
       </div>
     </div>
@@ -41,7 +39,6 @@ export function ArticleCardSkeleton() {
 export function ArticleCard({
   article,
   variant = 'standard',
-  onExplain,
   onSelectCategory,
 }: ArticleCardProps) {
   const hasPublishedDate = Boolean(article.publishedAt && Date.parse(article.publishedAt) > 0);
@@ -107,24 +104,16 @@ export function ArticleCard({
           {article.excerpt}
         </p>
 
-        <div className="mt-3.5 flex flex-wrap items-center gap-3 text-xs font-medium">
+        <div className="mt-3.5 flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs font-medium">
           <a
             href={article.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-full border border-[#1E293B] bg-[#07090E]/80 px-3 py-1.5 text-[#E2E8F0] hover:border-[#3B82F6]/50 hover:text-white transition-colors"
+            className="inline-flex min-h-[38px] sm:min-h-0 items-center gap-1.5 rounded-full border border-[#1E293B] bg-[#07090E]/80 px-3.5 py-1.5 text-[#E2E8F0] hover:border-[#3B82F6]/50 hover:text-white active:scale-[0.97] active:border-[#3B82F6]/70 transition-[border-color,color,transform] duration-150"
           >
             <span>Read Article</span>
             <ArrowUpRight className="h-3.5 w-3.5 text-[#60A5FA]" strokeWidth={1.75} aria-hidden="true" />
           </a>
-          <button
-            type="button"
-            onClick={() => onExplain(article)}
-            className="inline-flex items-center gap-1.5 rounded-full border border-[#8B5CF6]/35 bg-[#8B5CF6]/10 px-3 py-1.5 text-[#C4B5FD] hover:bg-[#8B5CF6]/20 hover:text-white transition-colors cursor-pointer"
-          >
-            <Sparkles className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden="true" />
-            <span>Explain Science</span>
-          </button>
         </div>
       </article>
     );
@@ -204,27 +193,18 @@ export function ArticleCard({
               </div>
             </div>
 
-            <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-[#1E293B]/80 pt-4">
+            <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-[#1E293B]/80 pt-4">
               <a
                 href={article.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-[#2563EB] pl-4 pr-3 py-2 text-xs font-medium text-white hover:bg-[#3B82F6] transition-colors whitespace-nowrap"
+                className="inline-flex min-h-[42px] sm:min-h-0 items-center gap-2 rounded-full bg-[#2563EB] pl-4 pr-3 py-2 text-xs font-medium text-white hover:bg-[#3B82F6] active:scale-[0.97] active:bg-[#3B82F6] transition-[background-color,transform] duration-150 whitespace-nowrap"
               >
                 <span>Read Article</span>
                 <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/15">
                   <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden="true" />
                 </span>
               </a>
-              <button
-                type="button"
-                onClick={() => onExplain(article)}
-                aria-label={`Explain "${article.title}" with Cosmic Explainer`}
-                className="inline-flex items-center gap-1.5 rounded-full border border-[#8B5CF6]/40 bg-[#8B5CF6]/10 px-3.5 py-2 text-xs font-medium text-[#C4B5FD] hover:bg-[#8B5CF6]/20 hover:text-white transition-colors whitespace-nowrap cursor-pointer"
-              >
-                <Sparkles className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden="true" />
-                <span>Cosmic Explainer</span>
-              </button>
             </div>
           </div>
         </article>
@@ -233,7 +213,7 @@ export function ArticleCard({
   }
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#1E293B]/90 bg-[#0D121E]/90 backdrop-blur-sm p-3 transition-[transform,border-color,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:border-[#3B82F6]/50 hover:shadow-[0_18px_38px_rgba(3,7,18,0.58)]">
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#1E293B]/90 bg-[#0D121E]/90 backdrop-blur-sm p-3 transition-[transform,border-color,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:border-[#3B82F6]/50 hover:shadow-[0_18px_38px_rgba(3,7,18,0.58)] active:border-[#3B82F6]/60">
       <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-[#090D16]">
         <ResilientImage
           src={article.imageUrl}
@@ -299,28 +279,18 @@ export function ArticleCard({
           </div>
         </div>
 
-        <div className="mt-4 flex items-center justify-between gap-2.5 border-t border-[#1E293B]/80 pt-3.5 text-xs font-medium">
+        <div className="mt-4 flex items-center gap-2.5 border-t border-[#1E293B]/80 pt-3.5 text-xs font-medium">
           <a
             href={article.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-full border border-[#1E293B] bg-[#07090E]/85 pl-3.5 pr-2 py-1.5 text-[#F1F5F9] hover:border-[#3B82F6]/60 hover:text-white transition-colors whitespace-nowrap"
+            className="inline-flex min-h-[40px] sm:min-h-0 items-center gap-1.5 rounded-full border border-[#1E293B] bg-[#07090E]/85 pl-3.5 pr-2 py-1.5 text-[#F1F5F9] hover:border-[#3B82F6]/60 hover:text-white active:scale-[0.97] active:border-[#3B82F6]/70 transition-[border-color,color,transform] duration-150 whitespace-nowrap"
           >
             <span>Read Article</span>
             <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#131D33] text-[#60A5FA]">
               <ArrowUpRight className="h-3 w-3" strokeWidth={1.75} aria-hidden="true" />
             </span>
           </a>
-
-          <button
-            type="button"
-            onClick={() => onExplain(article)}
-            aria-label={`Explain "${article.title}" with Cosmic Explainer`}
-            className="inline-flex items-center gap-1.5 rounded-full border border-[#8B5CF6]/30 bg-[#8B5CF6]/10 px-3 py-1.5 text-[#C4B5FD] hover:border-[#8B5CF6]/60 hover:bg-[#8B5CF6]/20 hover:text-white transition-colors whitespace-nowrap cursor-pointer"
-          >
-            <Sparkles className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden="true" />
-            <span>Explain</span>
-          </button>
         </div>
       </div>
     </article>

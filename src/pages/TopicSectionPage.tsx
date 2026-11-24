@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react';
-import { Sparkles } from 'lucide-react';
 import { Article, NewsCategory } from '../types';
 import { filterAndSearchArticles } from '../utils/newsLogic';
 import { ArticleCard } from '../components/ArticleCard';
@@ -12,8 +11,6 @@ interface TopicSectionPageProps {
   heroImageAlt: string;
   categories: NewsCategory[];
   articles: Article[];
-  onExplainArticle: (article: Article) => void;
-  onOpenExplainer: () => void;
 }
 
 export function TopicSectionPage({
@@ -24,8 +21,6 @@ export function TopicSectionPage({
   heroImageAlt,
   categories,
   articles,
-  onExplainArticle,
-  onOpenExplainer,
 }: TopicSectionPageProps) {
   const [selectedSubCategory, setSelectedSubCategory] = useState<NewsCategory | 'All'>('All');
 
@@ -88,17 +83,6 @@ export function TopicSectionPage({
                 {cat}
               </button>
             ))}
-
-            <button
-              type="button"
-              onClick={onOpenExplainer}
-              className="ml-auto inline-flex items-center gap-2 rounded-full border border-[#8B5CF6]/45 bg-[#8B5CF6]/15 pl-2 pr-4 py-1.5 text-xs font-medium text-[#DDD6FE] hover:bg-[#8B5CF6]/25 transition-colors cursor-pointer"
-            >
-              <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#8B5CF6]/25 text-[#C4B5FD]">
-                <Sparkles className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden="true" />
-              </span>
-              <span>Ask Cosmic Explainer</span>
-            </button>
           </div>
         </div>
       </section>
@@ -120,7 +104,6 @@ export function TopicSectionPage({
               <ArticleCard
                 article={leadArticle}
                 variant="lead"
-                onExplain={onExplainArticle}
                 onSelectCategory={(cat) => {
                   if (categories.includes(cat)) setSelectedSubCategory(cat);
                 }}
@@ -133,7 +116,6 @@ export function TopicSectionPage({
                   <ArticleCard
                     key={article.id}
                     article={article}
-                    onExplain={onExplainArticle}
                     onSelectCategory={(cat) => {
                       if (categories.includes(cat)) setSelectedSubCategory(cat);
                     }}

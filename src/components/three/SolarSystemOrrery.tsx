@@ -17,18 +17,26 @@ const LazySolarSystemCanvas = lazy(() => import('./SolarSystemCanvas'));
 function StaticOrreryFallback({
   selectedBodyId,
   onSelectBody,
+  animate = false,
 }: {
   selectedBodyId: SolarBodySpec['id'];
   onSelectBody: (id: SolarBodySpec['id']) => void;
+  animate?: boolean;
 }) {
   return (
     <div
       data-testid="orrery-fallback-svg"
-      className="relative flex h-full w-full items-center justify-center bg-[#07090E] p-4"
+      className="relative flex h-full w-full items-center justify-center overflow-hidden bg-[#07090E] p-4"
     >
+      <div
+        aria-hidden="true"
+        className={`cosmic-starfield-layer absolute -inset-4 opacity-45 ${
+          animate ? 'cosmic-drift' : ''
+        }`}
+      />
       <svg
         viewBox="-220 -130 440 260"
-        className="h-full max-h-[300px] w-full max-w-[540px]"
+        className="relative z-10 h-full max-h-[300px] w-full max-w-[540px]"
         role="img"
         aria-label="Schematic orbital diagram of the Solar System"
       >
@@ -217,6 +225,7 @@ export function SolarSystemOrrery() {
               <StaticOrreryFallback
                 selectedBodyId={selectedBodyId}
                 onSelectBody={setSelectedBodyId}
+                animate={profile.animate}
               />
             }
           >
@@ -226,6 +235,8 @@ export function SolarSystemOrrery() {
               isSoftwareGl={glInfo.isSoftwareGl}
               animate={profile.animate}
               pixelRatioCap={profile.pixelRatioCap}
+              isMobile={profile.isMobile}
+              asteroidCount={profile.asteroidCount}
               onSelectBody={setSelectedBodyId}
               onContextFailed={() => setContextFailed(true)}
             />
@@ -234,14 +245,15 @@ export function SolarSystemOrrery() {
           <StaticOrreryFallback
             selectedBodyId={selectedBodyId}
             onSelectBody={setSelectedBodyId}
+            animate={profile?.animate ?? false}
           />
         )}
       </div>
 
       {/* Unified Bottom Control Dock & Telemetry Strip (Zero Viewport Occlusion) */}
-      <div className="border-t border-[#1E293B] bg-[#090D16] px-5 py-4">
+      <div className="border-t border-[#1E293B] bg-[#090D16] px-4 sm:px-5 py-4">
         <div
-          className="flex flex-wrap items-center gap-1.5"
+          className="flex flex-nowrap sm:flex-wrap items-center gap-2 sm:gap-1.5 overflow-x-auto no-scrollbar pb-1 sm:pb-0"
           role="group"
           aria-label="Select Solar System body"
         >
@@ -253,7 +265,7 @@ export function SolarSystemOrrery() {
                 type="button"
                 onClick={() => setSelectedBodyId(body.id)}
                 aria-pressed={active}
-                className={`inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors cursor-pointer ${
+                className={`inline-flex min-h-[40px] sm:min-h-0 items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-medium whitespace-nowrap shrink-0 transition-[background-color,border-color,color,transform] duration-150 active:scale-[0.97] cursor-pointer ${
                   active
                     ? 'bg-[#2563EB] text-white shadow-sm'
                     : 'border border-[#1E293B] bg-[#0D121E] text-[#94A3B8] hover:border-[#334155] hover:text-white'

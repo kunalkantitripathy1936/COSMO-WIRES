@@ -19,6 +19,8 @@ interface SolarSystemCanvasProps {
   isSoftwareGl: boolean;
   animate: boolean;
   pixelRatioCap: number;
+  isMobile?: boolean;
+  asteroidCount?: number;
   onSelectBody: (id: SolarBodySpec['id']) => void;
   onContextFailed: () => void;
 }
@@ -40,6 +42,8 @@ export default function SolarSystemCanvas({
   isSoftwareGl,
   animate,
   pixelRatioCap,
+  isMobile = false,
+  asteroidCount = 160,
   onSelectBody,
   onContextFailed,
 }: SolarSystemCanvasProps) {
@@ -128,7 +132,7 @@ export default function SolarSystemCanvas({
       transparent: true,
       opacity: 0.55,
     });
-    const starCount = isSoftwareGl ? 140 : 240;
+    const starCount = isMobile ? 110 : isSoftwareGl ? 140 : 240;
     const starMesh = new THREE.InstancedMesh(starGeo, starMat, starCount);
     const dummy = new THREE.Object3D();
     for (let i = 0; i < starCount; i++) {
@@ -150,18 +154,18 @@ export default function SolarSystemCanvas({
     disposables.push(starGeo, starMat);
 
     // Procedural Main Asteroid Belt between Mars (4.4) and Jupiter (6.2) in 1 single draw call
-    const asteroidCount = 160;
+    const effectiveAsteroidCount = Math.max(48, Math.min(180, asteroidCount));
     const asteroidGeo = new THREE.DodecahedronGeometry(0.036, 0);
     const asteroidMat = new THREE.MeshStandardMaterial({
       color: 0x94a3b8,
       roughness: 0.92,
       metalness: 0.14,
     });
-    const asteroidBelt = new THREE.InstancedMesh(asteroidGeo, asteroidMat, asteroidCount);
+    const asteroidBelt = new THREE.InstancedMesh(asteroidGeo, asteroidMat, effectiveAsteroidCount);
     const astColor = new THREE.Color();
-    for (let i = 0; i < asteroidCount; i++) {
+    for (let i = 0; i < effectiveAsteroidCount; i++) {
       const seed = (i + 1) * 1.61803398875;
-      const angle = (i / asteroidCount) * Math.PI * 2 + Math.sin(seed * 9.3) * 0.18;
+      const angle = (i / effectiveAsteroidCount) * Math.PI * 2 + Math.sin(seed * 9.3) * 0.18;
       const radius = 5.05 + ((Math.sin(seed * 31.7) * 0.5 + 0.5) * 0.72);
       const yOff = Math.sin(seed * 17.4) * 0.24;
       dummy.position.set(Math.cos(angle) * radius, yOff, Math.sin(angle) * radius);
@@ -218,7 +222,11 @@ export default function SolarSystemCanvas({
         disposables.push(orbitGeo, orbitMat);
       }
 
-      const sphereGeo = new THREE.SphereGeometry(spec.visualRadius, 28, 22);
+      const sphereGeo = new THREE.SphereGeometry(
+        spec.visualRadius,
+        isMobile ? 20 : 28,
+        isMobile ? 16 : 22
+      );
       disposables.push(sphereGeo);
 
       let spinMesh: THREE.Mesh;
@@ -313,18 +321,24 @@ export default function SolarSystemCanvas({
     }
 
     // Gentle pointer drag to inspect orbital inclination + direct click-to-focus on planets
+    // Touch gestures yield immediately to native vertical scrolling when vertical intent dominates.
     let isDragging = false;
+    let dragPointerType: string = 'mouse';
+    let touchAxisLocked: 'none' | 'horizontal' = 'none';
     let pointerDownX = 0;
     let pointerDownY = 0;
     let lastPtrX = 0;
     let lastPtrY = 0;
+    let viewportAspect = width / Math.max(1, height);
     let userAzimuthTarget = 0.25;
-    let userElevationTarget = 0.42;
+    let userElevationTarget = viewportAspect < 1.35 ? 0.52 : 0.42;
     let userAzimuthCurr = 0.25;
-    let userElevationCurr = 0.42;
+    let userElevationCurr = userElevationTarget;
 
     const onPointerDown = (e: PointerEvent) => {
       isDragging = true;
+      dragPointerType = e.pointerType || 'mouse';
+      touchAxisLocked = 'none';
       pointerDownX = e.clientX;
       pointerDownY = e.clientY;
       lastPtrX = e.clientX;
@@ -332,12 +346,25 @@ export default function SolarSystemCanvas({
     };
     const onPointerMove = (e: PointerEvent) => {
       if (!isDragging) return;
+      if (dragPointerType === 'touch' && touchAxisLocked === 'none') {
+        const totalDx = Math.abs(e.clientX - pointerDownX);
+        const totalDy = Math.abs(e.clientY - pointerDownY);
+        if (totalDx + totalDy < 6) return;
+        if (totalDy > totalDx) {
+          // Vertical scroll intent: release drag immediately so page scrolls naturally
+          isDragging = false;
+          return;
+        }
+        touchAxisLocked = 'horizontal';
+      }
       const dx = e.clientX - lastPtrX;
       const dy = e.clientY - lastPtrY;
       lastPtrX = e.clientX;
       lastPtrY = e.clientY;
       userAzimuthTarget -= dx * 0.006;
-      userElevationTarget = THREE.MathUtils.clamp(userElevationTarget + dy * 0.004, 0.14, 1.05);
+      if (dragPointerType !== 'touch') {
+        userElevationTarget = THREE.MathUtils.clamp(userElevationTarget + dy * 0.004, 0.14, 1.05);
+      }
       if (!stateRef.current.animate || stateRef.current.paused) {
         renderSingleFrame();
       }
@@ -345,7 +372,7 @@ export default function SolarSystemCanvas({
     const onPointerUp = (e: PointerEvent) => {
       if (isDragging) {
         const travel = Math.hypot(e.clientX - pointerDownX, e.clientY - pointerDownY);
-        if (travel < 6) {
+        if (travel < 8) {
           const rect = renderer.domElement.getBoundingClientRect();
           if (
             e.clientX >= rect.left &&
@@ -365,6 +392,7 @@ export default function SolarSystemCanvas({
         }
       }
       isDragging = false;
+      touchAxisLocked = 'none';
     };
 
     renderer.domElement.addEventListener('pointerdown', onPointerDown);
@@ -375,7 +403,8 @@ export default function SolarSystemCanvas({
       if (!container) return;
       const w = Math.max(container.clientWidth, 320);
       const h = Math.max(container.clientHeight, 320);
-      camera.aspect = w / h;
+      viewportAspect = w / h;
+      camera.aspect = viewportAspect;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h, false);
       renderSingleFrame();
@@ -410,7 +439,8 @@ export default function SolarSystemCanvas({
       const focused = bodyNodes.get(stateRef.current.selectedBodyId);
       if (focused && focused.spec.id !== 'sun') {
         _targetVec.copy(focused.group.position);
-        const focusDist = Math.max(2.6, focused.spec.visualRadius * 6.8);
+        const focusScale = viewportAspect < 1.3 ? 1.18 : 1;
+        const focusDist = Math.max(2.6, focused.spec.visualRadius * 6.8) * focusScale;
         _camGoal.set(
           _targetVec.x + Math.sin(userAzimuthCurr) * focusDist * Math.cos(userElevationCurr),
           _targetVec.y + Math.sin(userElevationCurr) * focusDist + 0.55,
@@ -418,7 +448,11 @@ export default function SolarSystemCanvas({
         );
       } else {
         _targetVec.set(0, 0, 0);
-        const overviewDist = 15.2;
+        // Desktop wide aspect keeps exact 15.2 overview distance; narrower mobile frames pull back cleanly
+        const overviewDist =
+          viewportAspect < 1.35
+            ? THREE.MathUtils.clamp(15.2 * (1.42 / Math.max(0.85, viewportAspect)), 15.8, 22.8)
+            : 15.2;
         _camGoal.set(
           Math.sin(userAzimuthCurr) * overviewDist * Math.cos(userElevationCurr),
           Math.sin(userElevationCurr) * overviewDist,
@@ -530,7 +564,7 @@ export default function SolarSystemCanvas({
         container.removeChild(renderer.domElement);
       }
     };
-  }, [isSoftwareGl, pixelRatioCap]);
+  }, [isSoftwareGl, pixelRatioCap, isMobile, asteroidCount]);
 
   return (
     <div

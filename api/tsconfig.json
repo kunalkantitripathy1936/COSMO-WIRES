@@ -5,6 +5,8 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "lib": ["ES2022", "DOM"],
+    "types": ["node"],
+    "typeRoots": ["../node_modules/@types"],
     "strict": true,
     "skipLibCheck": false,
     "esModuleInterop": true,

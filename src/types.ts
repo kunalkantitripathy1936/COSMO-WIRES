@@ -141,36 +141,3 @@ export interface SpaceMission {
   officialUrl: string;
   imageCategory: 'observatory' | 'exoplanet' | 'galaxy' | 'blackhole';
 }
-
-export type ExplainerMode =
-  | 'explain-simple'
-  | 'summarize'
-  | 'significance'
-  | 'glossary'
-  | 'qa';
-
-export interface ExplainerTurn {
-  role: 'user' | 'model';
-  text: string;
-}
-
-export interface ExplainerRequest {
-  mode: ExplainerMode;
-  question?: string;
-  history?: ExplainerTurn[];
-  article?: {
-    title: string;
-    excerpt: string;
-    publisher: string;
-    category: string;
-    publishedAt: string;
-  };
-}
-
-export interface ExplainerResponse {
-  answer: string;
-  mode: ExplainerMode;
-  model: string;
-  generatedAt: string;
-  disclaimer: string;
-}

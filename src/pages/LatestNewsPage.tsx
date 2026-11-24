@@ -34,7 +34,6 @@ interface LatestNewsPageProps {
   newArticlesBanner?: string | null;
   initialQuery: string;
   initialCategory: NewsCategory | 'All';
-  onExplainArticle: (article: Article) => void;
   onRefresh: () => void;
 }
 
@@ -55,7 +54,6 @@ export function LatestNewsPage({
   newArticlesBanner,
   initialQuery,
   initialCategory,
-  onExplainArticle,
   onRefresh,
 }: LatestNewsPageProps) {
   const prefersReduced = useReducedMotion();
@@ -362,7 +360,6 @@ export function LatestNewsPage({
               <StaggerItem key={article.id} className="h-full">
                 <ArticleCard
                   article={article}
-                  onExplain={onExplainArticle}
                   onSelectCategory={(cat) => {
                     setCategory(cat);
                     resetToFirstPage();

@@ -47,6 +47,7 @@ export function ResilientImage({
       src={activeSrc}
       alt={alt}
       loading={loading}
+      decoding="async"
       referrerPolicy="no-referrer"
       onError={() => {
         if (activeSrc !== defaultFallback) {

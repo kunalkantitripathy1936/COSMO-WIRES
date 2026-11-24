@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowUpRight, Search, Sparkles, X } from 'lucide-react';
+import { ArrowUpRight, Search, X } from 'lucide-react';
 import { BRAND } from '../config/brand';
 import { Article, NEWS_CATEGORIES, NewsCategory } from '../types';
 import { filterAndSearchArticles, formatDateTimeLocal } from '../utils/newsLogic';
@@ -8,7 +8,6 @@ interface SearchModalProps {
   open: boolean;
   articles: Article[];
   onClose: () => void;
-  onExplain: (article: Article) => void;
   onApplySearchToArchive: (query: string, category: NewsCategory | 'All') => void;
 }
 
@@ -16,7 +15,6 @@ export function SearchModal({
   open,
   articles,
   onClose,
-  onExplain,
   onApplySearchToArchive,
 }: SearchModalProps) {
   const [query, setQuery] = useState('');
@@ -145,17 +143,6 @@ export function SearchModal({
                   </a>
                 </div>
                 <div className="flex items-center gap-2 shrink-0 text-xs">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      onClose();
-                      onExplain(article);
-                    }}
-                    className="inline-flex items-center gap-1 rounded-full border border-[#8B5CF6]/35 bg-[#8B5CF6]/10 px-2.5 py-1 text-[#C4B5FD] hover:bg-[#8B5CF6]/20 transition-colors cursor-pointer"
-                  >
-                    <Sparkles className="h-3 w-3" strokeWidth={1.75} aria-hidden="true" />
-                    <span>Explain</span>
-                  </button>
                   <a
                     href={article.url}
                     target="_blank"

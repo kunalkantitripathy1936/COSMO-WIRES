@@ -8,7 +8,6 @@ import { ArticleCard } from '../components/ArticleCard';
 
 interface SpaceMissionsPageProps {
   articles: Article[];
-  onExplainArticle: (article: Article) => void;
 }
 
 const STATUS_FILTERS: Array<'All' | SpaceMission['status']> = [
@@ -18,7 +17,7 @@ const STATUS_FILTERS: Array<'All' | SpaceMission['status']> = [
   'Upcoming Launch',
 ];
 
-export function SpaceMissionsPage({ articles, onExplainArticle }: SpaceMissionsPageProps) {
+export function SpaceMissionsPage({ articles }: SpaceMissionsPageProps) {
   const [statusFilter, setStatusFilter] = useState<'All' | SpaceMission['status']>('All');
 
   const missions = useMemo(
@@ -164,7 +163,6 @@ export function SpaceMissionsPage({ articles, onExplainArticle }: SpaceMissionsP
                 <ArticleCard
                   key={article.id}
                   article={article}
-                  onExplain={onExplainArticle}
                 />
               ))}
             </div>

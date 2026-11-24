@@ -16,7 +16,7 @@ import { filterCosmicEvents } from './utils/newsLogic';
 import { GENERATED_IMAGES } from './utils/mediaAssets';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import { ScrollProgressBar } from './components/motion/CosmicPrimitives';
+import { MobileCosmicAtmosphere, ScrollProgressBar } from './components/motion/CosmicPrimitives';
 import { HomePage } from './pages/HomePage';
 
 const LatestNewsPage = lazy(() =>
@@ -48,11 +48,6 @@ const LegalDocumentPage = lazy(() =>
 );
 const SearchModal = lazy(() =>
   import('./components/SearchModal').then((m) => ({ default: m.SearchModal }))
-);
-const CosmicExplainerDrawer = lazy(() =>
-  import('./components/CosmicExplainerDrawer').then((m) => ({
-    default: m.CosmicExplainerDrawer,
-  }))
 );
 
 const VALID_ROUTES = new Set<RoutePath>([
@@ -99,7 +94,7 @@ const PAGE_SEO: Record<RoutePath, { title: string; description: string }> = {
   '/discoveries': {
     title: `Scientific Discoveries — ${BRAND.name}`,
     description:
-      'Landmark peer-reviewed discoveries in astronomy, astrophysics, and planetary science with AI-assisted explanations.',
+      'Landmark peer-reviewed discoveries in astronomy, astrophysics, and planetary science.',
   },
   '/cosmic-calendar': {
     title: `Cosmic Calendar (2026–2027) — ${BRAND.name}`,
@@ -116,7 +111,7 @@ const PAGE_SEO: Record<RoutePath, { title: string; description: string }> = {
   },
   '/editorial-policy': {
     title: `Editorial Policy — ${BRAND.name}`,
-    description: `Source verification, copyright attribution, and transparent AI labeling standards at ${BRAND.name}.`,
+    description: `Source verification, copyright attribution, and scientific reporting standards at ${BRAND.name}.`,
   },
   '/disclaimer': {
     title: `Disclaimer — ${BRAND.name}`,
@@ -124,7 +119,7 @@ const PAGE_SEO: Record<RoutePath, { title: string; description: string }> = {
   },
   '/privacy': {
     title: `Privacy Policy — ${BRAND.name}`,
-    description: `How ${BRAND.name} handles Contact Us submissions, technical server data, and third-party services.`,
+    description: `How ${BRAND.name} handles direct editorial correspondence, technical server data, and third-party services.`,
   },
   '/terms': {
     title: `Terms and Conditions — ${BRAND.name}`,
@@ -165,8 +160,6 @@ export default function App() {
   const [archiveKey, setArchiveKey] = useState(0);
 
   const [searchOpen, setSearchOpen] = useState(false);
-  const [explainerOpen, setExplainerOpen] = useState(false);
-  const [explainerArticle, setExplainerArticle] = useState<Article | null>(null);
 
   const fetchNews = useCallback(async (forceRefresh = false, silent = false) => {
     if (!silent) {
@@ -365,16 +358,6 @@ export default function App() {
     [navigate]
   );
 
-  const handleExplainArticle = useCallback((article: Article) => {
-    setExplainerArticle(article);
-    setExplainerOpen(true);
-  }, []);
-
-  const handleOpenGeneralExplainer = useCallback(() => {
-    setExplainerArticle(null);
-    setExplainerOpen(true);
-  }, []);
-
   const upcomingEvents = useMemo(
     () => filterCosmicEvents(VERIFIED_COSMIC_EVENTS, { onlyUpcoming: true }),
     []
@@ -402,8 +385,6 @@ export default function App() {
             upcomingEvents={upcomingEvents}
             onNavigate={navigate}
             onSelectCategory={handleSelectCategory}
-            onExplainArticle={handleExplainArticle}
-            onOpenExplainer={handleOpenGeneralExplainer}
             onSelectApodDate={(d) => void fetchApod(d)}
             onRefreshNews={() => void fetchNews(true)}
           />
@@ -426,7 +407,6 @@ export default function App() {
             newArticlesBanner={newArticlesBanner}
             initialQuery={archiveQuery}
             initialCategory={archiveCategory}
-            onExplainArticle={handleExplainArticle}
             onRefresh={() => void fetchNews(true)}
           />
         );
@@ -441,8 +421,6 @@ export default function App() {
             heroImageAlt="Temperate exoplanet atmosphere observed from orbit"
             categories={['Astronomy', 'Exoplanets', 'Solar System', 'Galaxies']}
             articles={articles}
-            onExplainArticle={handleExplainArticle}
-            onOpenExplainer={handleOpenGeneralExplainer}
           />
         );
       case '/astrophysics':
@@ -456,17 +434,10 @@ export default function App() {
             heroImageAlt="Supermassive black hole accretion disk visualization"
             categories={['Astrophysics', 'Cosmology', 'Black Holes']}
             articles={articles}
-            onExplainArticle={handleExplainArticle}
-            onOpenExplainer={handleOpenGeneralExplainer}
           />
         );
       case '/space-missions':
-        return (
-          <SpaceMissionsPage
-            articles={articles}
-            onExplainArticle={handleExplainArticle}
-          />
-        );
+        return <SpaceMissionsPage articles={articles} />;
       case '/discoveries':
         return (
           <TopicSectionPage
@@ -478,8 +449,6 @@ export default function App() {
             heroImageAlt="Grand-design spiral galaxy deep field photograph"
             categories={['Cosmology', 'Black Holes', 'Exoplanets', 'Galaxies', 'Astrophysics']}
             articles={articles}
-            onExplainArticle={handleExplainArticle}
-            onOpenExplainer={handleOpenGeneralExplainer}
           />
         );
       case '/cosmic-calendar':
@@ -530,7 +499,8 @@ export default function App() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="min-h-screen flex flex-col bg-[#07090E] text-[#F1F5F9]">
+      <div className="relative min-h-screen flex flex-col bg-[#07090E] text-[#F1F5F9]">
+        <MobileCosmicAtmosphere />
         <ScrollProgressBar />
 
         <a
@@ -544,23 +514,22 @@ export default function App() {
           currentPath={currentPath}
           onNavigate={navigate}
           onOpenSearch={() => setSearchOpen(true)}
-          onOpenExplainer={handleOpenGeneralExplainer}
         />
 
-        <main id="main-content" className="flex-1">
+        <main id="main-content" className="relative z-10 flex-1">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={currentPath}
-              initial={{ opacity: 0, y: 8 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -4 }}
-              transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
             >
               <Suspense
                 fallback={
                   <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-                    <div className="h-6 w-48 animate-pulse rounded-full bg-[#1E293B]" />
-                    <div className="mt-4 h-10 w-80 max-w-full animate-pulse rounded-xl bg-[#111827]" />
+                    <div className="h-6 w-48 cosmic-shimmer rounded-full" />
+                    <div className="mt-4 h-10 w-80 max-w-full cosmic-shimmer rounded-xl" />
                   </div>
                 }
               >
@@ -570,7 +539,9 @@ export default function App() {
           </AnimatePresence>
         </main>
 
-        <Footer onNavigate={navigate} />
+        <div className="relative z-10">
+          <Footer onNavigate={navigate} />
+        </div>
 
         {searchOpen && (
           <Suspense fallback={null}>
@@ -578,19 +549,7 @@ export default function App() {
               open={searchOpen}
               articles={articles}
               onClose={() => setSearchOpen(false)}
-              onExplain={handleExplainArticle}
               onApplySearchToArchive={handleApplySearchToArchive}
-            />
-          </Suspense>
-        )}
-
-        {explainerOpen && (
-          <Suspense fallback={null}>
-            <CosmicExplainerDrawer
-              open={explainerOpen}
-              article={explainerArticle}
-              onClose={() => setExplainerOpen(false)}
-              onClearArticle={() => setExplainerArticle(null)}
             />
           </Suspense>
         )}
